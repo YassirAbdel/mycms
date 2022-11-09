@@ -1,0 +1,22 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{{ article.titre }}{% endblock %}
+{% block stylesheets %}
+    <style>
+        
+    </style> 
+{% endblock %}
+{% block body %}
+    <div class="container-fluid mt-3">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3>{{ article.titre }}</h3>
+                    <h4 class="card-title"></h4>
+                    {{ include('admin/article/_form.html.twig', {'button_label': 'Valider'}) }}
+                    <!-- {{ include('admin/article/_delete_form.html.twig') }} -->
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

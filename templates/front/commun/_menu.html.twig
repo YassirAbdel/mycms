@@ -1,0 +1,22 @@
+						<div id="contenu"></div>
+						<ul id="accordion" class="accordion">
+							{% for rubrique in rubriques %}
+								{% set counter = ( counter | default(0) ) + 1 %}
+								{% if rubrique.sousrubriques|length == 0 %}
+									<li>
+										<div class="link"><a href={{ path('front_rubrique_show', {'slug': rubrique.slug, 'id': rubrique.id}) }}#contenu><span {% if menu == rubrique.id %}style="color:#a1c754"{% endif %}>{{ rubrique.titre }}</span></a></div>
+									</li>
+								{% endif %}
+								{% if rubrique.sousrubriques|length > 0 %}
+									<li {% if menu == rubrique.id %}class="open{% endif %} ">
+										<div class="link">{{ rubrique.titre }}<i class="fa fa-chevron-down"></i></div>
+										<!--<ul class="submenu" style="display:block;">-->
+										<ul class="submenu" {% if menu == rubrique.id %}style="display:block;"{% else %}style="display:none;"{% endif %}>
+											{% for sousrubrique in rubrique.sousrubriques %}
+												<li><a href={{ path('front_sousrubrique_show', {'slug': sousrubrique.slug, 'id': sousrubrique.id}) }}#contenu><span {% if sousmenu == sousrubrique.id %}style="color:#a1c754"{% endif %}>{{ sousrubrique.titre }}</span></a></li>
+											{% endfor %}
+										</ul>
+									</li>
+								{% endif %}
+							{% endfor %}
+						</u>

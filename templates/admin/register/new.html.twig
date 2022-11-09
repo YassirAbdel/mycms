@@ -1,0 +1,28 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Liste des dossiers{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .action span {
+            margin-right: 5px;
+        }
+        .card {
+            align-items: normal;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid mt-3">
+                <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Nouveau compte</h4>
+                                {{ form(form) }}
+                            </div>
+                        </div>
+                </div>
+
+</div>
+ {% endblock %}        

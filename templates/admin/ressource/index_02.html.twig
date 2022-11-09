@@ -1,0 +1,130 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les ressources{% endblock %}
+
+{% block body %}
+    <h1>Associer dissocier une ressource</h1>
+    <h2>{{ collection.titre }} : {{ souscollection.titre }}</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>actions</th>
+                <th>Id</th>
+                <th>Type</th>
+                <th>Titre</th>
+                <th>Langue</th>
+                <th>Commentaire</th>
+                <th>Personne</th>
+                <th>Oeuvre</th>
+                <th>Organisme</th>
+                <th>Lieu</th>
+                <th>Descripteur</th>
+                <th>Analyse</th>
+                <th>Droits</th>
+                <th>Created_at</th>
+                <th>Auteur</th>
+                <th>Responsable</th>
+                <th>Editeur</th>
+                <th>Lieuedition</th>
+                <th>Annee_edition</th>
+                <th>Isbn</th>
+                <th>Pagination</th>
+                <th>Collection</th>
+                <th>Auteur_secondaire</th>
+                <th>AnneeStat</th>
+                <th>PerHisto</th>
+                <th>OrigDoc</th>
+                <th>CopyRight</th>
+                <th>Support</th>
+                <th>Couleur</th>
+                <th>Format</th>
+                <th>FormatFile</th>
+                <th>Duree</th>
+                <th>NbFiles</th>
+                <th>Cote</th>
+                <th>SupNum</th>
+                <th>LocaSupnum</th>
+                <th>CoteNum</th>
+                <th>UrlImag</th>
+                <th>UrlPdf</th>
+                <th>UrlAudio</th>
+                <th>NumVideo</th>
+                <th>UrlDoc</th>
+                <th>ResEdit</th>
+                <th>Lecteur</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+        {% for ressource in ressources %}
+            <tr>
+                <td>
+                    <ul>
+                        <li><a href="{{ path('app_add_ressource_texte', {id: ressource.id , 'id_sous_collection': app.request.get('id_sous_collection'), 'id_collection': app.request.get('id_collection') }) }}">Associer à votre texte</a></li>
+                        <li><a href="{{ path('app_remove_ressource_texte', {id: ressource.id ,'id_sous_collection': app.request.get('id_sous_collection'), 'id_collection': app.request.get('id_collection') }) }}">dissocier de votre texte</a></li>
+                        <li><a href="{{ path('app_ressource_show', {'id': ressource.id}) }}">Notice détaillée</a></li>
+                        <li><a href="{{ path('app_ressource_edit', {'id': ressource.id}) }}">Editer</a></li>
+                    </ul>
+                </td>
+                <td>{{ ressource.id }}</td>
+                <td>{{ ressource.type }}</td>
+                <td>{{ ressource.titre }}</td>
+                <td>{{ ressource.langue }}</td>
+                <td>{{ ressource.commentaire }}</td>
+                <td>{{ ressource.personne }}</td>
+                <td>{{ ressource.oeuvre }}</td>
+                <td>{{ ressource.organisme }}</td>
+                <td>{{ ressource.lieu }}</td>
+                <td>{{ ressource.descripteur }}</td>
+                <td>{{ ressource.analyse ? 'Yes' : 'No' }}</td>
+                <td>{{ ressource.droits ? 'Yes' : 'No' }}</td>
+                <td>{{ ressource.createdAt ? ressource.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ ressource.auteur }}</td>
+                <td>{{ ressource.responsable }}</td>
+                <td>{{ ressource.editeur }}</td>
+                <td>{{ ressource.lieuedition }}</td>
+                <td>{{ ressource.anneeEdition }}</td>
+                <td>{{ ressource.isbn }}</td>
+                <td>{{ ressource.pagination }}</td>
+                <td>{{ ressource.collection }}</td>
+                <td>{{ ressource.auteurSecondaire }}</td>
+                <td>{{ ressource.anneeStat }}</td>
+                <td>{{ ressource.perHisto }}</td>
+                <td>{{ ressource.origDoc }}</td>
+                <td>{{ ressource.copyRight }}</td>
+                <td>{{ ressource.support }}</td>
+                <td>{{ ressource.couleur }}</td>
+                <td>{{ ressource.format }}</td>
+                <td>{{ ressource.formatFile }}</td>
+                <td>{{ ressource.duree }}</td>
+                <td>{{ ressource.nbFiles }}</td>
+                <td>{{ ressource.cote }}</td>
+                <td>{{ ressource.supNum }}</td>
+                <td>{{ ressource.locaSupnum }}</td>
+                <td>{{ ressource.coteNum }}</td>
+                <td>{{ ressource.urlImag }}</td>
+                <td>{{ ressource.urlPdf }}</td>
+                <td>{{ ressource.urlAudio }}</td>
+                <td>{{ ressource.numVideo }}</td>
+                <td>{{ ressource.urlDoc }}</td>
+                <td>{{ ressource.resEdit }}</td>
+                <td>{{ ressource.lecteur }}</td>
+                
+            </tr>
+           
+        {% else %}
+            <tr>
+                <td colspan="44">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+         
+</form>
+    </table>
+    {# display navigation #}
+			<div class="navigation">
+    			{{ knp_pagination_render(ressources) }}
+			</div>
+    <a href="{{ path('app_ressource_new', {'id_texte': app.request.get('id_texte') }) }}">Nouvelle ressource</a>
+{% endblock %}

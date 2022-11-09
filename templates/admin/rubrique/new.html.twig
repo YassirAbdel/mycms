@@ -1,0 +1,17 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{{ dossier.titre }} > Nouvelle rubrique ou un article{% endblock %}
+
+{% block body %}
+            <div class="container-fluid mt-3">
+                <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3>{{ dossier.titre }}</h3>
+                                <h4 class="card-title">Nouvelle rubrique ou nouvel article </h4>
+                                {{ include('admin/rubrique/_form.html.twig', {'button_label': 'Valider'}) }}
+                            </div>
+                        </div>
+                </div>
+            </div>
+{% endblock %}

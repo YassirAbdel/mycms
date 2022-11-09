@@ -1,0 +1,32 @@
+# Read the documentation: https://symfony.com/doc/current/bundles/FOSCKEditorBundle/index.html
+
+twig:
+    form_themes:
+        - '@FOSCKEditor/Form/ckeditor_widget.html.twig' 
+fos_ck_editor:
+    default_config: main_config
+    configs:
+        main_config:
+            toolbar: 
+                my_toolbar_2
+                # contact 
+                # standard
+                # full
+                # { name: "styles", items: ['Bold', 'Italic', 'Underline', 'Strike', 'Blockquote', '-', 'Link', '-', 'RemoveFormat', '-', 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'Image', 'Table', '-', 'Styles', 'Format','Font','FontSize', '-', 'TextColor', 'BGColor', 'Source'] }
+            language: 'fr'
+            filebrowserBrowseRoute: elfinder
+            filebrowserBrowseRouteParameters: []
+            fullscreen: true # Taille d'affichage
+            extraPlugins: "footnotes"
+    plugins:
+        footnotes:
+            path: "/bundles/fosckeditor/plugins/footnotes/"
+            filename: "plugin.js"
+    toolbars:
+        items:
+            full.colors: [ "TextColor", "BGColor" ]
+            full.document: [ "Source", "-", "Preview", "Print" ]
+        configs:
+            my_toolbar_1: [ [ "Source" ], "/", [ "Anchor" ], "/", [ "Maximize" ], "/", ["Footnotes"] ]
+            my_toolbar_2: [ [ "Format", "-", "Bold", "Italic", "Underline", "RemoveFormat", "-", "Cut", "Copy", "Paste", "PasteText", "PasteFromWord", "Undo", "Redo", "-", "NumberedList", "BulletedList", "Outdent", "Indent", "Blockquote", "JustifyLeft", "JustifyCenter", "JustifyRight", "JustifyBlock", "BidiLtr", "BidiRtl", "-", "Find", "Replace", "SelectAll", "Scayt", "-", "Link", "Unlink", "Image", "Table", "-", "Footnotes"], "/", ["Preview", "-", "Print", "-", "Save", "-", "Source", "-", "document", "-", "ShowBlocks", "About"] ]
+            contact: [ ["Bold", "Italic", "Underline", "RemoveFormat"] ]

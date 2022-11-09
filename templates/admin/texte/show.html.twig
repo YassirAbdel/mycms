@@ -1,0 +1,50 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Texte{% endblock %}
+
+{% block body %}
+    <h1>Texte</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ texte.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ texte.titre }}</td>
+            </tr>
+            <tr>
+                <th>Contenu</th>
+                <td>{{ texte.contenu }}</td>
+            </tr>
+            {% if texte.rubrique.titre is defined %}
+            <tr>
+                <th>Rubrique</th>
+                <td>{{ texte.rubrique.titre }}</td>
+            </tr>
+            {% endif %}
+           {% if texte.sousrubrique.titre is defined %}
+            <tr>
+                <th>Sous-rubrique</th>
+                <td>{{ texte.sousrubrique.titre }}</td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_texte_index') }}">back to list</a>
+    <a href="{{ path('app_ressource_index', {'id_texte': texte.id}) }}">Ajouter une vidéo</a>
+    <a href="{{ path('app_texte_edit', {'id': texte.id}) }}">edit</a>
+
+    <ul><strong>RESSOURCES</strong>
+    {% for ressource in texte.ressources %}
+  
+        <li>{{ ressource.id }}</li>
+        <li>{{ ressource.titre }}</li>
+    {% endfor %}
+    </ul>
+
+    {{ include('texte/_delete_form.html.twig') }}
+{% endblock %}

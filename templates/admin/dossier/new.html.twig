@@ -1,0 +1,19 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Nouveau dossier1{% endblock %}
+
+{% block body %}
+        <div class="container-fluid mt-3">
+                <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3>{{ dossier.titre }}</h3>
+                                <h4 class="card-title">Nouveau dossier</h4>
+                                {{ include('admin/dossier/_form.html.twig', {'button_label': 'Valider'}) }}
+                            </div>
+                        </div>
+                </div>
+            </div>
+
+    <!-- <a href="{{ path('app_dossier_index') }}">back to list</a> -->
+{% endblock %}

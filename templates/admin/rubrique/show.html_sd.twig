@@ -1,0 +1,146 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rubrique{% endblock %}
+
+{% block body %}
+{% set textes = rubrique.textes %}
+{% set sousrubriques = rubrique.sousrubriques %}
+<h1>{{dossier.titre}} > {{ rubrique.titre}}</h1>
+{% if textes|length > 0 %}
+    <h2><i>Ajouter un article</i></h2>
+{% elseif sousrubriques|length > 0 %}
+    <h2><i>Ajouter une sous-rubrique</i></h2>
+{% else %}
+    <h2><i>Ajouter un article ou une rubrique</i></h2>
+{% endif %}
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ rubrique.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ rubrique.titre }}</td>
+            </tr>
+            <tr>
+                <th>Resume</th>
+                <td>{{ rubrique.resume }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('app_dossier_show', {'id': dossier.id}) }}" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file" viewBox="0 0 16 16">
+    <path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"/>
+    </svg> Dossier</a>
+    <a class="btn btn-primary" href="{{ path('app_rubrique_edit', {'id': rubrique.id}) }}" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+    </svg> Modifier</a>
+    
+    {% if textes|length == 0 and sousrubriques|length == 0 %}
+        <a class="btn btn-primary" href="{{ path('app_texte_new', {'id_rubrique': rubrique.id}) }}" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-text" viewBox="0 0 16 16">
+        <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+        <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
+        </svg> Ajouter un texte (si article)</a> | 
+        <a class="btn btn-primary" href="{{ path('app_sousrubrique_new', {'id_rubrique': rubrique.id}) }}" role="button">Ajouter une sous-rubrique (si rubrique)</a> | 
+    {% elseif textes|length > 0 %}
+        <a class="btn btn-primary" href="{{ path('app_texte_new', {'id_rubrique': rubrique.id}) }}" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-text" viewBox="0 0 16 16">
+        <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+        <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
+        </svg> Ajouter un texte</a> 
+    {% elseif sousrubriques|length > 0 %}
+        <a class="btn btn-primary" href="{{ path('app_sousrubrique_new', {'id_rubrique': rubrique.id}) }}" role="button">Ajouter une sous-rubrique</a> 
+    {% endif %}
+    <hr>
+{% set textes = rubrique.textes %}
+{% if textes|length > 0 %}
+<p><strong>TEXTES :</strong></p>
+        {% for texte in textes %}
+            <ul>
+                <li>{{ texte.id }}</li>
+                <li>{{ texte.contenu }}</li>
+                <br/>
+                {% set ressources = texte.ressources %}
+                {% if ressources|length > 0 %}
+                    <li><p><strong>Ressources</strong></p>
+                        <ul>
+                            {% for ressource in ressources %}
+                                <li>{{ ressource.id }}</li>
+                                <li>{{ ressource.titre }}</li>
+                                <li><a href="{{ path('app_remove_ressource_texte', {id: ressource.id , 'id_texte': texte.id, 'id_rubrique': rubrique.id }) }}"><i class="fa-regular fa-trash-can fa-lg"></i></a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+            </ul>
+            {% else %}
+            </ul>             
+            {% endif %}       
+                        <a href="{{ path('app_texte_edit', {'id': texte.id, 'id_rubrique': rubrique.id}) }}"><i class="fa-regular fa-pen-to-square fa-lg" title="Modifier"></i><i class="fa-regular fa-trash-can fa-lg" title="Supprimer"></i></a>
+                        <a href="{{ path('app_ressource_index', {'id_texte': texte.id, 'id_rubrique': rubrique.id} ) }}"><i class="fa-regular fa-paste fa-lg" title="Ajouter une ressource"></i></a>
+        <hr>   
+        {% endfor %}
+     
+{% endif %}
+   
+    {% set sousrubriques = rubrique.sousrubriques %}
+    {% if sousrubriques|length > 0 %}
+    
+        {% set numero_ss_rubrique = 0 %}
+        {% for sousrubrique in sousrubriques %}
+            <strong>{% set counter = ( counter | default(0) ) + 1 %} {{ counter }} - {{ sousrubrique.titre }}</strong>     
+                    <p>- id ss-rubrique : {{ sousrubrique.id }}</p>
+                    {% if sousrubrique.resume is defined and sousrubrique.resume is not null %}
+                        <p>CONTENU : </p>
+                        <p>{{ sousrubrique.resume }}</p>
+                    {% endif %}
+                    
+                        <p>
+                        <a href="{{ path('app_sousrubrique_edit', {'id': sousrubrique.id}) }}">Modifier</a> |
+                        <a href="{{ path('app_texte_new', {'id_sous_rubrique': sousrubrique.id} ) }}">Ajouter un texte</a>
+                        </p>
+                            {% set sousrubriquetextes = sousrubrique.textes %}
+                            {% if sousrubriquetextes|length > 0 %}
+                                        {% for texte in sousrubriquetextes %}
+                                     
+                                    <ul>
+                                                <li>id texte : {{ texte.id }}</li>
+                                                {% if texte.contenu is defined %}<p>{{ texte.contenu }}</p> {% endif %}
+                                    </ul>
+                                                        {% set ressources = texte.ressources %}
+                                                            {% if ressources|length > 0 %}
+                                                            <ul>
+                                                                <li><p>Les ressources</p>
+                                                                    <ul>                                                            
+                                                                        {% for ressource in ressources %}
+                                                                            <li>{{ ressource.id }}</li>
+                                                                            <li>{{ ressource.titre }}</li>
+                                                                            <li><a href="{{ path('app_remove_ressource_texte', {id: ressource.id , 'id_texte': texte.id, 'id_sous_rubrique': sousrubrique.id }) }}">Supprimer</a></li>
+                                                                            <br/>
+                                                                        {% endfor %}
+                                                                    </ul>
+                                                                </li>
+                                                            </ul>
+                                                           {% endif %}
+                                            <p>     
+                                                <a href="{{ path('app_texte_edit', {'id': texte.id, 'id_sous_rubrique': sousrubrique.id}) }}">Modifier / Supprimer ce texte</a> |
+                                                <a href="{{ path('app_ressource_index', {'id_texte': texte.id, 'id_rubrique': rubrique.id} ) }}">Ajouter une ressource</a>      
+                                            </p>
+                                                                        
+                                        {% endfor %}
+                                     
+                          
+                          
+	                    {% else %}
+                            {{ include('sousrubrique/_delete_form.html.twig') }}
+                        {% endif %}
+                    <hr>  
+        {% endfor %}
+ 
+        
+    {% elseif textes|length == 0 and sousrubriques|length == 0 %}
+        {{ include('rubrique/_delete_form.html.twig') }}
+    {% endif %} 
+ 
+{% endblock %}

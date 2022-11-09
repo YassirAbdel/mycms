@@ -1,0 +1,23 @@
+.accordion {
+    margin: 10px;
+}
+.table {
+    margin: 5px;
+}
+.titredoss {
+    margin: 10px;
+}
+.accordion-item:last-of-type .accordion-button.collapsed {
+    background-color: lightgray;
+    color: black;
+}
+.accordion-button:not(.collapsed) {
+    background-color: lightgray;
+    color: black;
+}
+.titressrub {
+    font-size: 18px;
+}
+.rub-abstract {
+    margin-bottom: 10px;
+}

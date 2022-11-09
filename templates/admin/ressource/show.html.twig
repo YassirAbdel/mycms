@@ -1,0 +1,192 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Ressource{% endblock %}
+
+{% block body %}
+    <h1>Ressource</h1>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ressource.id }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ ressource.type }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ ressource.titre }}</td>
+            </tr>
+            <tr>
+                <th>Langue</th>
+                <td>{{ ressource.langue }}</td>
+            </tr>
+            <tr>
+                <th>Commentaire</th>
+                <td>{{ ressource.commentaire }}</td>
+            </tr>
+            <tr>
+                <th>Personne</th>
+                <td>{{ ressource.personne }}</td>
+            </tr>
+            <tr>
+                <th>Oeuvre</th>
+                <td>{{ ressource.oeuvre }}</td>
+            </tr>
+            <tr>
+                <th>Organisme</th>
+                <td>{{ ressource.organisme }}</td>
+            </tr>
+            <tr>
+                <th>Lieu</th>
+                <td>{{ ressource.lieu }}</td>
+            </tr>
+            <tr>
+                <th>Descripteur</th>
+                <td>{{ ressource.descripteur }}</td>
+            </tr>
+            <tr>
+                <th>Analyse</th>
+                <td>{{ ressource.analyse ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Droits</th>
+                <td>{{ ressource.droits ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ ressource.createdAt ? ressource.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Auteur</th>
+                <td>{{ ressource.auteur }}</td>
+            </tr>
+            <tr>
+                <th>Responsable</th>
+                <td>{{ ressource.responsable }}</td>
+            </tr>
+            <tr>
+                <th>Editeur</th>
+                <td>{{ ressource.editeur }}</td>
+            </tr>
+            <tr>
+                <th>Lieuedition</th>
+                <td>{{ ressource.lieuedition }}</td>
+            </tr>
+            <tr>
+                <th>Annee_edition</th>
+                <td>{{ ressource.anneeEdition }}</td>
+            </tr>
+            <tr>
+                <th>Isbn</th>
+                <td>{{ ressource.isbn }}</td>
+            </tr>
+            <tr>
+                <th>Pagination</th>
+                <td>{{ ressource.pagination }}</td>
+            </tr>
+            <tr>
+                <th>Collection</th>
+                <td>{{ ressource.collection }}</td>
+            </tr>
+            <tr>
+                <th>Auteur_secondaire</th>
+                <td>{{ ressource.auteurSecondaire }}</td>
+            </tr>
+            <tr>
+                <th>AnneeStat</th>
+                <td>{{ ressource.anneeStat }}</td>
+            </tr>
+            <tr>
+                <th>PerHisto</th>
+                <td>{{ ressource.perHisto }}</td>
+            </tr>
+            <tr>
+                <th>OrigDoc</th>
+                <td>{{ ressource.origDoc }}</td>
+            </tr>
+            <tr>
+                <th>CopyRight</th>
+                <td>{{ ressource.copyRight }}</td>
+            </tr>
+            <tr>
+                <th>Support</th>
+                <td>{{ ressource.support }}</td>
+            </tr>
+            <tr>
+                <th>Couleur</th>
+                <td>{{ ressource.couleur }}</td>
+            </tr>
+            <tr>
+                <th>Format</th>
+                <td>{{ ressource.format }}</td>
+            </tr>
+            <tr>
+                <th>FormatFile</th>
+                <td>{{ ressource.formatFile }}</td>
+            </tr>
+            <tr>
+                <th>Duree</th>
+                <td>{{ ressource.duree }}</td>
+            </tr>
+            <tr>
+                <th>NbFiles</th>
+                <td>{{ ressource.nbFiles }}</td>
+            </tr>
+            <tr>
+                <th>Cote</th>
+                <td>{{ ressource.cote }}</td>
+            </tr>
+            <tr>
+                <th>SupNum</th>
+                <td>{{ ressource.supNum }}</td>
+            </tr>
+            <tr>
+                <th>LocaSupnum</th>
+                <td>{{ ressource.locaSupnum }}</td>
+            </tr>
+            <tr>
+                <th>CoteNum</th>
+                <td>{{ ressource.coteNum }}</td>
+            </tr>
+            <tr>
+                <th>UrlImag</th>
+                <td>{{ ressource.urlImag }}</td>
+            </tr>
+            <tr>
+                <th>UrlPdf</th>
+                <td>{{ ressource.urlPdf }}</td>
+            </tr>
+            <tr>
+                <th>UrlAudio</th>
+                <td>{{ ressource.urlAudio }}</td>
+            </tr>
+            <tr>
+                <th>NumVideo</th>
+                <td>{{ ressource.numVideo }}</td>
+            </tr>
+            <tr>
+                <th>UrlDoc</th>
+                <td>{{ ressource.urlDoc }}</td>
+            </tr>
+            <tr>
+                <th>ResEdit</th>
+                <td>{{ ressource.resEdit }}</td>
+            </tr>
+            <tr>
+                <th>Lecteur</th>
+                <td>{{ ressource.lecteur }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_ressource_index') }}">back to list</a>
+
+    <a href="{{ path('app_ressource_edit', {'id': ressource.id}) }}">edit</a>
+
+    {{ include('admin/ressource/_delete_form.html.twig') }}
+    
+    
+
+{% endblock %}

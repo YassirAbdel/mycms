@@ -1,0 +1,68 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Liste des dossiers{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .action span {
+            margin-right: 5px;
+        }
+        .card {
+            align-items: normal;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+            <div class="container-fluid mt-3">
+                <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Liste des dossiers</h4>
+                                <div class="table-responsive"> 
+                                    <table class="table table-bordered table-striped verticle-middle">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Numéro</th>
+                                                <th scope="col">Titre</th>
+                                                <th scope="col">Date de modification</th>
+                                                <th scope="col">Statuts</th>
+                                                <th scope="col">Actions</th>
+                                                <th scope="col">Aperçu</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for dossier in dossiers %}
+                                                <tr>
+                                                    <td>{{ dossier.id }}</td>
+                                                    <td>{{ dossier.titre }}</td>
+                                                    <td>Apr 20,2018</td>
+                                                    <td>
+                                                        <div class="action">
+                                                            <span style="font-weight:1000">Publié <i class="fa fa-check" style="color:#{% if dossier.published==true %}008000{%else%}FF0000{% endif %}"></i></span>
+                                                            <span style="font-weight:1000">A la une <i class="fa fa-check" style="color:#{% if dossier.folderFront==true %}008000{% else %}FF0000{% endif %}"></i></a></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                    <div class="action">
+                                                        <span><a href={{ path('app_dossier_edit', {'id': dossier.id}) }} data-toggle="tooltip" data-placement="top" title="Editer"><i class="fa fa-pencil color-muted m-r-5"></i></a></span>
+                                                        <span><a href={{ path('app_dossier_show', {'id': dossier.id}) }} data-toggle="tooltip" data-placement="top" title="Enrichir"><i class="fa fa-folder-open color-danger"></i> </a></span>
+                                                    </div>
+                                                    </td>
+                                                    <td><a href={{ path('front_dossier_show', {'slug': dossier.slug,'id': dossier.id}) }} target="_blank"><img src="{{ vich_uploader_asset(dossier, 'imageFile') | imagine_filter('vignette') }}"></a></td>
+                                                </tr>
+                                            {% else %}
+                                                <tr>
+                                                    <td colspan="4">Aucun dossier trouvé</td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+ {% endblock %}        
+        

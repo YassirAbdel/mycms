@@ -1,0 +1,87 @@
+{% extends 'front/base.html.twig' %}
+{% block css %}
+		<style>
+			.img-fluid {
+				width: 500px;
+			}
+			.index {
+  				margin-left: 0rem;
+			}
+			.logo-cnd-last {
+  				margin-top: -7rem;
+				margin-left: 1rem;
+			}
+			@media screen and (min-width: 1024px) {
+				.row {
+ 				 	margin-top: 0rem;
+  					padding: 0rem;
+				}
+			}
+			@media screen and (max-width: 480px)
+			{
+				.card-resp {
+					margin-left: 1rem;
+					margin-right: 0rem;
+				}
+				.col-12 {
+					padding-left: 0px;
+					padding-right: 0px;
+				}
+				.row > * {
+					padding: 0rem;
+				}
+				.logo-cnd-last {
+       				margin-top: -5rem;
+        			margin-left: 3rem;
+    			}
+			}
+		</style>
+{% endblock %}
+{% block body %}
+<!-- Wrapper -->
+<div id="wrapper" class="divided">
+	<!-- Additional Elements -->
+	<section class="wrapper style1">
+		<div class="inner top-responsive">
+			<h2>{{ souscollection.titre }}</h2>
+				{{ souscollection.presentation|striptags|raw }}
+			<div class="index">
+				<!-- Unordered List -->
+				{% set ressources = souscollection.ressources %}
+				<section>
+					<div class="col-12 m-b-30">
+						<div class="row">
+							{% if ressources|length > 0 %}
+								{% for ressource in ressources %}
+									<div class="col-md-6 col-lg-4">
+										<div class="card card-resp">
+											{% if ressource.urlImag %}
+												<a href={{'http://mediatheque.cnd.fr/spip.php?page=mediatheque-numerique-ressource&id=' ~ ressource.referenceCadic }} target="_blank"><img class="img-fluid" src="http://cadic.cnd.fr/exl-img/{{ ressource.urlImag|replace({'.jpg': '.jpg'}) }}" class="responsive" width="496" height="auto" alt="" title="Consulter" /></a>
+											{% else %}
+												<a href="{{'http://mediatheque.cnd.fr/spip.php?page=mediatheque-numerique-ressource&id=' ~ ressource.referenceCadic }}" target="_blank"><img class="img-fluid" src="{{ '/images/resources/empty.jpg' | imagine_filter('thumb') }}" class="responsive" width="496" height="auto" alt="Consulter" title="Consulter" />
+											{% endif %}
+											<div class="card-body">
+												<h5 class="card-title"><a href="#" target="_blank" title="Consulter">{{ ressource.titre|raw }}</a></h5>
+												{% if ressource.personne|striptags|raw %}
+													<div><span class="person">{{ ressource.personne|replace({'|': " ; "})|raw }}</span></div>
+												{% endif %}
+												{% if ressource.oeuvre|striptags|raw %}
+													<div><span class="person">&#171; {{ ressource.oeuvre|replace({'|': "  &#187; ; &#171; "})|raw }} &#187;</span></div>
+												{% endif %}
+												{% if ressource.auteur %}
+													<div><span class="person">Par {{ ressource.auteur|replace({'|': " ; "})|raw }}</span></div>
+												{% endif %}
+											</div>
+										</div>
+									</div>
+								{% endfor %}
+							{% endif %}
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</section>
+</div>
+{% endblock %}
+				

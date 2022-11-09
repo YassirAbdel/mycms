@@ -1,0 +1,66 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Liste des articles{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .action span {
+            margin-right: 5px;
+        }
+        .card {
+            align-items: normal;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid mt-3">
+        <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Liste des articles</h4>
+                        <div class="table-responsive"> 
+                            <table class="table table-bordered table-striped verticle-middle">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Numéro</th>
+                                        <th scope="col">Titre</th>
+                                        <th scope="col">Date de modification</th>
+                                        <th scope="col">Statuts</th>
+                                        <th scope="col">Actions</th>
+                                        <th scope="col">Aperçu</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for article in articles %}
+                                        <tr>
+                                            <td>{{ article.id }}</td>
+                                            <td>{{ article.titre }}</td>
+                                            <td>Apr 20,2018</td>
+                                            <td>
+                                                <div class="action">
+                                                    <span style="font-weight:1000">Publié <i class="fa fa-check" style="color:#{% if article.published==true %}008000{%else%}FF0000{% endif %}"></i></span>
+                                                    <span style="font-weight:1000">A la une <i class="fa fa-check" style="color:#{% if article.folderFront==true %}008000{% else %}FF0000{% endif %}"></i></a></span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="action">
+                                                    <span><a href="{{ path('app_article_edit', {'id': article.id}) }}" data-toggle="tooltip" data-placement="top" title="Editer"><i class="fa fa-pencil color-muted m-r-5"></i></a></span>
+                                                    <span><a href="{{ path('app_article_show', {'id': article.id}) }}" data-toggle="tooltip" data-placement="top" title="Enrichir"><i class="fa fa-folder-open color-danger"></i> </a></span>
+                                                </div>
+                                            </td>
+                                            <td><a href={{ path('front_article_show', {'slug': article.slug,'id': article.id}) }} target="_blank"><img src="{{ vich_uploader_asset(article, 'imageFile') | imagine_filter('vignette') }}"></a></td>
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="4">Aucun article trouvé</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+ {% endblock %}

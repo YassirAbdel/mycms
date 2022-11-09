@@ -1,0 +1,117 @@
+{% extends 'front/base.html.twig' %}
+{% block css %}
+	<link rel="stylesheet" href={{ asset('assets/front/css/collection.css') }} />
+	<style>
+		.w3-row {
+			margin-top: 0rem;
+		}
+		.index > * {
+			padding: 0;
+			padding-bottom: 0.5rem;
+			padding-top: 0.5rem:
+		}
+		.index {
+			margin-top: 1rem;
+		}
+		.w3-card-4 img {
+			margin-top: 0.5rem;
+			margin-left: 1rem;
+		}
+		@media screen and (max-width: 375px) {
+			.index > * {
+			padding: 0;
+			padding-bottom: 0.1rem;
+			padding-top: 0.1rem:
+			}
+		}
+		@media screen and (max-width: 480px) {
+			.wrapper.style1 > .inner {
+				margin-left: 0rem;
+			}
+			.w3-row {
+				margin-top: 0rem;
+			}
+			.index > * {
+			padding: 0;
+			padding-bottom: 0.1rem;
+			padding-top: 0.1rem:
+			}
+		}
+		@media screen and (max-width: 736px) {
+			.wrapper.style1 > .top-responsive {
+				padding-top: 0rem;
+			}
+		}
+	</style>
+{% endblock %}
+{% block body %}
+	<!-- Wrapper -->
+	<div id="wrapper" class="divided">
+		<!-- Additional Elements -->
+		<section class="wrapper style1">
+			<div class="inner top-responsive">
+				<h2>{{ collection.titre }}</h2>
+				{% if collection.soustitre %}
+					<h3>{{ collection.soustitre }}</h3>
+				{% endif %}
+				{% if collection.presentation %}
+						{{ collection.presentation|striptags|raw }}
+				{% endif %}
+				<div class="index">
+					{% set souscollections = collection.souscollectioncnds %}
+					{% if souscollections|length > 0 %}
+						{% for souscollection in souscollections %}
+							<div class="w3-row">
+								<div class="w3-col l8 s12">
+									<div class="w3-card-4 w3-margin w3-white">
+										<div class="w3-container">
+											<h3><a href={{ path('front_souscollection_show', {'slug': souscollection.slug,'id': souscollection.id}) }} title="Consulter" >{{ souscollection.titre }}</title=></h3>
+											<h4><a href={{ path('front_souscollection_show', {'slug': souscollection.slug,'id': souscollection.id}) }} title="Consulter">{{ souscollection.soustitre }}</a> <!-- <span class="w3-opacity">April 7, 2014</span> --></h4>
+											{% if souscollection.presentation %}
+												{{ souscollection.presentation|u.truncate(350, '...')|striptags|raw }}
+											{% endif %}
+										</div>
+										<a href={{ path('front_souscollection_show', {'slug': souscollection.slug,'id': souscollection.id}) }}><img class="img-fluid" src={{ vich_uploader_asset(souscollection, 'imageFile') | imagine_filter('folders')}} alt="Consulter" title="Consulter"></>
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+					{% endif %}
+				</div>
+			</div>
+		</section>
+	</div>
+{% endblock %}
+{% block javascript %}
+<script>
+	var images= document.querySelectorAll( ".legende img" ),
+	L = images.length, fig = document.createElement('figure'),
+	who, temp
+	while(L) {
+		temp = fig.cloneNode(false);
+		who = images[--L];
+		caption = who.getAttribute("alt");
+		who.parentNode.insertBefore(temp, who);
+		content = document.createElement( 'figcaption' );
+		content.innerHTML = caption;
+		temp.appendChild(who);
+		temp.appendChild(content);
+	}
+	/**
+	var $select = $(".content img");
+	var $div = $("figcaption");
+
+	var attributes = $select.prop("attributes");
+	//var attributes = $select.getAttribute("style.width");
+
+	// loop through <select> attributes and apply them on <div>
+	$.each(attributes, function() {
+    $div.attr(this.name, this.value);
+});
+**/
+    $(".content img").attr("style", "width:496px;height:auto;");
+	$(".content figcaption").attr("style", "width:496px;height:auto;");
+
+</script>
+{% endblock %}
+				

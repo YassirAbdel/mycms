@@ -1,0 +1,17 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{{ collection.titre }} > Nouvelle sous-collection{% endblock %}
+
+{% block body %}
+            <div class="container-fluid mt-3">
+                <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3>{{ souscollectioncnd.titre }}</h3>
+                                <h4 class="card-title">Nouvelle sous-collection</h4>
+                                {{ include('admin/souscollectioncnd/_form.html.twig', {'button_label': 'Valider'}) }}
+                            </div>
+                        </div>
+                </div>
+            </div>
+{% endblock %}

@@ -1,0 +1,22 @@
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        dossier_image:
+            uri_prefix: /images/dossiers
+            upload_destination: '%kernel.project_dir%/public/images/dossiers'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        collection_image:
+            uri_prefix: /images/collections
+            upload_destination: '%kernel.project_dir%/public/images/collections'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        souscollection_image:
+            uri_prefix: /images/souscollections
+            upload_destination: '%kernel.project_dir%/public/images/souscollections'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        article_image:
+            uri_prefix: /images/articles
+            upload_destination: '%kernel.project_dir%/public/images/articles'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+    metadata:
+        type: attribute

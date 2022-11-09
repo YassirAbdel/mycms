@@ -1,0 +1,17 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Modifier le sous-collection {{ souscollectioncnd.titre }}{% endblock %}
+
+{% block body %}
+            <div class="container-fluid mt-3">
+                <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Modifier la sous-collection « {{ souscollectioncnd.titre }} »</h4>
+                                {{ include('admin/souscollectioncnd/_form.html.twig', {'button_label': 'Valider'}) }}
+                                <!-- {{ include('admin/souscollectioncnd/_delete_form.html.twig') }} -->
+                            </div>
+                        </div>
+                </div>
+            </div>
+{% endblock %}

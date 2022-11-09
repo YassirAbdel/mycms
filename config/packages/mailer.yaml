@@ -1,3 +1,4 @@
 framework:
     mailer:
+        #dsn = 'sendmail://default?command=/usr/sbin/sendmail'
         dsn: '%env(MAILER_DSN)%'

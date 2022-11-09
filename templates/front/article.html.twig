@@ -1,0 +1,147 @@
+{% extends 'front/base.html.twig' %}
+{% block css %}
+	<style>
+		.index {
+			margin-left: 0rem;
+			margin-top: 0rem;
+		}
+		.index > * {
+			padding-top: 1rem;
+		}
+		.content h1 {
+			margin-top: 0rem;
+		}
+		.content p {
+			margin-bottom: 1rem;
+		}
+		.index ul {
+			margin-bottom: 1rem;
+		}
+		.content figcaption {
+			margin-top: 0rem;
+		}
+		.card-body-product {
+    		margin-top: 1.5rem;
+		}
+		.index > * {
+			padding-top: 1rem;
+		}
+		.content h1 {
+			margin-top: 0rem;
+		}
+		.content p {
+			margin-bottom: 1rem;
+		}
+		.index ul {
+			margin-bottom: 1rem;
+		}
+		figure {
+			margin-bottom: 0rem;
+		}
+		figure {
+			width: auto;
+			padding: 10px;
+			display: inline-block;
+			vertical-align: top
+		}
+		@media screen and (max-width: 480px) {
+			.index {
+				margin-left: 1rem;
+				margin-top: 0rem;
+			}
+			.content figcaption {
+  				margin-top: 0rem;
+			}
+			figure {
+				margin-bottom: 0rem;
+				width: 100%
+			}
+		}
+		@media screen and (max-width: 834px) {
+			.index {
+				margin-left: 1rem;
+				margin-top: 0rem;
+			}
+		}
+		@media screen and (max-width: 1024px) {
+			.index {
+				margin-left: 1rem;
+				margin-top: 0rem;
+			}
+		}
+	</style>
+{% endblock %}
+{% block body %}
+	<!-- Wrapper -->
+	<div id="wrapper" class="divided">
+		<!-- Additional Elements -->
+			<section class="wrapper style1 legende">
+				<div class="inner top-responsive">
+					<h2>{{article.titre }}</h2>
+					<h3>{{article.soustitre }}</h3>
+					{{ article.resume|raw }}
+					<!--
+					<div style="text-align:left;">
+                        <img src="{{ vich_uploader_asset(article, 'imageFile') }}" class="card-img-top" style="height: auto; width: 50%; margin-bottom:10px;">
+                    </div>
+					-->
+					<div class="index">
+						<section>
+							<div class="content title legende">
+								{% set articletextes = article.textes %}
+								{% if articletextes|length > 0 %}
+									{% for texte in articletextes %}
+										{% if texte.contenu %}{{ texte.contenu|raw }}{% endif %}
+											{% set ressources = texte.ressources %}
+												{% if ressources|length > 0 %}
+													<div class="row top-card-resp" >
+														<div class="col-12 m-b-30">
+															<div class="row">
+																{% for ressource in ressources %}
+																	{% include 'front/commun/_ressource_product.html.twig' %}
+																{% endfor %}
+															</div>
+														</div>
+													</div>
+												{% endif %}
+									{% endfor %}
+								{% endif %}
+								<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script> 
+							</div>
+						</section>
+					</div>
+				</div>
+			</section>
+{% endblock %}
+{% block javascript %}
+<script>
+	var images= document.querySelectorAll( ".legende img" ),
+	L = images.length, fig = document.createElement('figure'),
+	who, temp
+	while(L) {
+		temp = fig.cloneNode(false);
+		who = images[--L];
+		caption = who.getAttribute("alt");
+		who.parentNode.insertBefore(temp, who);
+		content = document.createElement( 'figcaption' );
+		content.innerHTML = caption;
+		temp.appendChild(who);
+		temp.appendChild(content);
+	}
+	/**
+	var $select = $(".content img");
+	var $div = $("figcaption");
+
+	var attributes = $select.prop("attributes");
+	//var attributes = $select.getAttribute("style.width");
+
+	// loop through <select> attributes and apply them on <div>
+	$.each(attributes, function() {
+    $div.attr(this.name, this.value);
+});
+**/
+    $(".content img").attr("style", "width:496px;height:auto;");
+	$(".content figcaption").attr("style", "width:496px;height:auto;");
+
+</script>
+{% endblock %}

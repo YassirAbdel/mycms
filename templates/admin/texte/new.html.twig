@@ -1,0 +1,17 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Ajouter un nouveau texte{% endblock %}
+
+{% block body %}
+            <div class="container-fluid mt-3">
+                <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3>{% if dossier is defined %} {{ dossier.titre }} > {% endif %} {% if rubrique is defined %} {{ rubrique.titre }} {% endif %} {% if sousrubrique is defined %} > {{ sousrubrique.titre }}{% endif %} {% if article is defined %}{{ article.titre }}{% endif %}</h3>
+                                <h4>Nouveau paragraphe</h4>
+                                {{ include('admin/texte/_form.html.twig', {'button_label': 'Valider'}) }}
+                            </div>
+                        </div>
+                </div>
+            </div>
+{% endblock %}

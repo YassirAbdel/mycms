@@ -1,0 +1,11 @@
+<form method="post" action="{{ path('app_texte_delete', {'id': texte.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ texte.id) }}">
+        {% set id_sous_rubrique = app.request.get('id_sous_rubrique') %}
+        {% if id_sous_rubrique is null %}
+             <input type="hidden" name="id_rubrique" value="{{ rubrique.id }}"">
+        {% else %}
+            <input type="hidden" name="id_sous_rubrique" value="{{ app.request.get('id_sous_rubrique') }}">
+        {% endif %}
+    <br/>
+    <button class="btn">Delete</button>
+</form>

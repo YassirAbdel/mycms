@@ -1,0 +1,126 @@
+@charset "UTF-8";
+.margin-label {
+  margin-top: 5px;
+}
+.display-label {
+  display: none;
+}
+.btn-primary a {
+  color: #fff;
+}
+
+#exTab1 .tab-content {
+  color : white;
+  background-color: #428bca;
+  padding : 5px 15px;
+}
+
+#exTab2 h3 {
+  color : white;
+  background-color: #428bca;
+  padding : 5px 15px;
+}
+
+/* remove border radius for the tab */
+
+#exTab1 .nav-pills > li > a {
+  border-radius: 0;
+}
+
+/* change border radius for the tab , apply corners on top*/
+
+#exTab3 .nav-pills > li > a {
+  border-radius: 4px 4px 0 0 ;
+}
+
+#exTab3 .tab-content {
+  color : white;
+  background-color: #428bca;
+  padding : 5px 15px;
+}
+
+.card-text ul li {
+  display: table-cell; /* affichage en ligne */
+}
+.card-text ul li button {
+  margin-right: 5px;
+}
+p {
+  font-size:14px;
+  font-size: 1.1em;
+}
+a {
+  color: darkgoldenrod;
+}
+.card-title {
+  font-size: 1.2em;
+}
+.card {
+  align-items: normal;
+}
+div.dataTables_wrapper div.dataTables_length label {
+  display: none;
+}
+div.dataTables_wrapper div.dataTables_filter label {
+  display: none;
+}
+div.dataTables_wrapper div.dataTables_info {
+  display: none;
+}
+div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+  display: none;
+}
+label.required {
+  margin-top: 10px;
+  margin-right: 10px;
+}
+button.btn {
+  margin-top: 10px;
+}
+#username {
+  color:#428bca;
+}
+.btn-primary {
+  margin-right: 3px;
+}
+input[type="checkbox"]:after{
+    border: 1px solid #111;
+}
+.nk-sidebar .metismenu > li ul a { 
+  font-size: 1rem;
+}
+body {
+  font-size: 1rem;
+}
+.footnotes ol li {
+	list-style-type : decimal;
+}
+li cite {
+  font-style: normal;
+}
+sup {
+	font-weight: 600;
+	font-size: 0.8rem;
+  color: black;
+}
+.card li ul li {
+  list-style: disclosure-closed; 
+  margin-left: 2rem;
+  padding-left: 0rem;
+}
+.card li {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  font-weight: 300;
+  list-style: disc;
+  margin-left: 2rem;
+}
+.card table {
+  margin-bottom: 1rem;
+}
+.nav li {
+  list-style: none;
+}
+.card li {
+  list-style: none;
+} 

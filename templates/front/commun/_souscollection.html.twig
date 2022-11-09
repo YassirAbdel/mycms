@@ -1,0 +1,17 @@
+                    <article>
+						{% if souscollection.titre %}
+                    		<a href="#" class="image" target="_blank" title="Consulter">
+								<img src={{ vich_uploader_asset(souscollection, 'imageFile') | imagine_filter('thumbv')}} alt="" />
+							</a>
+						{% endif %}
+							<div class="caption">
+								<h3><a href={{ path('front_souscollection_show', {'slug': souscollection.slug,'id': souscollection.id}) }} title="Consulter">{{ souscollection.titre }}</a></h3>
+								{% if souscollection.soustitre %}
+									<p>{{ souscollection.soustitre|u.truncate(100, '...')|raw }}</a></p>
+								{% endif %}
+								</a>
+								<ul class="actions fixed">
+									<li><a href={{ path('front_souscollection_show', {'slug': souscollection.slug,'id': souscollection.id}) }} title="Consulter"><span class="button small">Consulter</span></a></li>
+								</ul>
+							</div>
+						</article>

@@ -1,0 +1,177 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Dossier{% endblock %}
+{% block stylesheets %}
+    <style>
+       .nav {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .nav li {
+            float: left;
+            margin-right: 5px;
+        }
+
+        .nav li a {
+            display: block;
+            text-align: center;
+            padding: 16px;
+            padding: 7px;
+            text-decoration: none;
+        }
+        .space-icone span {
+            margin-right: 5px;
+            position: absolute;
+        }
+        h3 {
+            font-size: 1rem;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h2>{{ dossier.titre }}</h2>
+                                {% if dossier.soustitre is defined %}
+                                <h3>{{ dossier.soustitre }}</h3>
+                                {% endif %}
+                                {% set statut = dossier.published %}
+                                {% set laune = dossier.folderFront %}
+                                <span style="font-weight:1000">Publié <i class="fa fa-check" style="color:#{% if statut==true %}008000{%else%}FF0000{% endif %}"></i></span>&nbsp;<span style="font-weight:1000">A la une <i class="fa fa-check" style="color:#{% if laune==true %}008000{% else %}FF0000{% endif %}"></i></a></span>
+                                <div style="margin-top:10px;">
+                                    {{ dossier.resume|raw }}
+                                </div>
+                                <div style="text-align:center;">
+                                    <img src="{{ vich_uploader_asset(dossier, 'imageFile') | imagine_filter('thumb') }}" class="card-img-top" style="height: auto; width: 50%; margin-bottom:10px;">
+                                </div>
+                                <ul class="nav">
+                                    <li>
+                                        <a class="btn btn-primary" href="{{ path('app_dossier_edit', {'id': dossier.id}) }}" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                        </svg> Modifier</a>
+                                    </li>
+                                    <li>
+                                        <a class="btn btn-primary" href="{{ path('app_rubrique_new', {'id_dossier': dossier.id}) }}" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-folder-plus" viewBox="0 0 16 16">
+                                        <path d="m.5 3 .04.87a1.99 1.99 0 0 0-.342 1.311l.637 7A2 2 0 0 0 2.826 14H9v-1H2.826a1 1 0 0 1-.995-.91l-.637-7A1 1 0 0 1 2.19 4h11.62a1 1 0 0 1 .996 1.09L14.54 8h1.005l.256-2.819A2 2 0 0 0 13.81 3H9.828a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 6.172 1H2.5a2 2 0 0 0-2 2zm5.672-1a1 1 0 0 1 .707.293L7.586 3H2.19c-.24 0-.47.042-.683.12L1.5 2.98a1 1 0 0 1 1-.98h3.672z"/>
+                                        <path d="M13.5 10a.5.5 0 0 1 .5.5V12h1.5a.5.5 0 1 1 0 1H14v1.5a.5.5 0 1 1-1 0V13h-1.5a.5.5 0 0 1 0-1H13v-1.5a.5.5 0 0 1 .5-.5z"/>
+                                        </svg> Ajouter une rubrique ou un article</a>
+                                    </li>
+                                    <li>
+                                        <a class="btn btn-primary" href="{{ path('app_dossier_index') }}" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-ul" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                                        </svg> Liste des dossiers</a>
+                                    </li>
+                                    
+                                    {% if dossier.rubriques|length == 0 %}
+                                        <li>
+                                            <form method="post" action="{{ path('app_dossier_delete', {'id': dossier.id}) }}" onsubmit="return confirm('Voulez-vous supprimer ce dossier ?');">
+                                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ dossier.id) }}">
+                                                <button style="margin-top:0;" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16"><path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"></path>
+                                                </svg> Supprimer</button>
+                                            </form>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3>Sommaire</h3>
+                                <p class="text-muted"><code></code>
+                                </p>
+                                <div id="accordion-three" class="accordion">
+                                {% for rubrique in rubriques %}
+                                    {% set counter = ( counter | default(0) ) + 1 %}
+                                    {% if rubrique.sousrubriques|length == 0 %}
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4 class="mb-0 collapsed" data-toggle="collapse" data-target="{{ '#collapse' ~ counter }}" aria-expanded="false" aria-controls="{{ 'collapse' ~ counter }}"><i class="fa" aria-hidden="true"></i>{{ rubrique.titre }}</h4>
+                                            </div>
+                                            <div id="{{ 'collapse' ~ counter }}" class="collapse" data-parent="#accordion-three">
+                                                <div class="card-body">
+                                                <p><strong>{{ rubrique.resume|raw }}</strong></p>
+                                                {% for texte in rubrique.textes %}
+                                                        <p>{{ texte.contenu|raw }}</p>
+                                                            <div class="row">
+                                                                {% for ressource in texte.ressources %}
+                                                                    <div class="col-md-6 col-lg-3">
+                                                                        <div class="card">
+                                                                            {% if ressource.urlImag %}
+                                                                                <a href="{{'http://mediatheque.cnd.fr/spip.php?page=mediatheque-numerique-ressource&id=' ~ ressource.referenceCadic }}" target="_blank"><img class="img-fluid" alt="Consulter la ressource" title="Consulter la ressource" src="http://cadic.cnd.fr/exl-img/{{ ressource.urlImag|replace({'.jpg': '.jpg'}) }}"></a>
+                                                                            {% else %}
+                                                                                <a href="{{'http://mediatheque.cnd.fr/spip.php?page=mediatheque-numerique-ressource&id=' ~ ressource.referenceCadic }}" target="_blank"><img class="card-img-top" alt="Consulter la ressource" title="Consulter la ressource" src="{{ asset('assets/images/empty.png') }}"></a>
+                                                                            {% endif %}
+                                                                            <span style="text-align:center;margin-bottom:-15px;">{{ ressource.type }}</span>
+                                                                            <div class="card-body">
+                                                                                <h5 class="card-title">{{ ressource.titre }}</h5>
+                                                                                <div class="space-icone">
+                                                                                    <span><a href="{{ 'http://mediatheque.cnd.fr/spip.php?page=mediatheque-numerique-ressource&id=' ~ ressource.referenceCadic }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Consulter"><i class="fa fa-search color-danger"></i> </a></span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                {% endfor %}
+                                                            </div>
+                                               {% endfor %}
+                                               </div>
+                                                <span><a href="{{ path('app_rubrique_show', {'id': rubrique.id}) }}" data-toggle="tooltip" data-placement="left" title="Editer cette rubrique" style="float:left;margin-left:10px;margin-bottom:10px;margin-top: -20px;"><i class="fa fa-pencil fa-lg color-muted m-r-5"></i></a></span>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                    {% if rubrique.sousrubriques|length > 0 %}
+                                        <div class="card">
+                                                <div class="card-header">
+                                                    <h4 class="mb-0{% if counter > 1 %} collapsed{% endif %}" data-toggle="collapse" data-target="{{ '#collapse' ~ counter }}" aria-expanded="{% if counter == 1 %}true{% else %}false{% endif %}" aria-controls="{{ 'collapse' ~ counter }}"><i class="fa" aria-hidden="true"></i>{{ rubrique.titre }}</h4>
+                                                </div>
+                                                <div id="{{ 'collapse' ~ counter }}" class="collapse {% if counter == 1 %}show{% endif %}" data-parent="#accordion-three">
+                                                    <div class="card-body">
+                                                    {% if rubrique.resume is defined %}<p><strong>{{ rubrique.resume|raw }}</strong></p>{% endif %}
+                                                    {% for sousrubrique in rubrique.sousrubriques %}
+                                                        <h5 class="titressrub">{{ sousrubrique.titre }}</h5>
+                                                        {% if sousrubrique.resume is defined %}<strong>{{ sousrubrique.resume|raw }}</strong>{% endif %}
+                                                        {% for texte in sousrubrique.textes %}
+                                                                <p>{{ texte.contenu|raw }}</p>
+                                                                <div class="row">
+                                                                    {% for ressource in texte.ressources %}
+                                                                        <div class="col-md-6 col-lg-3">
+                                                                            <div class="card">
+                                                                                {% if ressource.urlImag %}
+                                                                                    <a href="{{'http://mediatheque.cnd.fr/spip.php?page=mediatheque-numerique-ressource&id=' ~ ressource.referenceCadic }}" target="_blank"><img class="img-fluid" alt="Consulter la ressource" title="Consulter la ressource" src="http://cadic.cnd.fr/exl-img/{{ ressource.urlImag|replace({'.jpg': '.jpg'}) }}"></a>
+                                                                                {% else %}
+                                                                                    <a href="{{'http://mediatheque.cnd.fr/spip.php?page=mediatheque-numerique-ressource&id=' ~ ressource.referenceCadic }}" target="_blank"><img class="card-img-top" alt="Consulter la ressource" title="Consulter la ressource" src="{{ asset('assets/images/empty.png') }}"></a>
+                                                                                {% endif %}
+                                                                                <span style="text-align:center;margin-bottom:-15px;">{{ ressource.type }}</span>
+                                                                                <div class="card-body">
+                                                                                    <h5 class="card-title">{{ ressource.titre }}</h5>
+                                                                                     <div class="space-icone">
+                                                                                        <span><a href="{{ 'http://mediatheque.cnd.fr/spip.php?page=mediatheque-numerique-ressource&id=' ~ ressource.referenceCadic }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Consulter"><i class="fa fa-search color-danger"></i> </a></span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    {% endfor %}
+                                                                </div>
+                                                        {% endfor %}
+                                                    {% endfor %}
+                                                    </div>
+                                                    <span><a href="{{ path('app_rubrique_show', {'id': rubrique.id}) }}" data-toggle="tooltip" data-placement="left" title="Editer cette rubrique" style="float:left;margin-left:10px;margin-bottom:10px;margin-top: -20px;"><i class="fa fa-pencil fa-lg color-muted m-r-5"></i></a></span>
+                                        </div>
+                                    </div>
+                                        {% endif %}
+                                {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                </div>
+{% endblock %}

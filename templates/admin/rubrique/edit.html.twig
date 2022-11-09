@@ -1,0 +1,17 @@
+
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{{ dossier.titre }} > {{ rubrique.titre }}{% endblock %}
+
+{% block body %}
+           <div class="container-fluid mt-3">
+                <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3>{{ dossier.titre }} > {{ rubrique.titre }} </h3>
+                                {{ include('admin/rubrique/_form.html.twig', {'button_label': 'Valider'}) }}
+                            </div>
+                        </div>
+                </div>
+            </div>
+{% endblock %}

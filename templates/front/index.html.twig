@@ -1,0 +1,405 @@
+{% extends 'front/base.html.twig' %}
+{% block css %}
+<style>
+	.carousel-item img:hover {
+		/**
+    	-webkit-filter : saturate(20%); /* Chrome, Safari, Opera */
+		/**
+  		filter : saturate(20%);
+		
+		 -webkit-filter : sepia(10%); /* Chrome, Safari, Opera */
+		/**
+  		filter : sepia(10%);
+		**/
+		filter: contrast(40%);
+		-webkit-filter : contrast(40%); /* Chrome, Safari, Opera */
+	}
+	.carousel-item p {
+		font-size: 1rem;
+	}
+	body { 
+		font-family:TradeGothic,Helvetica,Arial,sans-serif; 
+	}
+	.content h2 {
+		margin-top: 0rem;
+	}
+	.content h1 {
+		margin-bottom: 0rem;
+	}
+	
+</style>
+{% endblock %}
+	{% block body %}
+	<div class="bd-example">
+	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+	<ol class="carousel-indicators">
+		{% set i=-1 %}
+		{% for resource in front %}
+		{% set i = i+1 %}
+		<li data-target="#carouselExampleIndicators" data-slide-to="{{ i }}" {% if i == 0 %}class="active" {% else %}class=""{% endif %}></li>
+		{% endfor %}
+	</ol>
+	<div class="carousel-inner">
+		<row>
+			<col>
+				{% set j=-1 %}
+				{% for product in front %}
+				{% set j = j+1 %}
+				<div {% if j == 0 %}class="carousel-item active" {% else %}class="carousel-item"{% endif %}>
+				{% if product.type == 1 %}
+					<a href={{ path('front_dossier_show', {'slug': product.slug, 'id': product.id}) }} class="button" class="more" title="Consulter">
+							<img class="d-block w-100 h-80" src="{{ vich_uploader_asset(product, 'imageFile') | imagine_filter('carousel') }}" alt="" />
+					</a>
+					<a href={{ path('front_dossier_show', {'slug': product.slug, 'id': product.id}) }} title="Consulter">
+						<div class="carousel-caption d-md-block">
+							<h5><a href={{ path('front_dossier_show', {'slug': product.slug, 'id': product.id}) }} title="Consulter">{{ product.titre }}</a></h5>
+							<h6>{{ product.soustitre }}</h6>
+							<!--<ul class="actions stacked">
+								<li><a href="#" class="button">Consulter</a></li>
+							</ul>-->
+						</div>
+					</div>
+					</a>
+				{% endif %}
+				{% if product.type == 2 %}
+					<a href={{ path('front_article_show', {'slug': product.slug, 'id': product.id}) }} class="button" class="more" title="Consulter">
+							<img class="d-block w-100 h-80" src="{{ vich_uploader_asset(product, 'imageFile') | imagine_filter('carousel') }}" alt="" />
+					</a>
+					<a href={{ path('front_article_show', {'slug': product.slug, 'id': product.id}) }} title="Consulter">
+						<div class="carousel-caption d-md-block">
+							<h5><a href={{ path('front_article_show', {'slug': product.slug, 'id': product.id}) }} title="Consulter">{{ product.titre }}</a></h5>
+							<h6>{{ product.soustitre }}</h6>
+							<!--<ul class="actions stacked">
+								<li><a href="#" class="button">Consulter</a></li>
+							</ul>-->
+						</div>
+					</div>
+					</a>
+				{% endif %}
+				{% if product.type == 3 %}
+					<a href="#" class="button" class="more" title="Consulter">
+							<img class="d-block w-100 h-80" src="{{ vich_uploader_asset(product, 'imageFile') | imagine_filter('carousel') }}" alt="" />
+					</a>
+					<a href="#" title="Consulter">
+						<div class="carousel-caption d-md-block">
+							<h5><a href="#" title="Consulter">{{ product.titre }}</a></h5>
+							<h6>{{ product.soustitre }}</h6>
+							<!--<ul class="actions stacked">
+								<li><a href="#" class="button">Consulter</a></li>
+							</ul>-->
+						</div>
+					</div>
+					</a>
+				{% endif %}
+				{% endfor %}
+	</div>
+	<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+		<span class="carousel-control-prev-icon" aria-hidden="false"></span>
+		<span class="sr-only">Previous</span>
+	</a>
+	<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+		<span class="carousel-control-next-icon" aria-hidden="false"></span>
+		<span class="sr-only">Next</span>
+	</a>
+	</div>
+	<section class="wrapper style1 res-marin-top">
+			<div class="inner">
+				<h1 class="title title--edition">Feuilleter</h1>
+				<p>Plus de {{ total }} ressources numériques sont consultables en ligne : photographies, vidéos, documents sonores, en voici un aperçu !</p>
+			</div>
+	</section>
+	<section>
+		<div class="row">
+			<div class="col-12 m-b-30">
+				<div class="row">
+				{% for ressource in lastRessources %}
+					{% include 'front/commun/_ressource.html.twig' %}
+				{% endfor %}
+				</div>
+				{# display navigation #}
+				<div class="navigation">
+					{{ knp_pagination_render(lastRessources) }}
+				</div>
+			</div>
+			
+			<div class="row">
+			
+			</div>
+		</div>
+	</section>
+	
+	<!-- Collections -->
+	<div id="collections"></div>
+		<!-- Fonds d'Archive -->
+		<section class="wrapper style1">
+			<div class="inner">
+				<h1 class="title title--edition"><a href={{ path('front_collection_show', {'slug': archive.slug,'id': archive.id}) }} title="Consulter cette collection">{{ archive.titre }}</a></h1>
+				{% if archive.soustitre %}
+					<h2><a href={{ path('front_collection_show', {'slug': archive.slug,'id': archive.id}) }} title="Consulter cette collection">{{ archive.soustitre }}</a></h2>
+				{% endif %}
+				{% if archive.presentation %}
+					{{ archive.presentation|striptags|u.truncate(500, '...')|raw }}
+				{% endif %}
+			</div>
+			<ul class="actions stacked">
+				<li><a href="#" class="button" style="margin-bottom:1rem;margin-top:-2rem;color: #111 !important;box-shadow: inset 0 0 0 2px rgb(0 0 0 / 60%);">Consulter</a></li>
+			</ul>
+			<!-- Gallery -->
+				<div class="gallery style2 medium lightbox onscroll-fade-in">
+					{% set souscollections = archive.souscollectioncnds %}
+					{% if souscollections|length > 0 %}
+						{% for souscollection in souscollections %}
+							{% include 'front/commun/_souscollection.html.twig' %}
+						{% endfor %}
+					{% endif %}
+				</div>
+		</section>
+		<!-- Les autres collections -->
+		{% for collection in collections %}
+			<section class="wrapper style1">
+				<div class="inner">
+					<h1 class="title title--edition"><a href={{ path('front_collection_show', {'slug': collection.slug,'id': collection.id}) }} title="Consulter cette collection">{{ collection.titre }}</a></h1>
+					{% if collection.soustitre %}
+						<h2><a href={{ path('front_collection_show', {'slug': collection.slug,'id': collection.id}) }} title="Consulter cette collection">{{ collection.soustitre }}</a></h2>
+					{% endif %}
+					{% if collection.presentation %}
+						{{ collection.presentation|striptags|u.truncate(500, '...')|raw }}
+					{% endif %}
+				</div>
+				<ul class="actions stacked">
+					<li><a href="#" class="button" style="margin-bottom:1rem;margin-top:-2rem;color: #111 !important;box-shadow: inset 0 0 0 2px rgb(0 0 0 / 60%);">Consulter</a></li>
+				</ul>
+				<!-- Gallery -->
+				<div class="gallery style2 medium lightbox onscroll-fade-in">
+					{% set souscollections = collection.souscollectioncnds %}
+					{% if souscollections|length > 0 %}
+						{% for souscollection in souscollections %}
+							{% include 'front/commun/_souscollection.html.twig' %}
+						{% endfor %}
+					{% endif %}
+					<article>
+						<a href="results.html" class="image" target="_blank">
+							<img src={{ asset('assets/images/gallery/thumbs/02.jpg') }} alt="" />
+						</a>
+						<div class="caption">
+							<h3>Feugiat Lorem</h3>
+							<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
+							<ul class="actions fixed">
+								<li><span class="button small">Consulter</span></li>
+							</ul>
+						</div>
+					</article>
+					<article>
+						<a href="results.html" class="image" target="_blank">
+							<img src={{ asset('assets/images/gallery/thumbs/03.jpg') }} alt="" />
+						</a>
+						<div class="caption">
+							<h3>Magna Amet</h3>
+							<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
+							<ul class="actions fixed">
+								<li><span class="button small">Consulter</span></li>
+							</ul>
+						</div>
+					</article>
+					<article>
+						<a href="results.html" class="image" target="_blank">
+							<img src={{ asset('assets/images/gallery/thumbs/04.jpg') }} alt="" />
+						</a>
+						<div class="caption">
+							<h3>Sed Tempus</h3>
+							<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
+							<ul class="actions fixed">
+								<li><span class="button small">Consulter</span></li>
+							</ul>
+						</div>
+					</article>
+					<article>
+						<a href="results.html" class="image" target="_blank">
+							<img src={{ asset('assets/images/gallery/thumbs/05.jpg') }} alt="" />
+						</a>
+						<div class="caption">
+							<h3>Ultrices Magna</h3>
+							<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
+							<ul class="actions fixed">
+								<li><span class="button small">Consulter</span></li>
+							</ul>
+						</div>
+					</article>
+					<article>
+						<a href="results.html" class="image" target="_blank">
+							<img src={{ asset('assets/images/gallery/thumbs/06.jpg') }} alt="" />
+						</a>
+						<div class="caption">
+							<h3>Sed Tempus</h3>
+							<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
+							<ul class="actions fixed">
+								<li><span class="button small">Consulter</span></li>
+							</ul>
+						</div>
+					</article>
+					<article>
+						<a href="results.html" class="image" target="_blank">
+							<img src={{ asset('assets/images/gallery/thumbs/07.jpg') }} alt="" />
+						</a>
+						<div class="caption">
+							<h3>Ipsum Lorem</h3>
+							<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
+							<ul class="actions fixed">
+								<li><span class="button small">Consulter</span></li>
+							</ul>
+						</div>
+					</article>
+					<article>
+						<a href="results.html" class="image" target="_blank">
+							<img src={{ asset('assets/images/gallery/thumbs/08.jpg') }} alt="" />
+						</a>
+						<div class="caption">
+							<h3>Magna Risus</h3>
+							<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
+							<ul class="actions fixed">
+								<li><span class="button small">Consulter</span></li>
+							</ul>
+						</div>
+					</article>
+					<article>
+						<a href="results.html" class="image" target="_blank">
+							<img src={{ asset('assets/images/gallery/thumbs/09.jpg') }} alt="" />
+						</a>
+						<div class="caption">
+							<h3>Tempus Dolor</h3>
+							<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
+							<ul class="actions fixed">
+								<li><span class="button small">Consulter</span></li>
+							</ul>
+						</div>
+					</article>
+					<article>
+						<a href="results.html" class="image" target="_blank">
+							<img src={{ asset('assets/images/gallery/thumbs/10.jpg') }} alt="" />
+						</a>
+						<div class="caption">
+							<h3>Sed Etiam</h3>
+							<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
+							<ul class="actions fixed">
+								<li><span class="button small">Consulter</span></li>
+							</ul>
+						</div>
+					</article>
+					<article>
+						<a href="results.html" class="image" target="_blank">
+							<img src={{ asset('assets/images/gallery/thumbs/11.jpg') }} alt="" />
+						</a>
+						<div class="caption">
+							<h3>Magna Lorem</h3>
+							<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
+							<ul class="actions fixed">
+								<li><span class="button small">Consulter</span></li>
+							</ul>
+						</div>
+					</article>
+					<article>
+						<a href="results.html" class="image" target="_blank">
+							<img src={{ asset('assets/images/gallery/thumbs/12.jpg') }} alt="" />
+						</a>
+						<div class="caption">
+							<h3>Ipsum Dolor</h3>
+							<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
+							<ul class="actions fixed">
+								<li><span class="button small">Consulter</span></li>
+							</ul>
+						</div>
+					</article>
+				</div>
+			</section>
+	{% endfor %}
+	<section class="wrapper style1 align-center"></section>
+		<div class="bouton">
+			<p>
+				<a href={{ path('front_collections_show') }}>Consulter toutes les collections</a>
+			</p>
+		</div>
+	</section>
+
+<!-- Dossiers -->
+<div id="dossiers"></div>
+{% for produit in produits %}
+	{% if produit.type == 1 %}
+		<section id="dossier" class="spotlight style1 orient-left content-align-left image-position-center onscroll-image-fade-in">
+			<div class="content" >
+				<h1 class="title title--edition"><a href={{ path('front_dossier_show', {'slug': produit.slug,'id': produit.id}) }} title="Consulter ce dossier">{{ produit.titre }}</a></h1>
+				{% if produit.soustitre %}
+						<h2><a href={{ path('front_dossier_show', {'slug': produit.slug,'id': produit.id}) }} title="Consulter ce dossier">{{ produit.soustitre }}</a></h2>
+				{% endif %}
+				{% if produit.resume %}
+					{{ produit.resume|u.truncate(800, '...')|raw }}
+				{% endif %}
+				<!--
+				<ul class="actions stacked">
+					<li><a href="#" class="button" style="margin-left:0rem;margin-top:1rem;color: #111 !important;box-shadow: inset 0 0 0 2px rgb(0 0 0 / 60%);" title="Consulter ce dossier ">Consulter</a></li>
+				</ul>
+				-->
+			</div>
+			<div class="image">
+				<a href={{ path('front_dossier_show', {'slug': produit.slug,'id': produit.id}) }} title="Consulter ce dossier "><img src={{ vich_uploader_asset(produit, 'imageFile') | imagine_filter('thumbd')}} alt="" /></a>
+			</div>
+		</section>
+	{% endif %}
+	{% if produit.type == 2 %}
+		<section id="dossier" class="spotlight style1 orient-left content-align-left image-position-center onscroll-image-fade-in">
+			<div class="content">
+				<h1 class="title title--edition"><a href={{ path('front_article_show', {'slug': produit.slug,'id': produit.id}) }} title="Consulter ce dossier">{{ produit.titre }}</a></h1>
+				{% if produit.soustitre %}
+						<h2><a href={{ path('front_article_show', {'slug': produit.slug,'id': produit.id}) }} title="Consulter ce dossier">{{ produit.soustitre }}</a></h2>
+				{% endif %}
+				{% if produit.resume %}
+					{{ produit.resume|u.truncate(600, '...')|raw }}</a>
+				{% endif %}
+				<!--
+				<ul class="actions stacked">
+					<li><a href="#" class="button" style="margin-left:0rem;margin-top:1rem;color: #111 !important;box-shadow: inset 0 0 0 2px rgb(0 0 0 / 60%);" title="Consulter">Consulter ce dossier</a></li>
+				</ul>
+				-->
+			</div>
+			<div class="image">
+				<a href={{ path('front_article_show', {'slug': produit.slug,'id': produit.id}) }} title="Consulter ce dossier"><img src={{ vich_uploader_asset(produit, 'imageFile') | imagine_filter('thumbd')}} alt="" /></a>
+			</div>
+		</section>
+	{% endif %}
+{% endfor %}
+
+	<section class="wrapper style1 align-center"></section>
+		<div class="bouton">
+			<p>
+				<a href={{ path('front_dossiers_show') }}>Consulter tous les dossiers thématiques</a>
+			</p>
+		</div>
+	</section>
+
+	<section class="wrapper style1 align-center">
+		<div class="inner medium">
+			<h1 class="title title--edition" style="margin-top:2px;margin-bottom:10px;">Vous avez une question</h1>
+			{{ form_start(form) }}
+				<div class="fields">
+				
+					<div class="field half">
+						{{ form_row(form.nom) }}
+					</div>
+					<div class="field half">
+						{{ form_row(form.email)}}
+					</div>
+					<div class="field">
+						{{ form_row(form.objet) }}
+					</div>
+					<div class="field">
+						{{ form_row(form.message) }}
+					</div>
+				</div>
+				<ul class="actions special" style="display:block;">
+					<li><input style="color:#000 !important;" type="submit" name="submit" id="submit" value="Envoyer" /></li>
+				</ul>
+			{{ form_end(form) }}
+
+		</div>
+	</section>
+ {% endblock %}
+				

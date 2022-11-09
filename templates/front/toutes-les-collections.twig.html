@@ -1,0 +1,195 @@
+{% extends 'front/base.html.twig' %}
+{% block css %}
+<style>
+	h5 {
+		margin-left: -30rem;
+	}
+	@media screen and (max-width: 480px) {
+		
+		.top-response {
+			margin-top: 4rem;
+			margin-bottom: -2rem;
+			margin-left: -1rem;
+		}
+	}
+	@media screen and (min-width: 834px) {
+		h5 {
+			margin-left: -20rem;
+		}
+	}
+	@media screen and (min-width: 768px) {
+		h5 {
+			margin-left: -15rem;
+		}
+	}
+	@media screen and (min-width: 1024px) {
+		h5 {
+			margin-left: -30rem;
+		}
+	}
+</style>
+{% endblock %}
+{% block body %}
+	<section class="wrapper style1 align-center">
+		<div class="inner">
+			<h5 class="title title--edition top-response">Toutes les collections</h5>
+		</div>
+	</section>
+	<!-- Les autres collections -->
+	{% for collection in collections %}
+	<section class="wrapper style1">
+			<div class="inner">
+				<h1 class="title title--edition"><a href="#" title="Consulter cette collection">{{ collection.titre }}</a></h1>
+			{% if collection.soustitre %}
+				<h2><a href="#" title="Consulter cette collection">{{ collection.soustitre }}</a></h2>
+			{% endif %}
+			{% if collection.presentation %}
+				{{ collection.presentation|striptags|u.truncate(500, '...')|raw }}
+			{% endif %}
+			</div>
+
+			<!-- Gallery -->
+			<div class="gallery style2 medium lightbox onscroll-fade-in">
+				{% set souscollections = collection.souscollectioncnds %}
+				{% if souscollections|length > 0 %}
+					{% for souscollection in souscollections %}
+						{% include 'front/commun/_souscollection.html.twig' %}
+					{% endfor %}
+				{% endif %}
+				<article>
+					<a href="results.html" class="image" target="_blank">
+						<img src={{ asset('assets/images/gallery/thumbs/02.jpg') }} alt="" />
+					</a>
+					<div class="caption">
+						<h3>Feugiat Lorem</h3>
+						<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
+						<ul class="actions fixed">
+							<li><span class="button small">Consulter</span></li>
+						</ul>
+					</div>
+				</article>
+				<article>
+					<a href="results.html" class="image" target="_blank">
+						<img src={{ asset('assets/images/gallery/thumbs/03.jpg') }} alt="" />
+					</a>
+					<div class="caption">
+						<h3>Magna Amet</h3>
+						<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
+						<ul class="actions fixed">
+							<li><span class="button small">Consulter</span></li>
+						</ul>
+					</div>
+				</article>
+				<article>
+					<a href="results.html" class="image" target="_blank">
+						<img src={{ asset('assets/images/gallery/thumbs/04.jpg') }} alt="" />
+					</a>
+					<div class="caption">
+						<h3>Sed Tempus</h3>
+						<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
+						<ul class="actions fixed">
+							<li><span class="button small">Consulter</span></li>
+						</ul>
+					</div>
+				</article>
+				<article>
+					<a href="results.html" class="image" target="_blank">
+						<img src={{ asset('assets/images/gallery/thumbs/05.jpg') }} alt="" />
+					</a>
+					<div class="caption">
+						<h3>Ultrices Magna</h3>
+						<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
+						<ul class="actions fixed">
+							<li><span class="button small">Consulter</span></li>
+						</ul>
+					</div>
+				</article>
+				<article>
+					<a href="results.html" class="image" target="_blank">
+						<img src={{ asset('assets/images/gallery/thumbs/06.jpg') }} alt="" />
+					</a>
+					<div class="caption">
+						<h3>Sed Tempus</h3>
+						<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
+						<ul class="actions fixed">
+							<li><span class="button small">Consulter</span></li>
+						</ul>
+					</div>
+				</article>
+				<article>
+					<a href="results.html" class="image" target="_blank">
+						<img src={{ asset('assets/images/gallery/thumbs/07.jpg') }} alt="" />
+					</a>
+					<div class="caption">
+						<h3>Ipsum Lorem</h3>
+						<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
+						<ul class="actions fixed">
+							<li><span class="button small">Consulter</span></li>
+						</ul>
+					</div>
+				</article>
+				<article>
+					<a href="results.html" class="image" target="_blank">
+						<img src={{ asset('assets/images/gallery/thumbs/08.jpg') }} alt="" />
+					</a>
+					<div class="caption">
+						<h3>Magna Risus</h3>
+						<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
+						<ul class="actions fixed">
+							<li><span class="button small">Consulter</span></li>
+						</ul>
+					</div>
+				</article>
+				<article>
+					<a href="results.html" class="image" target="_blank">
+						<img src={{ asset('assets/images/gallery/thumbs/09.jpg') }} alt="" />
+					</a>
+					<div class="caption">
+						<h3>Tempus Dolor</h3>
+						<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
+						<ul class="actions fixed">
+							<li><span class="button small">Consulter</span></li>
+						</ul>
+					</div>
+				</article>
+				<article>
+					<a href="results.html" class="image" target="_blank">
+						<img src={{ asset('assets/images/gallery/thumbs/10.jpg') }} alt="" />
+					</a>
+					<div class="caption">
+						<h3>Sed Etiam</h3>
+						<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
+						<ul class="actions fixed">
+							<li><span class="button small">Consulter</span></li>
+						</ul>
+					</div>
+				</article>
+				<article>
+					<a href="results.html" class="image" target="_blank">
+						<img src={{ asset('assets/images/gallery/thumbs/11.jpg') }} alt="" />
+					</a>
+					<div class="caption">
+						<h3>Magna Lorem</h3>
+						<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
+						<ul class="actions fixed">
+							<li><span class="button small">Consulter</span></li>
+						</ul>
+					</div>
+				</article>
+				<article>
+					<a href="results.html" class="image" target="_blank">
+						<img src={{ asset('assets/images/gallery/thumbs/12.jpg') }} alt="" />
+					</a>
+					<div class="caption">
+						<h3>Ipsum Dolor</h3>
+						<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
+						<ul class="actions fixed">
+							<li><span class="button small">Consulter</span></li>
+						</ul>
+					</div>
+				</article>
+			</div>
+		</section>
+	{% endfor %}
+{% endblock %}
+			

@@ -1,0 +1,34 @@
+# Documentation on how to configure the bundle can be found at: https://symfony.com/doc/current/bundles/LiipImagineBundle/basic-usage.html
+liip_imagine:
+    # valid drivers options include "gd" or "gmagick" or "imagick"
+    driver: "gd"
+    filter_sets:
+       thumb:
+          quality: 75
+          filters:
+             thumbnail: { size: [700, 430], mode: outbound }
+             # background: { size: [124, 94], position: center, color: '#000000' }
+       medium:
+          quality: 75
+          filters:
+             thumbnail: { size: [700, 430], mode: outbound }
+       thumbv:
+          quality: 75
+          filters:
+             thumbnail: { size: [360, 250], mode: outbound }
+       carousel:
+          quality: 75
+          filters:
+             thumbnail: { size: [800, 326], mode: outbound }
+       folders:
+          quality: 75
+          filters:
+             thumbnail: { size: [514, 371], mode: outbound }
+       vignette:
+          quality: 75
+          filters:
+             thumbnail: { size: [70, 43], mode: outbound }
+       thumbd:
+          quality: 75
+          filters:
+             thumbnail: { size: [1440, 900], mode: outbound }

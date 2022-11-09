@@ -1,0 +1,37 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Souscollectioncnd index{% endblock %}
+
+{% block body %}
+    <h1>Souscollectioncnd index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Presentation</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for souscollectioncnd in souscollectioncnds %}
+            <tr>
+                <td>{{ souscollectioncnd.id }}</td>
+                <td>{{ souscollectioncnd.titre }}</td>
+                <td>{{ souscollectioncnd.presentation }}</td>
+                <td>
+                    <a href="{{ path('app_souscollectioncnd_show', {'id': souscollectioncnd.id}) }}">show</a>
+                    <a href="{{ path('app_souscollectioncnd_edit', {'id': souscollectioncnd.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_souscollectioncnd_new') }}">Create new</a>
+{% endblock %}

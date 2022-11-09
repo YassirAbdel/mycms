@@ -1,0 +1,31 @@
+{{ form_start(form) }}
+    <div class="mb-3">
+        {{ form_row(form.titre) }}
+    </div>
+    <div class="mb-3">
+        {{ form_row(form.soustitre) }}
+    </div>
+    <div class="mb-3">
+        {{ form_row(form.presentation) }}
+    </div>
+    <div class="form-check form-check-inline">
+        {{ form_row(form.folderFront) }}
+    </div>
+    <div class="form-check form-check-inline">
+        {{ form_row(form.published) }}
+    </div>
+    <div class="mb-3">
+        {{ form_row(form.imageFile) }}
+    </div>
+    {% if collectioncnd.imageFile is defined %}
+        <div class="mb-6">
+            <img src="{{ vich_uploader_asset(collectioncnd, 'imageFile') }}" class="card-img-top" style="height:auto;width:50%;text-align:center;margin:auto;display:flex;">
+        <div>
+    {% endif %}
+    
+
+{{ form_rest(form) }}
+    <br/>
+    <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+

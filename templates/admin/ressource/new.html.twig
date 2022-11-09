@@ -1,0 +1,11 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Nouvelle ressource{% endblock %}
+
+{% block body %}
+    <h1>Créer une nouvelle ressource</h1>
+
+    {{ include('admin/ressource/_form.html.twig') }}
+
+    <!-- <a href="{{ path('app_ressource_index') }}">Rechercher une ressource</a> -->
+{% endblock %}

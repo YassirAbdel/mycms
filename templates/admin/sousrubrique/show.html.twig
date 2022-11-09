@@ -1,0 +1,58 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Sous-rubrique{% endblock %}
+
+{% block body %}
+    <h1>Sous-rubrique</h1>
+    
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ sousrubrique.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ sousrubrique.titre }}</td>
+            </tr>
+            <tr>
+                <th>Resume</th>
+                <td>{{ sousrubrique.resume }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+   <a href="{{ path('app_dossier_show', {'id': dossier.id}) }}">Dossier</a>
+    <a href="{{ path('app_texte_new', {'id_sous_rubrique': sousrubrique.id}) }}">Ajouter un texte</a>
+    <a href="{{ path('app_sousrubrique_edit', {'id': sousrubrique.id}) }}">Modifier</a>
+    {% set textes = sousrubrique.textes %}  
+    {% if textes|length > 0 %}
+            <p><strong>TEXTES :</strong></p>
+            {% for texte in textes %}
+            <ul>
+                <li>{{ texte.contenu }}
+            
+                    {% set ressources = texte.ressources %}
+                    {% if ressources|length > 0 %}
+                        <ul>
+                            <li><strong>RESSOURCES</strong>
+                                <ul>
+                                    {% for ressource in ressources %}
+                                        <li>{{ ressource.id }}</li>
+                                        <li>{{ ressource.titre }}</li><br/>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        </ul>
+                    {% endif %}
+                </li>
+            </ul>
+            
+            <a href="{{ path('app_texte_edit', {'id': texte.id, 'id_sous_rubrique': sousrubrique.id} ) }}">Modifier / supprimer</a>
+            | <a href="{{ path('app_ressource_index', {'id_texte': texte.id, 'id_sous_rubrique': sousrubrique.id, 'id_dossier': dossier.id} ) }}">Ajouter une ressource</a>
+        {% endfor %}
+    {% else %}
+        {{ include('sousrubrique/_delete_form.html.twig') }}
+    {% endif %}
+    
+{% endblock %}
