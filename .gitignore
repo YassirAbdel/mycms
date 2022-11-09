@@ -1,5 +1,5 @@
 /.env.test
-
+/.DS_Store
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
