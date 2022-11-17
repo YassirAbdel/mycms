@@ -9,7 +9,7 @@
 /.env.test
 /.DS_Store
 ###< symfony/framework-bundle ###
-
+/public/images
 ###> symfony/phpunit-bridge ###
 .phpunit.result.cache
 /phpunit.xml
@@ -30,3 +30,4 @@ yarn-error.log
 ###> liip/imagine-bundle ###
 /public/media/cache/
 ###< liip/imagine-bundle ###
+
