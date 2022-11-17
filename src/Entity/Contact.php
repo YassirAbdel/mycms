@@ -27,7 +27,7 @@ class Contact
 
     #[ORM\Column(type: 'text')]
     #[Assert\NotBlank()]
-    #[Assert\Length(min:2,max:120)]
+    #[Assert\Length(min:2,max:500)]
     private $message;
 
     #[ORM\Column(type: 'string', length: 255)]

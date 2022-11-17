@@ -3,17 +3,22 @@
 namespace App\Controller;
 
 use App\Entity\Texte;
+use App\Entity\Upload;
 use App\Form\TexteType;
+use App\Form\UploadType;
 use App\Repository\ArticleRepository;
 use App\Repository\DossierRepository;
 use App\Repository\RubriqueRepository;
 use App\Repository\SousrubriqueRepository;
 use App\Repository\TexteRepository;
+use App\Repository\UploadRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route('admin/texte')]
 class TexteController extends AbstractController
@@ -130,7 +135,7 @@ class TexteController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_texte_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Texte $texte, TexteRepository $texteRepository, SousrubriqueRepository $sousrubriqueRepository): Response
+    public function edit(Request $request, Texte $texte, TexteRepository $texteRepository, SousrubriqueRepository $sousrubriqueRepository, SluggerInterface $slugger, UploadRepository $uploadRepository): Response
     {
         if (isset($_GET['id_sous_rubrique'])) {
             $id_sous_rubrique = $_GET['id_sous_rubrique'];
@@ -150,6 +155,10 @@ class TexteController extends AbstractController
         $form = $this->createForm(TexteType::class, $texte);
         $form->handleRequest($request);
 
+        $upload = new Upload();
+        $formUpload = $this->createForm(UploadType::class, $upload);
+        $formUpload->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $texteRepository->add($texte);
             if (isset($rubrique)) {
@@ -157,22 +166,50 @@ class TexteController extends AbstractController
                     'rubrique' => $rubrique,
                     'form' => $form,
                     'dossier' => $dossier,
+                    'formUpload' => $formUpload,
                     //'sousrubrique' => $sous_rubrique
                 ]);
             }
             if (isset($article)) {
                 return $this->renderForm('admin/article/show.html.twig', [
                     'article' => $article,
-                    'form' => $form
+                    'form' => $form,
+                    'formUpload' => $formUpload,
                 ]);
             }
         }
+
+        if ($formUpload->isSubmitted() && $formUpload->isValid()) {
+          $id_texte = $_POST["texte_id"];
+          $titre = $formUpload->get('titre')->getData();
+            $uploadFile = $formUpload->get('filename')->getData();
+            if ($uploadFile) {
+                $originalFilename = pathinfo($uploadFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$uploadFile->guessExtension();
+                try {
+                    $uploadFile->move(
+                        $this->getParameter('filespdf_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    dd($e);
+                }
+                $texte = $texteRepository->find($id_texte);
+                $upload->setTexte($texte);
+                $upload->setTitre($titre);
+                $upload->setFilename($newFilename);
+                $uploadRepository->add($upload);
+            }
+        }
+
         if (isset($_GET['id_rubrique']) || isset($_GET['id_sous_rubrique']) ) {
             return $this->renderForm('admin/texte/edit.html.twig', [
                 'texte' => $texte,
                 'form' => $form,
                 'dossier' => $dossier,
                 'rubrique' => $rubrique,
+                'formUpload' => $formUpload,
                 //'sousrubrique' => $sous_rubrique,
             ]);
         }
@@ -180,7 +217,8 @@ class TexteController extends AbstractController
             return $this->renderForm('admin/texte/edit.html.twig', [
                 'texte' => $texte,
                 'form' => $form,
-                'article' => $article
+                'article' => $article,
+                'formUpload' => $formUpload,
             ]);
         }
     }

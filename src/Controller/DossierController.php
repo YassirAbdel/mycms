@@ -36,7 +36,6 @@ class DossierController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $dossier->setType(1);
             $dossierRepository->add($dossier);
-            //return $this->redirectToRoute('app_dossier_index', [], Response::HTTP_SEE_OTHER);
             $rubriques = $rubriqueRepository->findByidDossier($dossier->getId());
             return $this->render('admin/dossier/show_init.html.twig', [
                 'rubriques' => $rubriques,

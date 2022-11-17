@@ -1,0 +1,6 @@
+{{ form_start(formUpload) }}
+    {{ form_row(formUpload.titre) }}
+    {{ form_row(formUpload.filename) }}
+    <input type="hidden" name="texte_id" value="{{ texte.id }}">
+    <button class="btn btn-primary">{{ button_label|default('Valider') }}</button>
+{{ form_end(formUpload) }} 

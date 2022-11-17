@@ -1,0 +1,26 @@
+{% extends 'admin/base.html.twig' %}
+{% block title %}Liste des articles{% endblock %}
+
+{% block stylesheets %}
+    
+{% endblock %}
+
+{% block body %}
+   <div class="container-fluid mt-3">
+        <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Test téléchargement pdf</h4>
+                        {{ form_start(form) }}
+                            {{ form_row(form.titre) }}
+                            {{ form_row(form.filename) }}
+                            <br/>
+                            <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+        </div>
+    </div>
+
+
+{% endblock %}

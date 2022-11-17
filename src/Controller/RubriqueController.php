@@ -3,13 +3,17 @@
 namespace App\Controller;
 
 use App\Entity\Rubrique;
+use App\Entity\Upload;
 use App\Form\RubriqueType;
+use App\Form\UploadType;
 use App\Repository\DossierRepository;
 use App\Repository\RubriqueRepository;
+use App\Repository\UploadRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route('admin/rubrique')]
 class RubriqueController extends AbstractController
@@ -53,7 +57,8 @@ class RubriqueController extends AbstractController
         
         return $this->render('admin/rubrique/show.html.twig', [
             'rubrique' => $rubrique,
-            'dossier' => $dossier
+            'dossier' => $dossier,
+            
         ]);
     }
 

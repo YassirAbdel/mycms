@@ -33,9 +33,13 @@ class Texte
     #[ORM\ManyToOne(targetEntity: Article::class, inversedBy: 'textes')]
     private $article;
 
+    #[ORM\OneToMany(mappedBy: 'texte', targetEntity: Upload::class, orphanRemoval: true)]
+    private $uploads;
+
     public function __construct()
     {
         $this->ressources = new ArrayCollection();
+        $this->uploads = new ArrayCollection();
     }
 
     
@@ -130,6 +134,36 @@ class Texte
     public function setArticle(?Article $article): self
     {
         $this->article = $article;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Upload>
+     */
+    public function getUploads(): Collection
+    {
+        return $this->uploads;
+    }
+
+    public function addUpload(Upload $upload): self
+    {
+        if (!$this->uploads->contains($upload)) {
+            $this->uploads[] = $upload;
+            $upload->setTexte($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUpload(Upload $upload): self
+    {
+        if ($this->uploads->removeElement($upload)) {
+            // set the owning side to null (unless already changed)
+            if ($upload->getTexte() === $this) {
+                $upload->setTexte(null);
+            }
+        }
 
         return $this;
     }

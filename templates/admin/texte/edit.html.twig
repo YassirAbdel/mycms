@@ -6,6 +6,13 @@
         .cke_hidpi .cke_button__maximize_icon {
             display: none;
         }
+        h4 {
+            margin-top: 1rem;
+        }
+        #upload_filename {
+            border: 0px solid #ced4da;
+    
+        }
     </style>
 {% endblock %}
 {% block body %}
@@ -15,7 +22,19 @@
                             <div class="card-body">
                                 <h3>{% if dossier is defined %} {{ dossier.titre }} > {% endif %} {% if rubrique is defined %} {{ rubrique.titre }} {% endif %} {% if sousrubrique is defined %} > {{ sousrubrique.titre }}{% endif %} {% if article is defined %}{{ article.titre }}{% endif %}</h3>
                                 <h4>Modifier ou suprimer ce texte</h4>
-                                {{ include('admin/texte/_form.html.twig', {'button_label': 'Valider'}) }}  
+                                {{ include('admin/texte/_form.html.twig', {'button_label': 'Valider'}) }}
+                                <h4>Ajouter un pdf</h4>
+                                {{ include('admin/texte/_formUpload.html.twig', {'button_label': 'Ajouter'}) }}
+                                {% if texte.uploads|length > 0 %}
+                                <h4>Liste des fichiers associés</h4>
+                                    <ul> 
+                                        {% for file in texte.uploads %}
+                                            <li>
+                                                <a href={{path('app_upload_download',{'slug': file.slug, 'id':file.id})}}>{{file.titre}}</a> - <a href={{path('app_upload_remove',{'id':file.id})}}>Supprimer</a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
                             </div>
                         </div>
                 </div>
