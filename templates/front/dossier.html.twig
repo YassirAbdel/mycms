@@ -25,6 +25,15 @@
 									{% if rubrique.resume %}{{ rubrique.resume|raw }}{% endif %}
 									{% for texte in rubrique.textes %}
 										{{ texte.contenu|raw }}
+										<div class="upload">
+											<ul> 
+												{% for file in texte.uploads %}
+													<li>
+														<a href={{path('app_upload_download',{'slug': file.slug, 'id':file.id})}}>{{file.titre}}</a> <span id="pdf">pdf</span>
+													</li>
+												{% endfor %}
+											</ul>
+										</div>
 											<div class="row top-card-resp" >
 												<div class="col-12 m-b-30">
 													<div class="row">

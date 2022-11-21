@@ -5315,6 +5315,16 @@ h4, h5, h6 {
 	background-color: #fff;
 	border-color: #fff;
 }
+.upload ul li a {
+	text-decoration: underline;
+	font-size: 0.8rem;
+	font-weight: 200;
+}
+#pdf {
+	font-size: 0.8rem;
+	font-weight: 600;
+	text-decoration: none;
+}
 /*** Responsive mode ***/
 @media screen and (max-width: 380px) {
 

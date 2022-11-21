@@ -186,6 +186,8 @@ class TexteController extends AbstractController
             if ($uploadFile) {
                 $originalFilename = pathinfo($uploadFile->getClientOriginalName(), PATHINFO_FILENAME);
                 $safeFilename = $slugger->slug($originalFilename);
+                $filesize = filesize($uploadFile);
+                //dd($filesize);
                 $newFilename = $safeFilename.'-'.uniqid().'.'.$uploadFile->guessExtension();
                 try {
                     $uploadFile->move(

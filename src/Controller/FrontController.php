@@ -64,6 +64,7 @@ class FrontController extends AbstractController
             $request->query->getInt('page', 1),/* page number */
             8
         );
+        
         $lastRessources->setCustomParameters([
             'align' => 'left', # center|right (for template: twitter_bootstrap_v4_pagination and foundation_v6_pagination)
             'size' => 'small', # small|large (for template: twitter_bootstrap_v4_pagination)
