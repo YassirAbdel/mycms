@@ -1,5 +1,5 @@
 <?php
-header('Access-Control-Allow-Origin: https://cadic.cnd.fr');
+header('Access-Control-Allow-Origin: http://cadic.cnd.fr');
 
 use App\Kernel;
 
