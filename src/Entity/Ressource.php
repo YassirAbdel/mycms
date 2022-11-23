@@ -18,7 +18,7 @@ class Ressource
     #[ORM\Column(type: 'string', length: 255)]
     private $type;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'text')]
     private $titre;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]

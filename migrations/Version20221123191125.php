@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20221116191944 extends AbstractMigration
+final class Version20221123191125 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,9 +20,9 @@ final class Version20221116191944 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        //$this->addSql('ALTER TABLE upload ADD texte_id INT NOT NULL');
-        $this->addSql('ALTER TABLE upload ADD CONSTRAINT FK_17BDE61FEA6DF1F1 FOREIGN KEY (texte_id) REFERENCES texte (id)');
-        $this->addSql('CREATE INDEX IDX_17BDE61FEA6DF1F1 ON upload (texte_id)');
+        $this->addSql('ALTER TABLE ressource CHANGE titre titre LONGTEXT NOT NULL');
+        //$this->addSql('ALTER TABLE upload ADD CONSTRAINT FK_17BDE61FEA6DF1F1 FOREIGN KEY (texte_id) REFERENCES texte (id)');
+        //$this->addSql('CREATE INDEX IDX_17BDE61FEA6DF1F1 ON upload (texte_id)');
     }
 
     public function down(Schema $schema): void
@@ -39,7 +39,7 @@ final class Version20221116191944 extends AbstractMigration
         $this->addSql('ALTER TABLE texte CHANGE titre titre VARCHAR(255) DEFAULT NULL COLLATE `utf8mb4_unicode_ci`, CHANGE contenu contenu LONGTEXT NOT NULL COLLATE `utf8mb4_unicode_ci`');
         $this->addSql('ALTER TABLE upload DROP FOREIGN KEY FK_17BDE61FEA6DF1F1');
         $this->addSql('DROP INDEX IDX_17BDE61FEA6DF1F1 ON upload');
-        $this->addSql('ALTER TABLE upload DROP texte_id, CHANGE titre titre VARCHAR(255) NOT NULL COLLATE `utf8mb4_unicode_ci`, CHANGE filename filename VARCHAR(255) NOT NULL COLLATE `utf8mb4_unicode_ci`');
+        $this->addSql('ALTER TABLE upload CHANGE titre titre VARCHAR(255) NOT NULL COLLATE `utf8mb4_unicode_ci`, CHANGE filename filename VARCHAR(255) NOT NULL COLLATE `utf8mb4_unicode_ci`');
         $this->addSql('ALTER TABLE user CHANGE email email VARCHAR(180) NOT NULL COLLATE `utf8mb4_unicode_ci`, CHANGE password password VARCHAR(255) NOT NULL COLLATE `utf8mb4_unicode_ci`, CHANGE firstname firstname VARCHAR(255) NOT NULL COLLATE `utf8mb4_unicode_ci`, CHANGE lastname lastname VARCHAR(255) NOT NULL COLLATE `utf8mb4_unicode_ci`');
     }
 }
