@@ -21,7 +21,7 @@ class RessourceFixtures extends Fixture
 
     public function load(ObjectManager $om): void
     {
-        $stream = fopen('/Users/abdelmontet/Documents/http/mycms/import/pho_doc.csv', 'r');
+        $stream = fopen('%kernel.project_dir%/../import/pho_doc.csv', 'r');
         $csv = Reader::createFromStream($stream);
         $csv->setDelimiter(';');
         $csv->setHeaderOffset(0);

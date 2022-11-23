@@ -1,2 +1,0 @@
-cd $APPLICATION
-php bin/console doctrine:fixtures:load --append
