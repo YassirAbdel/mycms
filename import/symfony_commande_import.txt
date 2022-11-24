@@ -1,0 +1,7 @@
+cd $APPLICATION
+php bin/console doctrine:fixtures:load --append
+
+# SQL pour verification #
+SELECT FROM mycms.ressource WHERE `reference_cadic` is null
+# SQL pour nettoyer
+DELETE FROM mycms.ressource WHERE `reference_cadic` is null
