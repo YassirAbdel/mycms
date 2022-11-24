@@ -100,8 +100,12 @@
 			</div>
 	</section>
 	<section>
+	<div id="page"></page>
 		<div class="row">
 			<div class="col-12 m-b-30">
+				<div class="navigation">
+					{{ knp_pagination_render(lastRessources) }}
+				</div>
 				<div class="row">
 				{% for ressource in lastRessources %}
 					{% include 'front/commun/_ressource.html.twig' %}
