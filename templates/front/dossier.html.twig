@@ -22,7 +22,7 @@
 								<div class="content title">
 									{% set rubrique = rubriques[0] %}
 									<h1>{{ rubrique.titre }}</h1>
-									{% if rubrique.resume %}{{ rubrique.resume|raw }}{% endif %}
+									{% if rubrique.resume %}<span class="intro">{{ rubrique.resume|raw }}</span>{% endif %}
 									{% for texte in rubrique.textes %}
 										{{ texte.contenu|raw }}
 										<div class="upload">

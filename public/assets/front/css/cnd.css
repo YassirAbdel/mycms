@@ -5327,6 +5327,9 @@ h4, h5, h6 {
 	font-weight: 600;
 	text-decoration: none;
 }
+.intro {
+	font-style: italic;
+}
 /*** Responsive mode ***/
 @media screen and (max-width: 380px) {
 
