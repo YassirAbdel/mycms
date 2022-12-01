@@ -23,7 +23,7 @@
 							<h1>{{ sousrubrique.rubrique.titre }} </h1>
 							<h2>{{ sousrubrique.titre }}</h2>
 							{% if sousrubrique.soustitre %}<h3>{{ sousrubrique.soustitre }}</h3>{% endif %}
-							{% if sousrubrique.resume %}{{ sousrubrique.resume|raw }}{% endif %}
+							{% if sousrubrique.resume %}<span class="intro">{{ sousrubrique.resume|raw }}</span>{% endif %}
 							{% for texte in sousrubrique.textes %}
 								{{ texte.contenu|raw }}
 									<div class="row top-card-resp" >
