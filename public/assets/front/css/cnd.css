@@ -199,7 +199,9 @@ text-decoration:none}
 
 a,a:hover,a:visited
 {
-color:inherit}
+color:inherit;
+font-weight: 600;
+}
 
 a:active,a:focus,a:hover
 {
@@ -5103,6 +5105,7 @@ input[type="submit"].small, input[type="reset"].small, input[type="button"].smal
 .inner p {
 	text-align: left;
 	line-height: 1.4;
+	margin-bottom: 1rem;
 }
 .index {
 	margin-left: 1.5rem;
@@ -5187,7 +5190,7 @@ input[type="submit"].small, input[type="reset"].small, input[type="button"].smal
 }
 .footnotes h2 {
 	font-size: 1rem;
-	margin-bottom: 0.5rem;
+	margin-bottom: 0rem;
 }
 .footnotes sup {
 	font-size: 0.8rem;
