@@ -6,7 +6,7 @@
         		<a href="{{'http://mediatheque.cnd.fr/spip.php?page=mediatheque-numerique-ressource&id=' ~ ressource.referenceCadic }}" target="_blank"><img class="img-fluid" src="{{ '/images/resources/empty.jpg' | imagine_filter('thumb') }}" class="responsive" width="496" height="496" alt="" title="Consulter" />
      		{% endif %}
      		<div class="card-body card-body-product">
-				<h5 class="card-title"><a href="{{'http://mediatheque.cnd.fr/spip.php?page=mediatheque-numerique-ressource&id=' ~ ressource.referenceCadic }}" target="_blank" title="Consulter">{{ ressource.titre }}</a></h5>
+				<h5 class="card-title"><a href="{{'http://mediatheque.cnd.fr/spip.php?page=mediatheque-numerique-ressource&id=' ~ ressource.referenceCadic }}" target="_blank" title="Consulter">{{ ressource.titre|replace({'&#8239': ""})|raw }}</a></h5>
 				{% if ressource.personne %}
 					<div class="person-product"><span class="person">{{ ressource.personne|replace({'|': " ; "}) }}</span></div>
 				{% endif %}
