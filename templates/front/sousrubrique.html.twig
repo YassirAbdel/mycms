@@ -26,6 +26,7 @@
 							{% if sousrubrique.resume %}<span class="intro">{{ sousrubrique.resume|raw }}</span>{% endif %}
 							{% for texte in sousrubrique.textes %}
 								{{ texte.contenu|raw }}
+								{% if texte.ressources %}
 									<div class="row top-card-resp" >
 										<div class="col-12 m-b-30">
 											<div class="row row-top">
@@ -35,7 +36,7 @@
 											</div>
 										</div>
 									</div>
-							
+								{% endif %}
 							{% endfor %}
 							<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script> 
 							<script>
