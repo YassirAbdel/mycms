@@ -1,7 +1,7 @@
 <div class="col-md-6 col-lg-6">
 		<div class="card">
 			{% if ressource.urlImag %}
-			  	<a href={{'http://mediatheque.cnd.fr/spip.php?page=mediatheque-numerique-ressource&id=' ~ ressource.referenceCadic }} target="_blank"><img class="img-fluid" src="http://cadic.cnd.fr/exl-img/{{ ressource.urlImag|replace({'.jpg': '.jpg'}) }}" class="responsive" width="496" height="auto" alt="" title="Consulter" /></a>
+			  	<a href={{'http://mediatheque.cnd.fr/spip.php?page=mediatheque-numerique-ressource&id=' ~ ressource.referenceCadic }} target="_blank"><img class="img-fluid" src="http://cadic.cnd.fr/exl-img/{{ ressource.urlImag|replace({'.jpg': '.jpg'}) }}" class="responsive" alt="" title="Consulter" /></a>
 			{% else %}
         		<a href="{{'http://mediatheque.cnd.fr/spip.php?page=mediatheque-numerique-ressource&id=' ~ ressource.referenceCadic }}" target="_blank"><img class="img-fluid" src="{{ '/images/resources/empty.jpg' | imagine_filter('thumb') }}" class="responsive" width="496" height="496" alt="" title="Consulter" />
      		{% endif %}
