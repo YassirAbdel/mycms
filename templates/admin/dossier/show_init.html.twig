@@ -137,8 +137,10 @@
                                                 <div id="{{ 'collapse' ~ counter }}" class="collapse {% if counter == 1 %}show{% endif %}" data-parent="#accordion-three">
                                                     <div class="card-body">
                                                     {% if rubrique.resume is defined %}<p><strong>{{ rubrique.resume|raw }}</strong></p>{% endif %}
+                                                    {% set counter = 0 %}
                                                     {% for sousrubrique in rubrique.sousrubriques %}
-                                                        <h2 class="titressrub">{{ sousrubrique.titre }}</h2>
+                                                    {% set counter = ( counter | default(0) ) + 1 %}
+                                                        <h2 class="titressrub">{{ counter ~ '- ' }}{{ sousrubrique.titre }}</h2>
                                                         {% if sousrubrique.resume is defined %}<strong>{{ sousrubrique.resume|raw }}</strong>{% endif %}
                                                         {% for texte in sousrubrique.textes %}
                                                                 <p>{{ texte.contenu|raw }}</p>
