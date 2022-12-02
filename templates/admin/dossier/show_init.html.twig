@@ -96,7 +96,7 @@
                                     {% if rubrique.sousrubriques|length == 0 %}
                                         <div class="card">
                                             <div class="card-header">
-                                                <h4 class="mb-0 collapsed" data-toggle="collapse" data-target="{{ '#collapse' ~ counter }}" aria-expanded="false" aria-controls="{{ 'collapse' ~ counter }}"><i class="fa" aria-hidden="true"></i>{{ rubrique.titre }}</h4>
+                                                <h1 class="mb-0 collapsed" data-toggle="collapse" data-target="{{ '#collapse' ~ counter }}" aria-expanded="false" aria-controls="{{ 'collapse' ~ counter }}"><i class="fa" aria-hidden="true"></i>{{ rubrique.titre }}</h1>
                                             </div>
                                             <div id="{{ 'collapse' ~ counter }}" class="collapse" data-parent="#accordion-three">
                                                 <div class="card-body">
@@ -132,13 +132,13 @@
                                     {% if rubrique.sousrubriques|length > 0 %}
                                         <div class="card">
                                                 <div class="card-header">
-                                                    <h4 class="mb-0{% if counter > 1 %} collapsed{% endif %}" data-toggle="collapse" data-target="{{ '#collapse' ~ counter }}" aria-expanded="{% if counter == 1 %}true{% else %}false{% endif %}" aria-controls="{{ 'collapse' ~ counter }}"><i class="fa" aria-hidden="true"></i>{{ rubrique.titre }}</h4>
+                                                    <h1 class="mb-0{% if counter > 1 %} collapsed{% endif %}" data-toggle="collapse" data-target="{{ '#collapse' ~ counter }}" aria-expanded="{% if counter == 1 %}true{% else %}false{% endif %}" aria-controls="{{ 'collapse' ~ counter }}"><i class="fa" aria-hidden="true"></i>{{ rubrique.titre }}</h1>
                                                 </div>
                                                 <div id="{{ 'collapse' ~ counter }}" class="collapse {% if counter == 1 %}show{% endif %}" data-parent="#accordion-three">
                                                     <div class="card-body">
                                                     {% if rubrique.resume is defined %}<p><strong>{{ rubrique.resume|raw }}</strong></p>{% endif %}
                                                     {% for sousrubrique in rubrique.sousrubriques %}
-                                                        <h5 class="titressrub">{{ sousrubrique.titre }}</h5>
+                                                        <h2 class="titressrub">{{ sousrubrique.titre }}</h2>
                                                         {% if sousrubrique.resume is defined %}<strong>{{ sousrubrique.resume|raw }}</strong>{% endif %}
                                                         {% for texte in sousrubrique.textes %}
                                                                 <p>{{ texte.contenu|raw }}</p>

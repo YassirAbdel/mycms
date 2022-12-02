@@ -124,3 +124,9 @@ sup {
 .card li {
   list-style: none;
 } 
+h1, .h1 {
+  font-size: 1.6rem;
+}
+h2, .h2 {
+  font-size: 1.5rem;
+}
