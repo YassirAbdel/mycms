@@ -26,7 +26,7 @@
 							{% if sousrubrique.resume %}<span class="intro">{{ sousrubrique.resume|raw }}</span>{% endif %}
 							{% for texte in sousrubrique.textes %}
 								{{ texte.contenu|raw }}
-								{% if texte.ressources %}
+								{% if texte.ressources|length > 0 %}
 									<div class="row top-card-resp" >
 										<div class="col-12 m-b-30">
 											<div class="row row-top">
