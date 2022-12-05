@@ -4868,8 +4868,6 @@ figcaption {
 .img-fluid {
 	border-radius: 7px;
 	border-radius: 0px;
-	max-width: 350px;
-	height:auto;
 }
 .title {
 
@@ -5173,7 +5171,7 @@ input[type="submit"].small, input[type="reset"].small, input[type="button"].smal
 .content ol li {
 	line-height: 1.5;
 	font-size: 0.9rem;
-	font-weight: 300;
+	font-weight:300;
 }
 .content ol li a {
 	line-height: 1.5;
@@ -5247,7 +5245,7 @@ cc-animate.cc-revoke.cc-active.cc-bottom {
 }
 **/
 .content .top-card-resp {
-	margin-top: -2rem;
+	margin-top: 0rem;
 }
 .bouton {
 	position: relative;
@@ -5416,10 +5414,6 @@ h4, h5, h6 {
 		.index > * > .content {
 			margin-left: -2rem;
 		}
-		.img-fluid {
-			max-width: 270px;
-			height:auto;
-		}
 		
 }
 @media screen and (max-width: 480px) {
@@ -5511,10 +5505,6 @@ h4, h5, h6 {
 		}
 		ul > li .button:hover {
 			width: 100%;
-		}
-		.img-fluid {
-			max-width: 270px;
-			height:auto;
 		}
 }
 	
