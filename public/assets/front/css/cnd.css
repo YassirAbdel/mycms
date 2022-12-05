@@ -4868,6 +4868,8 @@ figcaption {
 .img-fluid {
 	border-radius: 7px;
 	border-radius: 0px;
+	width: 300px;
+	height:auto;
 }
 .title {
 
