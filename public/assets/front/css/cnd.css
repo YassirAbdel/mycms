@@ -5195,7 +5195,7 @@ input[type="submit"].small, input[type="reset"].small, input[type="button"].smal
 	font-size: 0.8rem;
 	font-weight: 600;
 }
-.footnotes a: {
+.footnotes ol li a {
 	font-size: 0.5rem;
 	font-weight: 600;
 }
