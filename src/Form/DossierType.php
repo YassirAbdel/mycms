@@ -18,7 +18,7 @@ class DossierType extends AbstractType
         $builder
             ->add('titre', TextType::class, [
                 'attr' => ['class' => 'input-default', 'class' => 'form-control'],
-                'label' => 'Titre',
+                'label' => 'Titre'
             ])
             ->add('soustitre', TextType::class, [
                 'attr' => ['class' => 'input-default', 'class' => 'form-control'],

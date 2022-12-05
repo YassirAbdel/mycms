@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Cocur\Slugify\Slugify;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: DossierRepository::class)]
 #[Vich\Uploadable]
@@ -34,6 +35,11 @@ class Dossier
     #[Vich\UploadableField(mapping: 'dossier_image', fileNameProperty: 'imageName', size: 'imageSize')]
     private ?File $imageFile = null;
 
+    /**
+     * @Assert\NotBlank(
+     *      message = "Une image d'illustration est obligatoire"
+     * )
+     */
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $imageName = null;
 
