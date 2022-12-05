@@ -124,7 +124,7 @@ sup {
 .card li {
   /** list-style: none; **/
 }
-.card ol {
+ol {
   list-style: decimal;
 } 
 h1, .h1 {
