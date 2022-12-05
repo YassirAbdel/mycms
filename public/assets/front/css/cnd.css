@@ -5245,7 +5245,7 @@ cc-animate.cc-revoke.cc-active.cc-bottom {
 }
 **/
 .content .top-card-resp {
-	margin-top: 0rem;
+	margin-top: -2rem;
 }
 .bouton {
 	position: relative;
