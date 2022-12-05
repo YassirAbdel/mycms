@@ -5416,6 +5416,10 @@ h4, h5, h6 {
 		.index > * > .content {
 			margin-left: -2rem;
 		}
+		.img-fluid {
+			max-width: 300px;
+			height:auto;
+		}
 		
 }
 @media screen and (max-width: 480px) {
@@ -5507,6 +5511,10 @@ h4, h5, h6 {
 		}
 		ul > li .button:hover {
 			width: 100%;
+		}
+		.img-fluid {
+			max-width: 300px;
+			height:auto;
 		}
 }
 	
