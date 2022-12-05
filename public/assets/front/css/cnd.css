@@ -5513,7 +5513,7 @@ h4, h5, h6 {
 			width: 100%;
 		}
 		.img-fluid {
-			max-width: 300px;
+			max-width: 270px;
 			height:auto;
 		}
 }
