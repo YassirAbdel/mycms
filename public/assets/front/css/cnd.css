@@ -5170,7 +5170,8 @@ input[type="submit"].small, input[type="reset"].small, input[type="button"].smal
 }
 .content ol li {
 	line-height: 1.5;
-	font-size: 1rem;
+	font-size: 0.9rem;
+	font-weight: 300;
 }
 .content ol li a {
 	line-height: 1.5;
