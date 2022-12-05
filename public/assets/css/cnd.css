@@ -123,6 +123,9 @@ sup {
 }
 .card li {
   list-style: none;
+}
+.card ol {
+  list-style: decimal;
 } 
 h1, .h1 {
   font-size: 1.6rem;
