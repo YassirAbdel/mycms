@@ -122,7 +122,7 @@ sup {
   list-style: none;
 }
 .card li {
-  list-style: none;
+  /** list-style: none; **/
 }
 .card ol {
   list-style: decimal;
