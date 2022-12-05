@@ -112,7 +112,7 @@ sup {
   font-size: 0.9rem;
   line-height: 1.4;
   font-weight: 300;
-  list-style: disc;
+  /** list-style: disc; **/
   margin-left: 2rem;
 }
 .card table {
