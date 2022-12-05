@@ -126,6 +126,7 @@ sup {
 }
 ol li {
   list-style: decimal;
+  list-style: disc;
 } 
 h1, .h1 {
   font-size: 1.6rem;
