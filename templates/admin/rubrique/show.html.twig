@@ -97,14 +97,24 @@
                                 {% set id_rubrique = rubrique.id %}
                                 {% if sousrubriques|length > 0 %}
                                     {% set numero_ss_rubrique = 0 %}
+                                    <!-- <sommaire> -->
+                                    <div class="sommaire" id="sommaire">
+                                        <h2>Sommaire</h2>
+                                            {% for sousrubrique in sousrubriques %}
+                                                {% set counter = ( counter | default(0) ) + 1 %}
+                                                <p><a href="#{{ counter }}">{{ counter }} - {{ sousrubrique.titre }}</a></p>
+                                            {% endfor %}
+                                    </div>
+                                    <!-- </sommaire> -->
                                     {% for sousrubrique in sousrubriques %}
-                                        <h3>{% set counter = ( counter | default(0) ) + 1 %} {{ counter }} - {{ sousrubrique.titre }}</h3>
+                                        <h3>{% set counter = ( counter | default(0) ) + 1 %} {{ counter }} - {{ sousrubrique.titre }} <span id="{{ counter }}"></span></h3>
                                         {% if sousrubrique.resume is defined and sousrubrique.resume is not null %}
                                             <p><strong>{{ sousrubrique.resume|raw }}</strong></p>
                                         {% endif %}
                                         <div style="margin-bottom:50px;width:100%;margin-top:5px;"> 
                                             <span><a href="{{ path('app_sousrubrique_edit', {'id': sousrubrique.id}) }}" data-toggle="tooltip" data-placement="left" title="Modifier cette sous-rubrique" style="float:left;margin-left:5px;"><i class="fa fa-pencil fa-lg color-muted m-r-5"></i></a></span>
                                             <span><a href="{{ path('app_texte_new', {'id_sous_rubrique': sousrubrique.id} ) }}" data-toggle="tooltip" data-placement="left" title="Ajouter un paragraphe" style="float:left;margin-left:5px;"><i class="fa fa-plus-circle fa-lg color-muted m-r-5"></i></a></span>
+                                            <span><a href="#sommaire" data-toggle="tooltip" data-placement="left" title="Retour au sommaire" style="float:left;margin-left:5px;"><i class="fa fa-circle-up fa-lg color-muted m-r-5"></i></a></span>
                                         </div>
                                         {% set sousrubriquetextes = sousrubrique.textes %}
                                         {% if sousrubriquetextes|length > 0 %}

@@ -138,3 +138,6 @@ h1, .h1 {
 h2, .h2 {
   font-size: 1.5rem;
 }
+.sommaire p {
+  margin-left: 1.5rem;
+}
