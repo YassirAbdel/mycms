@@ -34,7 +34,6 @@
 .index ul {
     margin-bottom: 1rem;
     margin-left: 0rem;
-    margin-top: 1.4rem;
 }
 .content ul {
     margin-left: 1rem;
@@ -109,7 +108,7 @@ figure {
     .card {
           margin-left: 0rem;
           margin-top: 0rem;
-          margin-bottom: 0rem;
+          margin-bottom: -1rem;
     }
 }
 @media screen and (min-width: 768px) and (max-width: 1024px) {
