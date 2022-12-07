@@ -83,7 +83,7 @@
                                     <tr>
                                         <td>{{ selection.ressource.referenceCadic }}</td>
                                         <td>{{ selection.ressource.type }}</td>
-                                        <td>{{ selection.ressource.titre }}</td>
+                                        <td>{{ selection.ressource.titre|raw }}</td>
                                         <td>
                                             {% if selection.ressource.personne %}
                                                 {% set personnes = selection.ressource.personne|split('|') %}

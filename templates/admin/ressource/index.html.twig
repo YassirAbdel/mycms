@@ -119,7 +119,7 @@
                                     <tr>
                                         <td>{{ ressource.referenceCadic }}</td>
                                         <td>{{ ressource.type }}</td>
-                                        <td>{{ ressource.titre }}</td>
+                                        <td>{{ ressource.titre|raw }}</td>
                                         <td>
                                             {% if ressource.personne %}
                                                 {% set personnes = ressource.personne|split('|') %}
