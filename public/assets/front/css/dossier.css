@@ -52,6 +52,8 @@ figure {
 }
 .card {
           margin-left: -2rem;
+          margin-top: -1rem;
+          margin-bottom: -1rem;
 }
 @media screen and (max-width: 480px) {
     .index {
@@ -81,6 +83,8 @@ figure {
     }
     .card {
           margin-left: 0rem;
+          margin-top: 0rem;
+          margin-bottom: 0rem;
     }
 }
 @media screen and (max-width: 834px) {
@@ -103,6 +107,8 @@ figure {
     }
     .card {
           margin-left: 0rem;
+          margin-top: 0rem;
+          margin-bottom: 0rem;
     }
 }
 @media screen and (min-width: 768px) and (max-width: 1024px) {
