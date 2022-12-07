@@ -99,7 +99,9 @@
                                                 <h1 class="mb-0 collapsed" data-toggle="collapse" data-target="{{ '#collapse' ~ counter }}" aria-expanded="false" aria-controls="{{ 'collapse' ~ counter }}"><i class="fa" aria-hidden="true"></i>{{ rubrique.titre }}</h1>
                                             </div>
                                             <div id="{{ 'collapse' ~ counter }}" class="collapse" data-parent="#accordion-three">
+                                            
                                                 <div class="card-body">
+                                                <span><a href="{{ path('app_rubrique_show', {'id': rubrique.id}) }}" data-toggle="tooltip" data-placement="left" title="Editer cette rubrique" style="float:left;margin-left:10px;margin-bottom:10px;margin-top: -20px;"><i class="fa fa-pencil fa-lg color-muted m-r-5"></i></a></span>
                                                 <p><strong>{{ rubrique.resume|raw }}</strong></p>
                                                 {% for texte in rubrique.textes %}
                                                         <p>{{ texte.contenu|raw }}</p>
@@ -136,6 +138,7 @@
                                                 </div>
                                                 <div id="{{ 'collapse' ~ counter }}" class="collapse {% if counter == 1 %}show{% endif %}" data-parent="#accordion-three">
                                                     <div class="card-body">
+                                                    <span><a href="{{ path('app_rubrique_show', {'id': rubrique.id}) }}" data-toggle="tooltip" data-placement="left" title="Editer cette rubrique" style="float:left;margin-left:10px;margin-bottom:10px;margin-top: -20px;"><i class="fa fa-pencil fa-lg color-muted m-r-5"></i></a></span>
                                                     {% if rubrique.resume is defined %}<p><strong>{{ rubrique.resume|raw }}</strong></p>{% endif %}
                                                     {% set counter = 0 %}
                                                     {% for sousrubrique in rubrique.sousrubriques %}
