@@ -155,7 +155,7 @@
                                                                                 {% endif %}
                                                                                 <span style="text-align:center;margin-bottom:-15px;">{{ ressource.type }}</span>
                                                                                 <div class="card-body">
-                                                                                    <h5 class="card-title">{{ ressource.titre }}</h5>
+                                                                                    <h5 class="card-title">{{ ressource.titre|raw }}</h5>
                                                                                      <div class="space-icone">
                                                                                         <span><a href="{{ 'http://mediatheque.cnd.fr/spip.php?page=mediatheque-numerique-ressource&id=' ~ ressource.referenceCadic }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Consulter"><i class="fa fa-search color-danger"></i> </a></span>
                                                                                     </div>
