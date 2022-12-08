@@ -73,7 +73,7 @@ figure {
     max-height: auto;
     font-weight: 100;
 }
-.card a, a:hover, a:active{
+.card-ttle a, a:hover, a:active{
     color: #b4b4b4;
 }
 @media screen and (max-width: 480px) {
@@ -119,7 +119,7 @@ figure {
         font-size: 0.9rem;
         max-width: 350px;
     }
-    .card a, a:hover, a:active{
+    .card-ttle a, a:hover, a:active{
         color: #b4b4b4;
     }
 }
@@ -158,7 +158,7 @@ figure {
         font-size: 0.9rem;
         max-width: 350px;
     }
-    .card a, a:hover, a:active{
+    .card-ttle a, a:hover, a:active{
         color: #b4b4b4;
     }
 }
