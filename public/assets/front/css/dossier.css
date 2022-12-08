@@ -119,6 +119,9 @@ figure {
         font-size: 0.9rem;
         max-width: 350px;
     }
+    .card a, a:hover, a:active{
+        color: #b4b4b4;
+    }
 }
 @media screen and (max-width: 834px) {
     .index {
@@ -154,6 +157,9 @@ figure {
     .person {
         font-size: 0.9rem;
         max-width: 350px;
+    }
+    .card a, a:hover, a:active{
+        color: #b4b4b4;
     }
 }
 @media screen and (min-width: 768px) and (max-width: 1024px) {
