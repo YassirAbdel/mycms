@@ -104,6 +104,9 @@ figure {
     .card-title {
         font-size: 0.5em;
     }
+    .card a, a:hover, a:active{
+        color: #b4b4b4;
+    }
 }
 @media screen and (max-width: 834px) {
     .index {
