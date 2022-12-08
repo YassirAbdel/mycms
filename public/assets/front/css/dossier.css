@@ -57,7 +57,7 @@ figure {
           margin-bottom: 0rem;
 }
 .card-title {
-    font-size: 1em;
+    font-size: 1.2em;
     color: #b4b4b4;
     max-width: 100%;
     max-height: auto;
@@ -101,6 +101,9 @@ figure {
           margin-top: 0rem;
           margin-bottom: 0rem;
     }
+    .card-title {
+        font-size: 0.5em;
+    }
 }
 @media screen and (max-width: 834px) {
     .index {
@@ -124,6 +127,9 @@ figure {
           margin-left: 0rem;
           margin-top: 0rem;
           margin-bottom: -1rem;
+    }
+    .card-title {
+        font-size: 0.5em;
     }
 }
 @media screen and (min-width: 768px) and (max-width: 1024px) {
