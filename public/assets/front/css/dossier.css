@@ -112,6 +112,9 @@ figure {
     .content figcaption {
         font-size: 0.9em;
     }
+    .person {
+        font-size: 0.9rem;
+    }
 }
 @media screen and (max-width: 834px) {
     .index {
@@ -140,6 +143,9 @@ figure {
         font-size: 0.5rem;
     }
     .content figcaption {
+        font-size: 0.9rem;
+    }
+    .person {
         font-size: 0.9rem;
     }
 }
