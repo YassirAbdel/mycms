@@ -17,6 +17,7 @@
 .content figcaption {
     margin-top: 0rem;
     font-weight: bold;
+    font-size: 1.2em;
 }
 .card-body-product {
     margin-top: 1.5rem;
@@ -108,6 +109,9 @@ figure {
     .card-title {
         font-size: 0.5em;
     }
+    .content figcaption {
+        font-size: 0.5em;
+    }
 }
 @media screen and (max-width: 834px) {
     .index {
@@ -133,6 +137,9 @@ figure {
           margin-bottom: -1rem;
     }
     .card-title {
+        font-size: 0.5em;
+    }
+    .content figcaption {
         font-size: 0.5em;
     }
 }
