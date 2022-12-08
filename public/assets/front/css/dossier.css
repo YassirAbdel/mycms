@@ -56,6 +56,20 @@ figure {
           margin-top: -1rem;
           margin-bottom: 0rem;
 }
+.card-title {
+    font-size: 1em;
+    color: #b4b4b4;
+    max-width: 100%;
+    max-height: auto;
+    font-weight: normal;
+}
+.person {
+    font-size: 0.7rem;
+    color: #b4b4b4;
+    max-width: 100%;
+    max-height: auto;
+    font-weight: 100;
+}
 @media screen and (max-width: 480px) {
     .index {
         margin-left: 1rem;
