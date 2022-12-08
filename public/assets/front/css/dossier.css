@@ -109,12 +109,15 @@ figure {
     }
     .card-title {
         font-size: 0.9rem;
+        max-width: 350px;
     }
     .content figcaption {
         font-size: 0.9rem;
+        max-width: 350px;
     }
     .person {
         font-size: 0.9rem;
+        max-width: 350px;
     }
 }
 @media screen and (max-width: 834px) {
@@ -142,12 +145,15 @@ figure {
     }
     .card-title {
         font-size: 0.9rem;
+        max-width: 350px;
     }
     .content figcaption {
         font-size: 0.9rem;
+        max-width: 350px;
     }
     .person {
         font-size: 0.9rem;
+        max-width: 350px;
     }
 }
 @media screen and (min-width: 768px) and (max-width: 1024px) {
