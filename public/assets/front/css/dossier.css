@@ -54,7 +54,7 @@ figure {
 .card {
           margin-left: -2rem;
           margin-top: -1rem;
-          margin-bottom: -1rem;
+          margin-bottom: 0rem;
 }
 @media screen and (max-width: 480px) {
     .index {
