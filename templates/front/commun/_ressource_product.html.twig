@@ -8,13 +8,13 @@
      		<div class="card-body card-body-product">
 				<h5 class="card-title"><a href="{{'http://mediatheque.cnd.fr/spip.php?page=mediatheque-numerique-ressource&id=' ~ ressource.referenceCadic }}" target="_blank" title="Consulter">{{ ressource.titre|replace({'&#8239': ""})|raw }}</a></h5>
 				{% if ressource.personne %}
-					<div class="person-product"><span class="person">{{ ressource.personne|replace({'|': " ; "}) }}</span></div>
+					<!-- <div class="person-product"><span class="person">{{ ressource.personne|replace({'|': " ; "}) }}</span></div> -->
 				{% endif %}
 				{% if ressource.oeuvre %}
-					<div class="person-product"><span class="person">&#171; {{ ressource.oeuvre|replace({'|': "  &#187; ; &#171; "})|raw }} &#187;</span></div>
+					<!-- <div class="person-product"><span class="person">&#171; {{ ressource.oeuvre|replace({'|': "  &#187; ; &#171; "})|raw }} &#187;</span></div> -->
 				{% endif %}
 				{% if ressource.auteur %}
-					<div class="person-product"><span class="person">Par {{ ressource.auteur|replace({'|': " ; "}) }}</span></div>
+					<!-- <div class="person-product"><span class="person">Par {{ ressource.auteur|replace({'|': " ; "}) }}</span></div> -->
 				{% endif %}
 				
 					<!--
