@@ -55,9 +55,9 @@ figure {
     margin-left: 2rem;
 }
 .card {
-          margin-left: -2rem;
-          margin-top: 0rem;
-          margin-bottom: -1rem;
+    margin-left: -1rem;
+    margin-top: -2rem;
+    margin-bottom: -2rem;
 }
 .card-title {
     font-size: 0.7rem;
