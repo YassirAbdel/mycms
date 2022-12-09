@@ -4869,6 +4869,12 @@ figcaption {
 	border-radius: 7px;
 	border-radius: 0px;
 }
+
+#feuilleter {
+	max-width: 496;
+	height: auto;
+}
+
 .title {
 
 	margin-top: -7rem;
