@@ -2343,7 +2343,7 @@ line-height:1.6666666667rem}
 .title
 {
 	font-size:48px;
-	font-size:4rem;
+	font-size:3rem;
 	font-weight:900;
 	line-height:51.999px;
 line-height:4.3333333333rem}
@@ -4922,6 +4922,7 @@ input, select, textarea {
 }
 .logo-cnd-last {
 	margin-top: -8rem;
+	font-size: 4rem;
 }
 label {
     text-align: left;
@@ -5111,6 +5112,7 @@ input[type="submit"].small, input[type="reset"].small, input[type="button"].smal
 	text-align: left;
 	line-height: 1.4;
 	margin-bottom: 1rem;
+	padding-right: 2rem;
 }
 .index {
 	margin-left: 1.5rem;
@@ -5257,6 +5259,7 @@ cc-animate.cc-revoke.cc-active.cc-bottom {
 	position: relative;
 	left: 1rem;
 	margin-bottom: 4rem;
+	padding-left: 2rem;
 }
 .bouton a {
 	display:block;
@@ -5287,6 +5290,7 @@ cc-animate.cc-revoke.cc-active.cc-bottom {
 }
 #dossier {
 	padding-right: 2rem;
+	padding-left: 3rem;
 }
 .gallery.style2 article .caption a {
 	display: inline-block;
@@ -6000,7 +6004,7 @@ h4, h5, h6 {
 	.spotlight.style1 .image {
 		margin-bottom: 0rem;
 		margin-top: 0rem;
-		width: 110%;
+		width: 100%;
 	}
 	.res-marin-top {
 		margin-top: -6rem;
