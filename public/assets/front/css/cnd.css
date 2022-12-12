@@ -4990,6 +4990,7 @@ input[type="submit"].small, input[type="reset"].small, input[type="button"].smal
 }
 .wrapper.style1 > .inner {
 	margin-left: 0rem;
+	margin-top: -6rem;
 }
 
 /** Menu dossier **/
@@ -5882,6 +5883,7 @@ h4, h5, h6 {
 @media screen and (max-width: 736px) {
 	.wrapper.style1 > .inner {
   		padding-top: 0rem;
+		margin-top: 0rem;
 	}	
 	.wrapper.style1 > .top-responsive {
 		padding-top: 5rem;
