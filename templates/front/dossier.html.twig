@@ -12,8 +12,8 @@
 						{% if dossier.soustitre %}<h3>{{ dossier.soustitre }}</h3>{% endif %}
 						{% if dossier.resume %}
 								<div id="intro">{{ dossier.resume|raw}}</div>
-								
 						{% endif %}
+					</div>
 						<div class="index">
 							<!-- Unordered List -->
 							<section>
@@ -104,14 +104,42 @@
 	$(".content img").attr("id", "figure");
 	//$(".content img").attr("style", "figure");
 
+	$("#intro p").each(function(index) {
+		$( this ).attr("id", "more" + index)
+		
+	});
+	$("#intro p:nth-child(n+3)").attr("style", "display:none");
+	$('<span id="moreText"><a href="#" onclick="more();">Lire la suite...</a></span>').insertBefore("#more3");
+
+	function more() {
+		
+		var moreText = document.getElementById("moreText");
+		
+		$("#intro p").each(function(index) {
+			$( this ).attr("style", "display:block")
+		});
+
+		moreText.style.display = "none";
+	}
+
+	
+	//$("#intro p:nth-child(3)").attr("id", "more");
+	
+	
+	//var images= document.querySelectorAll( "p" );
+
+	/**
 	$("#intro p:nth-child(3)").attr("id", "more");
-	$("#intro p:nth-child(3)").attr("style", "display:none");
-	$('<span id="dots"><a href="#" onclick="more()" id="myBtn">Lire la suite...</a></span>').insertBefore("#more");
+	$("#intro p:nth-child(n+3)").attr("style", "display:none");
+	$('<span id="dots"><a href="#" onclick="more();" id="myBtn">Lire la suite...</a></span>').insertBefore("#more");
 	
 	function more() {
 		var dots = document.getElementById("dots");
 		var moreText = document.getElementById("more");
 		var btnText = document.getElementById("myBtn");
+		var ps = document.querySelectorAll( "p" );
+		
+		
 
 		if (dots.style.display === "none") {
 			dots.style.display = "inline";
@@ -121,7 +149,15 @@
 			dots.style.display = "none";
 			btnText.innerHTML = "Read less";
 			moreText.style.display = "inline";
+			while(ps) {
+				$("#intro p:nth-child.attr("style", "display:inline");
+			}
 		}
+		
 	}
+**/
+function displayAll() {
+	//$("#intro p:nth-child()").attr("style", "display:inline"));
+}
 </script>
 {% endblock %}
