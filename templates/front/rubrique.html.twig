@@ -25,6 +25,7 @@
 							{% if rubrique.resume %}{{ rubrique.resume|raw }}{% endif %}
 							{% for texte in rubrique.textes %}
 								{{ texte.contenu|raw }}
+								{% if texte.uploads|length > 0 %}
 									<div class="upload">
 										<ul> 
 											{% for file in texte.uploads %}
@@ -34,6 +35,8 @@
 											{% endfor %}
 										</ul>
 									</div>
+								{% endif %}
+								{% if texte.ressources|length > 0 %}
 									<div class="row top-card-resp" >
 										<div class="col-12 m-b-30">
 											<div class="row">
@@ -43,7 +46,7 @@
 											</div>
 										</div>
 									</div>
-							
+								{% endif %}
 							{% endfor %}
 							<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script> 
 							<script>
