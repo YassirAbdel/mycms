@@ -5530,6 +5530,9 @@ h4, h5, h6 {
 			max-width:250px;
 			height:auto;
 		}
+		.accordion {
+			margin-left: 0rem;
+		}
 }
 	
 @media screen and (max-width: 736px) {
