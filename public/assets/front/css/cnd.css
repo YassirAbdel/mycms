@@ -5629,10 +5629,15 @@ h4, h5, h6 {
 			font-size: 4rem;
 			margin-left: 1rem;
 		}
+		.accordion .link {
+			margin-left: -2rem;
+		}
+		.submenu {
+			margin-left: -2rem;
+		}
 		
 }
 @media screen and (min-width: 834px) {
-
 		.logo-cnd {
 				margin-top: -9rem;
 				margin-left: 5px;
@@ -5661,7 +5666,7 @@ h4, h5, h6 {
     		margin-top: -200px;
 		}
 		.logo-cnd-last {
-			margin-top: -5rem;
+			margin-top: -8rem;
 			font-size: 4rem;
 			margin-left: 1rem;
 		}
