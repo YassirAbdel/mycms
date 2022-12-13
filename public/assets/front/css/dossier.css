@@ -75,6 +75,9 @@ figure {
 .card-ttle a, a:hover, a:active{
     color: #b4b4b4;
 }
+.content .top-card-resp {
+	margin-top: -2rem;
+}
 @media screen and (max-width: 480px) {
     .index {
         margin-left: 1rem;
