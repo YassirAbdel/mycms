@@ -5259,8 +5259,9 @@ cc-animate.cc-revoke.cc-active.cc-bottom {
 .bouton {
 	position: relative;
 	left: 1rem;
-	margin-bottom: 4rem;
+	margin-bottom: 2rem;
 	padding-left: 2rem;
+	margin-top: 2rem;
 }
 .bouton a {
 	display:block;
