@@ -5013,8 +5013,7 @@ input[type="submit"].small, input[type="reset"].small, input[type="button"].smal
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
-  margin-left: -42px;
-  margin-left: -2rem;
+  margin-left: 1rem;
 }
 
 .accordion .link {

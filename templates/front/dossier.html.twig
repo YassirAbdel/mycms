@@ -122,42 +122,19 @@
 		moreText.style.display = "none";
 	}
 
+	jQuery("document").ready(function($){
+    
+    var nav = $('.accordion');
+    
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 1200) {
+            nav.addClass("nav");
+        } else {
+            nav.removeClass("nav");
+        }
+    });
+ 
+});
 	
-	//$("#intro p:nth-child(3)").attr("id", "more");
-	
-	
-	//var images= document.querySelectorAll( "p" );
-
-	/**
-	$("#intro p:nth-child(3)").attr("id", "more");
-	$("#intro p:nth-child(n+3)").attr("style", "display:none");
-	$('<span id="dots"><a href="#" onclick="more();" id="myBtn">Lire la suite...</a></span>').insertBefore("#more");
-	
-	function more() {
-		var dots = document.getElementById("dots");
-		var moreText = document.getElementById("more");
-		var btnText = document.getElementById("myBtn");
-		var ps = document.querySelectorAll( "p" );
-		
-		
-
-		if (dots.style.display === "none") {
-			dots.style.display = "inline";
-			btnText.innerHTML = "Read more";
-			moreText.style.display = "none";
-		} else {
-			dots.style.display = "none";
-			btnText.innerHTML = "Read less";
-			moreText.style.display = "inline";
-			while(ps) {
-				$("#intro p:nth-child.attr("style", "display:inline");
-			}
-		}
-		
-	}
-**/
-function displayAll() {
-	//$("#intro p:nth-child()").attr("style", "display:inline"));
-}
 </script>
 {% endblock %}
