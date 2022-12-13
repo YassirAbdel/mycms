@@ -5624,6 +5624,11 @@ h4, h5, h6 {
 		.banner.style1 .image {
 			width: 100%;
 		}
+		.logo-cnd-last {
+			margin-top: -5rem;
+			font-size: 4rem;
+			margin-left: 1rem;
+		}
 		
 }
 @media screen and (min-width: 834px) {
@@ -5654,6 +5659,17 @@ h4, h5, h6 {
 		}
 		.carousel-control-next {
     		margin-top: -200px;
+		}
+		.logo-cnd-last {
+			margin-top: -5rem;
+			font-size: 4rem;
+			margin-left: 1rem;
+		}
+		.accordion .link {
+			margin-left: -2rem;
+		}
+		.submenu {
+			margin-left: -2rem;
 		}
 }
 @media screen and (min-width: 1024px) {
@@ -5751,7 +5767,7 @@ h4, h5, h6 {
 				line-height: 5.3333333333rem;
 		}
 		.row {
-			margin-top: -1rem;
+			margin-top: 0rem;
 		}
 		.logo-cnd-subtitle {
 			line-height: 12.33rem;
