@@ -129,9 +129,10 @@
 			var position = a.position();
 			// Si le texte est trop long
 			var positionTop = position.top * 3;
+			var largeur_fenetre = $(window).width();
 			
 			$(window).scroll(function () {
-				if ($(this).scrollTop() > positionTop) {
+				if ($(this).scrollTop() > positionTop && largeur_fenetre > 834) {
 					nav.addClass("fixe");
 				} else {
 					nav.removeClass("fixe");
