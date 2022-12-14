@@ -78,6 +78,11 @@ figure {
 .content .top-card-resp {
 	margin-top: -2rem;
 }
+.fixe {
+    bottom: 0;
+    position: fixed;
+    padding-right: 4rem;
+}
 @media screen and (max-width: 480px) {
     .index {
         margin-left: 1rem;

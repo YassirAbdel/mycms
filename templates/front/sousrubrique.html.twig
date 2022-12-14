@@ -89,23 +89,54 @@
 	</div>
 {% endblock %}
 {% block javascript %}
-<script>
-	var images= document.querySelectorAll( ".content img" ),
-	L = images.length, fig = document.createElement('figure'),
-	who, temp
-	while(L) {
-		temp = fig.cloneNode(false);
-		who = images[--L];
-		caption = who.getAttribute("alt");
-		who.parentNode.insertBefore(temp, who);
-		content = document.createElement( 'figcaption' );
-		content.innerHTML = caption;
-		temp.appendChild(who);
-		temp.appendChild(content);
-	}
-	$(".content img").attr("style", "height:auto;");
-	//$(".content figcaption").attr("style", "max-width:350px;height:auto;");
-	$(".content img").attr("id", "figure");
-	//$(".content img").attr("style", "figure");
-</script>
+	<script>
+			var images= document.querySelectorAll( ".content img" ),
+			L = images.length, fig = document.createElement('figure'),
+			who, temp
+			while(L) {
+				temp = fig.cloneNode(false);
+				who = images[--L];
+				caption = who.getAttribute("alt");
+				who.parentNode.insertBefore(temp, who);
+				content = document.createElement( 'figcaption' );
+				content.innerHTML = caption;
+				temp.appendChild(who);
+				temp.appendChild(content);
+			}
+			$(".content img").attr("style", "height:auto;");
+			//$(".content figcaption").attr("style", "max-width:350px;height:auto;");
+			$(".content img").attr("id", "figure");
+			//$(".content img").attr("style", "figure");
+
+			$("#intro p").each(function(index) {
+				$( this ).attr("id", "more" + index)
+			});
+			$("#intro p:nth-child(n+3)").attr("style", "display:none");
+			$('<span id="moreText"><a href="#" onclick="more();">Lire la suite...</a></span>').insertBefore("#more3");
+
+			function more() {
+				
+				var moreText = document.getElementById("moreText");
+				
+				$("#intro p").each(function(index) {
+					$( this ).attr("style", "display:block")
+				});
+
+				moreText.style.display = "none";
+			}
+
+			jQuery("document").ready(function($){
+			
+			var nav = $('.accordion');
+			
+			$(window).scroll(function () {
+				if ($(this).scrollTop() > 1200) {
+					nav.addClass("fixe");
+				} else {
+					nav.removeClass("fixe");
+				}
+			});
+		
+			});
+	</script>
 {% endblock %}
