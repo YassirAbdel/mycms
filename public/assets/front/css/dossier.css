@@ -79,7 +79,7 @@ figure {
 	margin-top: -2rem;
 }
 .fixe {
-    bottom: 10;
+    bottom: 10%;
     position: fixed;
     padding-right: 4rem;
     max-width: 450px;
