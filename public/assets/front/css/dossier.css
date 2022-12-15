@@ -82,6 +82,7 @@ figure {
     bottom: 0;
     position: fixed;
     padding-right: 4rem;
+    max-width: 450px;
 }
 @media screen and (max-width: 480px) {
     .index {
