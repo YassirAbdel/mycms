@@ -187,12 +187,12 @@ figure {
         margin-top: 0rem;
     }
 }
-@media screen and (min-width: 1920) {
+@media screen and (min-width: 1920px) {
     .fixe {
         max-width: 450px;
     }
 }
-@media screen and (min-width: 1024) {
+@media screen and (min-width: 1024px) {
     .fixe {
         max-width: 360px;
     }
