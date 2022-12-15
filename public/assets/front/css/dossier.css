@@ -186,4 +186,7 @@ figure {
         margin-left: 1rem;
         margin-top: 0rem;
     }
+    .fixe {
+        max-width: 360px;
+    }
 }
