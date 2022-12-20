@@ -61,7 +61,7 @@
 		<h1>{{ dossier_titre|raw }}</h1>
 		<h2>{{ rubrique_titre|raw }}</h2>
 		{% for texte in rubrique_textes %}
-			{{ texte.contenu|replace({"/uploads/images/":"http://localhost:8000/uploads/images/","<img alt=":"</p><p><img alt="})|raw }}
+			{{ texte.contenu|replace({"/uploads/images/":"http://localhost/uploads/images/","<img alt=":"</p><p><img alt="})|raw }}
 			<table border="0">
 				{% for ressource in texte.ressources %}
 					<tr>
