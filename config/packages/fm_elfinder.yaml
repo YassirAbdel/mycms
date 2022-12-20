@@ -12,6 +12,6 @@ fm_elfinder:
                     uploads:
                         driver: LocalFileSystem
                         path: uploads/images
-                        upload_allow: ['image/png', 'image/jpg', 'image/jpeg'] # Fichiers autorisés
+                        upload_allow: ['image/png', 'image/jpg', 'image/jpeg', 'application/pdf'] # Fichiers autorisés
                         upload_deny: ['all'] # Fichiers interdits
-                        upload_max_size: 2M # Taille maximum
+                        upload_max_size: 10M # Taille maximum

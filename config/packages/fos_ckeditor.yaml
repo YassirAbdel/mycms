@@ -18,9 +18,13 @@ fos_ck_editor:
             filebrowserBrowseRouteParameters: []
             fullscreen: true # Taille d'affichage
             extraPlugins: "footnotes"
+            #stylesSet: "my_styles"
     plugins:
         footnotes:
             path: "/bundles/fosckeditor/plugins/footnotes/"
+            filename: "plugin.js"
+        exportpdf:
+            path: "/bundles/fosckeditor/plugins/exportpdf/"
             filename: "plugin.js"
     toolbars:
         items:
@@ -28,5 +32,10 @@ fos_ck_editor:
             full.document: [ "Source", "-", "Preview", "Print" ]
         configs:
             my_toolbar_1: [ [ "Source" ], "/", [ "Anchor" ], "/", [ "Maximize" ], "/", ["Footnotes"] ]
-            my_toolbar_2: [ [ "Format", "-", "Bold", "Italic", "Underline", "Blockquote", "RemoveFormat", "-", "Cut", "Copy", "Paste", "PasteText", "PasteFromWord", "Undo", "Redo", "-", "NumberedList", "BulletedList", "Outdent", "Indent", "Blockquote", "JustifyLeft", "JustifyCenter", "JustifyRight", "JustifyBlock", "BidiLtr", "BidiRtl", "-", "Find", "Replace", "SelectAll", "Scayt", "-", "Link", "Unlink", "Image", "Table", "-", "Footnotes"], "/", ["Preview", "-", "Print", "-", "Save", "-", "Source", "-", "document", "-", "ShowBlocks", "About"] ]
+            my_toolbar_2: [ [ "Format","-", "Bold", "Italic", "Underline", "Blockquote", "RemoveFormat", "-", "Cut", "Copy", "Paste", "PasteText", "PasteFromWord", "Undo", "Redo", "-", "NumberedList", "BulletedList", "Outdent", "Indent", "Blockquote", "JustifyLeft", "JustifyCenter", "JustifyRight", "JustifyBlock", "BidiLtr", "BidiRtl", "-", "Find", "Replace", "SelectAll", "Scayt", "-", "Link", "Unlink", "Image", "Table", "-", "Footnotes"], "/", ["Preview", "-", "Print", "-", "Save", "-", "Source", "-", "document", "-", "ShowBlocks", "ExportPdf", "About"] ]
             contact: [ ["Bold", "Italic", "Underline", "RemoveFormat"] ]
+    #styles:
+        #my_styles:
+            #- { name: "Legende", element: "span", styles: { color: "Blue" }}
+            #- { name: "CSS Style", element: "span", attributes: { class: "my_style" }}
+            #- { name: "Widget Style", type: widget, widget: "my_widget", attributes: { class: "my_widget_style" }}

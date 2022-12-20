@@ -1,0 +1,16 @@
+<div class="col-md-3 col-lg-3">
+		<div class="card">
+			<p class="typedoc">{{ ressource.type }}</p>
+			{% if ressource.urlImag %}
+			  	<a href={{'http://mediatheque.cnd.fr/spip.php?page=mediatheque-numerique-ressource&id=' ~ ressource.referenceCadic }} target="_blank"><img style="width:300px;" class="img-fluid" src="http://cadic.cnd.fr/exl-img/{{ ressource.urlImag|replace({'.jpg': '.jpg'}) }}" class="responsive" alt="" title="Consulter" /></a>
+			{% else %}
+        		<a href="{{'http://mediatheque.cnd.fr/spip.php?page=mediatheque-numerique-ressource&id=' ~ ressource.referenceCadic }}" target="_blank"><img class="img-fluid" src="{{ '/images/resources/empty.jpg' | imagine_filter('thumb') }}" class="responsive" alt="" title="Consulter" />
+     		{% endif %}
+     		<div class="card-body card-body-product">
+				<h5 class="card-title">{{ ressource.titre|replace({'&#8239': ""})|raw }}</h5>
+			</div>
+		</div>
+</div>
+
+
+								

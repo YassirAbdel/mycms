@@ -54,9 +54,9 @@ figure {
     margin-left: 5rem;
 }
 .card {
-    margin-left: -2rem;
-    margin-top: 0rem;
-    margin-bottom: -1rem;
+    margin-left: 0rem;
+    margin-top: 1rem;
+    margin-bottom: 0rem;
 }
 .card-title {
     font-size: 0.7rem;
@@ -83,6 +83,10 @@ figure {
     position: fixed;
     padding-right: 4rem;
     max-width: 450px;
+}
+.card-title {
+    margin-top: 0.5rem;
+    margin-top: -1rem;
 }
 @media screen and (max-width: 480px) {
     .index {
@@ -170,6 +174,9 @@ figure {
     .accordion {
         margin-left: -1rem;
     }
+    .fixe {
+        display: none;
+    }
 }
 @media screen and (min-width: 768px) and (max-width: 1024px) {
     .img-fluid {
@@ -187,6 +194,12 @@ figure {
         margin-top: 0rem;
     }
 }
+@media screen and (min-width: 1024px) {
+    .row {
+        padding: 0rem;
+    }
+}
+
 @media screen and (min-width: 1920px) {
     .fixe {
         max-width: 450px;

@@ -17,12 +17,16 @@ use App\Repository\DossierRepository;
 use App\Repository\RessourceRepository;
 use App\Repository\RubriqueRepository;
 use App\Repository\SouscollectioncndRepository;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+
 
 class FrontController extends AbstractController
 {
@@ -163,6 +167,73 @@ class FrontController extends AbstractController
             'menu' => $menu,
             'sousmenu' => $sousmenu
         ]);
+    }
+
+    #[Route('rubriquepdf/{slug}-{id}', name: 'front_rubriquepdf_show', requirements: ['slug' => '^[a-z0-9]+(?:-[a-z0-9]+)*$', 'id' => '\d+'], methods: ['GET'])]
+    public function expotPdfRubrique(Rubrique $rubrique, ParameterBagInterface $params)
+    {
+        $dossier = $rubrique->getDossier();
+        $rubriques = $dossier->getRubriques();
+        $id = $dossier->getId();
+        $menu = $rubrique->getId();
+        $sousmenu = 1;
+        
+        $data = [
+            'dossier_titre' => $dossier->getTitre(),
+            'rubrique_titre' => $rubrique->getTitre(),
+            'rubrique_textes' => $rubrique->getTextes()
+        ];
+        
+        // Store PDF Binary Data
+        // $output = $dompdf->output();
+       // In this case, we want to write the file in the public directory
+       //$publicDirectory = $this->get('kernel')->getProjectDir() . '/public';
+       // e.g /var/www/project/public/mypdf.pdf
+       //$pdfFilepath =  $publicDirectory . '/mypdf.pdf';
+       // Write file to the desired path
+       //file_put_contents($pdfFilepath, $output);
+
+        $html = $this->renderView('front/pdf_generator/rubrique.html.twig', $data);
+        //dd($html);
+        $exportPdf = new Dompdf();
+        $options = $exportPdf->getOptions();
+        $options->set('isRemoteEnabled', true);
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set("isPhpEnabled", true);
+        $options->set('isJavascriptEnabled', true);
+        $options->set('tempDir', '/Users/abdelmontet/Documents/http/mycms/public/tmp');
+        $options->setDefaultFont('Arial');
+        
+        //$options->setlogOutputFile('CND');
+        $exportPdf->setOptions($options);
+        $exportPdf->setPaper('A4', 'portrait');
+        
+        $exportPdf->loadHtml($html);
+        $exportPdf->render();
+        // Ajout pagination
+        //$logoFile = $params->get('kernel.project_dir') . '/public/logo_cnd.png';
+        $canvas = $exportPdf->getCanvas();
+        $canvas->page_script(function ($pageNumber, $pageCount, $canvas, $fontMetrics) {
+        $text = date("Y-m-d H:i") . " - " . "Page $pageNumber / $pageCount";
+        //$logo = "CN D";
+        
+        $font = $fontMetrics->getFont('Arial');
+        $pageWidth = $canvas->get_width();
+        $pageHeight = $canvas->get_height();
+        $size = 8;
+        //$sizeLogo = 30;
+        $width = $fontMetrics->getTextWidth($text, $font, $size);
+        $canvas->text($pageWidth - $width - 20, $pageHeight - 20, $text, $font, $size);
+        //$canvas->text($pageWidth - $width - 480, 5, $logo, $font, $size_logo);
+        //$canvas->image($logoFile,$pageWidth - $width - 480, 5);
+});
+        
+        return new Response (
+            $exportPdf->stream($dossier->getTitre() . "__" . $rubrique->getTitre(), ["Attachment" => false]),
+            Response::HTTP_OK,
+            ['Content-type' => 'application/pdf']
+        );
+        
     }
 
     #[Route('sous-rubrique/{slug}-{id}', name: 'front_sousrubrique_show', requirements: ['slug' => '^[a-z0-9]+(?:-[a-z0-9]+)*$', 'id' => '\d+'], methods: ['GET'])]

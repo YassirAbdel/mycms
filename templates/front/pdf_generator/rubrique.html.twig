@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script src={{ asset('assets/front/js/jquery.min.js') }}></script>
+	
+	<title>: {{ dossier_titre }}</title>
+	<style>
+		@page{
+			margin-top: 100px; /* create space for header */
+			margin-bottom: 30px; /* create space for footer */
+        }
+		.img-fluid {
+			width: 300px;
+			height:  auto;
+		}
+		.card-title {
+			margin-top: 0.5rem;
+			margin-top: 0rem;
+			font-weight: normal;
+			width: 300px;
+			font-size: 0.7rem;
+		}
+		.footnotes h2 {
+			font-size: 0.9rem;
+			margin-bottom: -1rem;
+		}
+		.footnotes ol li {
+  			font-size: 0.9rem;
+		}
+		.typedoc {
+			color: #5d7070;
+			font-size: 0.8rem;
+			font-weight: 600;
+			margin-bottom: 5px;
+		}
+		cite {
+			font-size: 0.9rem;
+		}
+		
+        header, footer{
+                position: fixed;
+                left: 0px;
+                right: 0px;
+            }
+		header{
+			height: 60px;
+			margin-top: -80px;
+		}
+		footer{
+			height: 0px;
+			margin-bottom: 0px;
+			}
+	</style>
+</head>
+<body>
+	<header>
+		<img style="width:150px;height:auto;" src="{{ absolute_url(asset('assets/logo_cnd.png')) }}" alt="">
+	</header>
+	<div style="margin: 0 auto;display: block;width: 100%">
+		<h1>{{ dossier_titre|raw }}</h1>
+		<h2>{{ rubrique_titre|raw }}</h2>
+		{% for texte in rubrique_textes %}
+			{{ texte.contenu|replace({"/uploads/images/":"http://localhost:8000/uploads/images/","<img alt=":"</p><p><img alt="})|raw }}
+			<table border="0">
+				{% for ressource in texte.ressources %}
+					<tr>
+					<td>
+						{% include 'front/commun/_ressource_pdf.html.twig' %}
+					</td>
+					<tr>
+				{% endfor %}
+			</table>
+		{% endfor %}
+	</div>
+	<footer></footer>
+	<script>
+	var images= document.querySelectorAll( ".content img" ),
+	L = images.length, fig = document.createElement('figure'),
+	who, temp
+	while(L) {
+		temp = fig.cloneNode(false);
+		who = images[--L];
+		caption = who.getAttribute("alt");
+		who.parentNode.insertBefore(temp, who);
+		content = document.createElement( 'figcaption' );
+		content.innerHTML = caption;
+		temp.appendChild(who);
+		temp.appendChild(content);
+	}
+	$(".content img").attr("style", "height:auto;");
+	//$(".content figcaption").attr("style", "max-width:350px;height:auto;");
+	$(".content img").attr("id", "figure");
+	//$(".content img").attr("style", "figure");
+
+	$("#intro p").each(function(index) {
+		$( this ).attr("id", "more" + index)
+	});
+	$("#intro p:nth-child(n+3)").attr("style", "display:none");
+	$('<span id="moreText"><a href="#" onclick="more();">Lire la suite...</a></span>').insertBefore("#more3");
+
+	function more() {
+		
+		var moreText = document.getElementById("moreText");
+		
+		$("#intro p").each(function(index) {
+			$( this ).attr("style", "display:block")
+		});
+
+		moreText.style.display = "none";
+	}
+
+	jQuery("document").ready(function($){
+	
+	var nav = $('.accordion');
+	var a = $( "#accordion" ).first();
+	// on calcule la position initiale du menu
+	var position = a.position();
+	// Si le texte est trop long
+	var positionTop = position.top * 3;
+	var largeur_fenetre = $(window).width();
+	
+	$(window).scroll(function () {
+		if ($(this).scrollTop() > positionTop && largeur_fenetre > 769) {
+			nav.addClass("fixe");
+		} else {
+			nav.removeClass("fixe");
+		}
+	});
+
+	});
+</script>
+</body>
+</html>
