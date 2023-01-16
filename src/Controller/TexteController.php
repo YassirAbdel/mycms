@@ -2,12 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\Image;
 use App\Entity\Texte;
 use App\Entity\Upload;
+use App\Form\ImageType;
 use App\Form\TexteType;
 use App\Form\UploadType;
 use App\Repository\ArticleRepository;
 use App\Repository\DossierRepository;
+use App\Repository\ImageRepository;
 use App\Repository\RubriqueRepository;
 use App\Repository\SousrubriqueRepository;
 use App\Repository\TexteRepository;
@@ -135,7 +138,7 @@ class TexteController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_texte_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Texte $texte, TexteRepository $texteRepository, SousrubriqueRepository $sousrubriqueRepository, SluggerInterface $slugger, UploadRepository $uploadRepository): Response
+    public function edit(Request $request, Texte $texte, TexteRepository $texteRepository, SousrubriqueRepository $sousrubriqueRepository, SluggerInterface $slugger, UploadRepository $uploadRepository, ImageRepository $imageRepository): Response
     {
         if (isset($_GET['id_sous_rubrique'])) {
             $id_sous_rubrique = $_GET['id_sous_rubrique'];
@@ -159,6 +162,10 @@ class TexteController extends AbstractController
         $formUpload = $this->createForm(UploadType::class, $upload);
         $formUpload->handleRequest($request);
 
+        $image = new Image();
+        $formImage = $this->createForm(ImageType::class, $image);
+        $formImage->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $texteRepository->add($texte);
             if (isset($rubrique)) {
@@ -167,6 +174,7 @@ class TexteController extends AbstractController
                     'form' => $form,
                     'dossier' => $dossier,
                     'formUpload' => $formUpload,
+                    'formImage' => $formImage
                     //'sousrubrique' => $sous_rubrique
                 ]);
             }
@@ -175,6 +183,7 @@ class TexteController extends AbstractController
                     'article' => $article,
                     'form' => $form,
                     'formUpload' => $formUpload,
+                    'formImage' => $formImage
                 ]);
             }
         }
@@ -205,6 +214,13 @@ class TexteController extends AbstractController
             }
         }
 
+        if ($formImage->isSubmitted() && $formImage->isValid()) {
+            $id_texte = $_POST["texte_id"];
+            $texte = $texteRepository->find($id_texte);
+            $image->setTexte($texte);
+            $imageRepository->add($image);
+        }
+
         if (isset($_GET['id_rubrique']) || isset($_GET['id_sous_rubrique']) ) {
             return $this->renderForm('admin/texte/edit.html.twig', [
                 'texte' => $texte,
@@ -212,6 +228,7 @@ class TexteController extends AbstractController
                 'dossier' => $dossier,
                 'rubrique' => $rubrique,
                 'formUpload' => $formUpload,
+                'formImage' => $formImage
                 //'sousrubrique' => $sous_rubrique,
             ]);
         }
@@ -221,6 +238,7 @@ class TexteController extends AbstractController
                 'form' => $form,
                 'article' => $article,
                 'formUpload' => $formUpload,
+                'formImage' => $formImage
             ]);
         }
     }

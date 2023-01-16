@@ -1,0 +1,27 @@
+{{ form_start(form, {'attr': {'id': 'form_image_edit'}}) }}
+    <div class="mb-3">
+        {{ form_row(form.type) }}
+    </div>
+    <div class="mb-3">
+        {{ form_row(form.titre) }}
+    </div>
+    <div class="mb-3">
+        {{ form_row(form.url) }}
+    </div>
+    <div class="mb-3">
+        {{ form_row(form.imageFile) }}
+    </div>
+    {% if image.imageFile is defined %}
+        <div class="mb-6">
+               {{ form_errors(form) }}
+        </div> 
+        <div class="mb-6">
+            <img src="{{ vich_uploader_asset(image, 'imageFile') }}" class="card-img-top" style="height:auto;width:50%;text-align:center;margin:auto;display:flex;">
+        <div>
+    {% endif %}
+
+{{ form_rest(form) }}
+    <br/>
+    <button id="target_validate" class="btn btn-primary">{{ button_label|default('Valider') }}</button>
+    <button id="target_close" class="btn btn-primary">{{ button_label|default('Fermer') }}</button>
+{{ form_end(form) }}

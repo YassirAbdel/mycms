@@ -1,0 +1,20 @@
+<div class="col-md-3 col-lg-3">
+	<div class="card">
+		<p class="typedoc">{{ image.type }}</p>
+		{% if image.url %}
+			{% if image.url %}<a href="{{ image.url}}" target="_blank">{% endif %}<img style="width:300px;" class="img-fluid" alt="Consulter la ressource"  src="{{ vich_uploader_asset(image, 'imageFile') | imagine_filter('thumbv') }}" class="responsive"  alt="Consulter" title="Consulter"/>{% if image.url %}</a>{% endif %}
+		{% endif %}
+		<div class="card-body card-body-product">
+			<h5 class="card-title">{{ image.titre|replace({'&#8239': ""})|raw }}</h5>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+								
+								
+
+								

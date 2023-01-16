@@ -36,10 +36,14 @@ class Texte
     #[ORM\OneToMany(mappedBy: 'texte', targetEntity: Upload::class, orphanRemoval: true)]
     private $uploads;
 
+    #[ORM\OneToMany(mappedBy: 'texte', targetEntity: Image::class)]
+    private $images;
+
     public function __construct()
     {
         $this->ressources = new ArrayCollection();
         $this->uploads = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     
@@ -162,6 +166,36 @@ class Texte
             // set the owning side to null (unless already changed)
             if ($upload->getTexte() === $this) {
                 $upload->setTexte(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Image>
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Image $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setTexte($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): self
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getTexte() === $this) {
+                $image->setTexte(null);
             }
         }
 

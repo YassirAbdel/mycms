@@ -1,0 +1,8 @@
+{{ form_start(formImage) }}
+    {{ form_row(formImage.type) }}
+    {{ form_row(formImage.titre) }}
+    {{ form_row(formImage.url) }}
+    {{ form_row(formImage.imageFile) }}
+    <input type="hidden" name="texte_id" value="{{ texte.id }}">
+    <button class="btn btn-primary">{{ button_label|default('Valider') }}</button>
+{{ form_end(formImage) }} 

@@ -10,6 +10,7 @@ use App\Repository\SousrubriqueRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -27,7 +28,7 @@ class DossierController extends AbstractController
     }
 
     #[Route('/new', name: 'app_dossier_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, DossierRepository $dossierRepository, RubriqueRepository $rubriqueRepository): Response
+    public function new(Request $request, DossierRepository $dossierRepository, RubriqueRepository $rubriqueRepository, Session $session): Response
     {
         $dossier = new Dossier();
         $form = $this->createForm(DossierType::class, $dossier);
@@ -42,12 +43,13 @@ class DossierController extends AbstractController
                 'dossier' => $dossier
             ]);
         }
-
+        
         return $this->renderForm('admin/dossier/new.html.twig', [
             'controller_name' => 'DossierController',
             'dossier' => $dossier,
             'form' => $form
         ]);
+        
     }
 
     #[Route('/{id}', name: 'app_dossier_show', methods: ['GET'])]
@@ -82,6 +84,7 @@ class DossierController extends AbstractController
     #[Route('/{id}/edit', name: 'app_dossier_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Dossier $dossier, DossierRepository $dossierRepository): Response
     {
+        ($dossier);
         $form = $this->createForm(DossierType::class, $dossier);
         $form->handleRequest($request);
 
@@ -95,11 +98,12 @@ class DossierController extends AbstractController
                 'dossier' => $dossier
             ]);
         }
-
+        
         return $this->renderForm('admin/dossier/edit.html.twig', [
             'dossier' => $dossier,
             'form' => $form,
         ]);
+    
     }
 
     #[Route('/{id}', name: 'app_dossier_delete', methods: ['POST'])]

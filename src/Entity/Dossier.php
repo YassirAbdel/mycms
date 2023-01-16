@@ -32,14 +32,10 @@ class Dossier
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      */
+   
     #[Vich\UploadableField(mapping: 'dossier_image', fileNameProperty: 'imageName', size: 'imageSize')]
     private ?File $imageFile = null;
 
-    /**
-     * @Assert\NotBlank(
-     *      message = "Une image d'illustration est obligatoire"
-     * )
-     */
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $imageName = null;
 

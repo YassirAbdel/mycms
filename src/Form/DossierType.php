@@ -51,7 +51,7 @@ class DossierType extends AbstractType
                 ]
             ])
             ->add('imageFile', DropzoneType::class, [
-                'required' => false,
+                'required' => true,
                 'label' => 'Illustration'
             ])
         ;

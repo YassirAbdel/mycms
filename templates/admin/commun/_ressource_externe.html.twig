@@ -1,0 +1,17 @@
+<div class="col-lg-4">
+	<div class="card">
+		{% if image.url %}<a href="{{ image.url}}" target="_blank">{% endif %}<img class="img-fluid" alt="Consulter la ressource" title="Consulter la ressource" src="{{ vich_uploader_asset(image, 'imageFile') | imagine_filter('thumbv') }}">{% if image.url %}</a>{% endif %}
+		<span style="text-align:center;margin-bottom:-15px;">{{ image.type }}</span>
+		<div class="card-body">
+			<h5 class="card-title">{% if image.url %}<a href="{{ image.url }}" target="_blank" title="Consulter">{% endif %}{{ image.titre|replace({'&#8239': ""})|raw }}{% if image.url %}</a>{% endif %}</h5>
+			<div class="space-icone">
+				<span><a href="{{path('app_image_edit',{'id':image.id, 'id_texte':texte.id, 'id_rubrique':rubrique.id})}}" target="popup" onclick="window.open('{{path('app_image_edit',{'id':image.id, 'id_texte':texte.id, 'id_rubrique':rubrique.id})}}', 'popup','width=600,height=1200,scrollbars=no,resizable=no'); return false;" data-toggle="tooltip" data-placement="top" title="Modifier"><i class="fa fa-pencil color-danger"></i> </a></span>
+				<span><a href="{{path('app_image_remove',{'id':image.id})}}" data-toggle="tooltip" data-placement="top" title="Supprimer"><i class="fa fa-trash color-danger"></i> </a></span>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+								

@@ -14,3 +14,10 @@
                 </div>
             </div>
 {% endblock %}
+{% block javascript %}
+    <script>
+        $(document).ready(function() {
+            $("input").removeAttr("required");
+        });
+    </script>
+{% endblock %}

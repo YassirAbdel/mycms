@@ -18,7 +18,7 @@ class UploadType extends AbstractType
             ->add('filename', FileType::class, [
                 'label' => 'Associer fichier pdf',
                 'mapped' => false,
-                'required' => false,
+                'required' => true,
                 'constraints' => [
                     new File([
                         'maxSize' => '2000000k',
