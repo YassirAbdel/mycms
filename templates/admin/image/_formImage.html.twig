@@ -4,5 +4,5 @@
     {{ form_row(formImage.url) }}
     {{ form_row(formImage.imageFile) }}
     <input type="hidden" name="texte_id" value="{{ texte.id }}">
-    <button class="btn btn-primary">{{ button_label|default('Valider') }}</button>
+    <button id="target_validate_image" class="btn btn-primary">{{ button_label|default('Valider') }}</button>
 {{ form_end(formImage) }} 

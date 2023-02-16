@@ -233,6 +233,10 @@ class TexteController extends AbstractController
             ]);
         }
         if (isset($_GET['id_article'])) {
+            //unset($image);
+            //unset($formImage);
+            //$image = new Image();
+            //$formImage = $this->createForm(ImageType::class, $image);
             return $this->renderForm('admin/texte/edit.html.twig', [
                 'texte' => $texte,
                 'form' => $form,

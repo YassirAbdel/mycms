@@ -63,15 +63,6 @@
 		{% for texte in rubrique_textes %}
 			{{ texte.contenu|replace({"/uploads/images/":"http://localhost/uploads/images/","<img alt=":"</p><p><img alt="})|raw }}
 			<table border="0">
-				{% for ressource in texte.ressources %}
-					<tr>
-					<td>
-						{% include 'front/commun/_ressource_pdf.html.twig' %}
-					</td>
-					<tr>
-				{% endfor %}
-			</table>
-			<table border="0">
 				{% for image in texte.images %}
 					<tr>
 						<td>
@@ -80,7 +71,15 @@
 					<tr>
 				{% endfor %}
 			</table>
-			
+			<table border="0">
+				{% for ressource in texte.ressources %}
+					<tr>
+					<td>
+						{% include 'front/commun/_ressource_pdf.html.twig' %}
+					</td>
+					<tr>
+				{% endfor %}
+			</table>
 		{% endfor %}
 	</div>
 	<footer></footer>

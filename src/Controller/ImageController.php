@@ -39,7 +39,6 @@ class ImageController extends AbstractController
             $imageRepository->add($image);
             
         }
-
         return $this->render('admin/image/new.html.twig', [
             'form' => $form->createView(),
         ]);
@@ -49,32 +48,45 @@ class ImageController extends AbstractController
      public function removeFile($id, ImageRepository $imageRepository, Request $request)
      {
             $image = $imageRepository->find($id);
+            $texte = $image->getTexte();
+            $rubrique = $texte->getRubrique();
+            
             $file_with_path = $this->getParameter ( 'imagestextes_directory' ) . "/" . $image->getImageName();
             unlink($file_with_path);
             $imageRepository->remove($image);
-            $route = $request->headers->get('referer');
-            return $this->redirect($route);
+            
+            $model = $_GET['model'];
+            if ( $model == 0 ) {
+                $route = $request->headers->get('referer');
+                return $this->redirect($route);
+            }
+            if ( $model == 2 ) {
+                $sous_rubrique = $texte->getSousrubrique();
+                $rubrique = $sous_rubrique->getRubrique();
+                $dossier = $rubrique->getDossier();
+                return $this->render('admin/rubrique/show.html.twig', [
+                    'sousrubrique' => $sous_rubrique,
+                    'rubrique' => $rubrique,
+                    'dossier' => $dossier
+                ]);
+            }
+            if ( $model == 1) {
+                $dossier = $rubrique->getDossier();
+                return $this->render('admin/rubrique/show.html.twig', [
+                    'rubrique' => $rubrique,
+                    'dossier' => $dossier
+                ]);
+            }
      }
 
      #[Route('/{id}/edit', name: 'app_image_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, ImageRepository $imageRepository, Image $image): Response
     {
-        //$rubrique = $image->getTexte()->getRubrique();
-        //$dossier = $rubrique->getDossier();
         $form = $this->createForm(ImageType::class, $image);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $imageRepository->add($image);
-            //$route = $request->headers->get('referer');
-            //dd($route);
-            //return $this->redirect($route);
-            
-            //return $this->render('admin/rubrique/show.html.twig', [
-                //'rubrique' => $rubrique,
-                //'dossier' => $dossier,
-                
-            //]);
             
             return $this->renderForm('admin/image/edit.html.twig', [
                 'image' => $image,

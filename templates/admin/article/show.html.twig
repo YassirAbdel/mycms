@@ -98,31 +98,68 @@
                     {% if articletextes|length > 0 %}
                         {% for texte in articletextes %}
                             {% if texte.contenu is defined %}<p>{{ texte.contenu|raw }}</p> {% endif %}
+                            {% set images = texte.images %}
+                            {% set uploads = texte.uploads %}
                             {% set ressources = texte.ressources %}
-                            {% if ressources|length > 0 %}
-                            <div class="row">
-                                {% for ressource in ressources %}
-                                    <div class="col-md-6 col-lg-3">
-                                        <div class="card">
-                                            {% if ressource.urlImag %}
-                                                <a href="{{'http://mediatheque.cnd.fr/spip.php?page=mediatheque-numerique-ressource&id=' ~ ressource.referenceCadic }}" target="_blank"><img class="img-fluid" alt="Consulter la ressource" title="Consulter la ressource" src="http://cadic.cnd.fr/exl-img/{{ ressource.urlImag|replace({'.jpg': '.jpg'}) }}"></a>
-                                            {% else %}
-                                                <a href="{{'http://mediatheque.cnd.fr/spip.php?page=mediatheque-numerique-ressource&id=' ~ ressource.referenceCadic }}" target="_blank"><img class="card-img-top" alt="Consulter la ressource" title="Consulter la ressource" src="{{ asset('assets/images/empty.png') }}"></a>
-                                            {% endif %}
-                                            <span style="text-align:center;margin-bottom:-15px;">{{ ressource.type }}</span>
-                                            <div class="card-body">
-                                                <h5 class="card-title">{{ ressource.titre }}</h5>
-                                                <div class="card-text">
-                                                    <div class="space-icone">
-                                                        <span><a href="{{ 'http://mediatheque.cnd.fr/spip.php?page=mediatheque-numerique-ressource&id=' ~ ressource.referenceCadic }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Consulter"><i class="fa fa-search color-danger"></i> </a></span>
-                                                        <span><a href="{{ path('app_remove_ressource_texte', {id: ressource.id , 'id_texte': texte.id, 'id_article': article.id }) }}" data-toggle="tooltip" data-placement="left" title="Supprimer cette ressource" onclick="return confirm('Voulez-vous vraiment supprimer cette ressource ?');"><i class="fa fa-trash fa-lg color-muted m-r-5"></i></a></span>
+                            {% if images|length > 0 %}
+                                <div class="row">
+                                    {% for image in images %}
+                                        <div class="col-md-6 col-lg-3">
+                                            <div class="card">
+                                                {% if image.imageFile is defined %}
+                                                    <a href="{{ image.url }}" target="_blank"><img class="img-fluid" alt="Consulter la ressource" title="Consulter la ressource" src="{{ vich_uploader_asset(image, 'imageFile') | imagine_filter('thumbv') }}" alt=""></a>
+                                                {% else %}
+                                                    <a href="{{ image.url }}"target="_blank"><img class="card-img-top" alt="Consulter la ressource" title="Consulter la ressource" src="{{ asset('assets/images/empty.png') }}"></a>
+                                                {% endif %}
+                                                <span style="text-align:center;margin-bottom:-15px;">{{ image.type }}</span>
+                                                <div class="card-body">
+                                                    <h5 class="card-title">{{ image.titre }}</h5>
+                                                    <div class="card-text">
+                                                        <div class="space-icone">
+                                                            <span><a href="{{ image.url }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Consulter"><i class="fa fa-search color-danger"></i> </a></span>
+                                                            <span><a href="{{ path('app_image_remove',{'id':image.id, 'model':1 }) }}" data-toggle="tooltip" data-placement="left" title="Supprimer cette ressource" onclick="return confirm('Voulez-vous vraiment supprimer cette ressource ?');"><i class="fa fa-trash fa-lg color-muted m-r-5"></i></a></span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                {% endfor %}
-                            </div>
+                                    {% endfor %}
+                                </div>    
+                            {% endif %}
+                            {% if uploads|length > 0 %}
+                                <h4>Les fichiers pdf associés</h4>
+                                <ul> 
+                                    {% for file in texte.uploads %}
+                                        <li>
+                                            <a href={{path('app_upload_download',{'slug': file.slug, 'id':file.id})}}>{{file.titre}}</a> - <a href={{path('app_upload_remove',{'id':file.id})}}>Supprimer</a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                            {% if ressources|length > 0 %}
+                                <div class="row">
+                                    {% for ressource in ressources %}
+                                        <div class="col-md-6 col-lg-3">
+                                            <div class="card">
+                                                {% if ressource.urlImag %}
+                                                    <a href="{{'http://mediatheque.cnd.fr/spip.php?page=mediatheque-numerique-ressource&id=' ~ ressource.referenceCadic }}" target="_blank"><img class="img-fluid" alt="Consulter la ressource" title="Consulter la ressource" src="http://cadic.cnd.fr/exl-img/{{ ressource.urlImag|replace({'.jpg': '.jpg'}) }}"></a>
+                                                {% else %}
+                                                    <a href="{{'http://mediatheque.cnd.fr/spip.php?page=mediatheque-numerique-ressource&id=' ~ ressource.referenceCadic }}" target="_blank"><img class="card-img-top" alt="Consulter la ressource" title="Consulter la ressource" src="{{ asset('assets/images/empty.png') }}"></a>
+                                                {% endif %}
+                                                <span style="text-align:center;margin-bottom:-15px;">{{ ressource.type }}</span>
+                                                <div class="card-body">
+                                                    <h5 class="card-title">{{ ressource.titre }}</h5>
+                                                    <div class="card-text">
+                                                        <div class="space-icone">
+                                                            <span><a href="{{ 'http://mediatheque.cnd.fr/spip.php?page=mediatheque-numerique-ressource&id=' ~ ressource.referenceCadic }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Consulter"><i class="fa fa-search color-danger"></i> </a></span>
+                                                            <span><a href="{{ path('app_remove_ressource_texte', {id: ressource.id , 'id_texte': texte.id, 'id_article': article.id }) }}" data-toggle="tooltip" data-placement="left" title="Supprimer cette ressource" onclick="return confirm('Voulez-vous vraiment supprimer cette ressource ?');"><i class="fa fa-trash fa-lg color-muted m-r-5"></i></a></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
                             {% endif %}
                             <div style="margin-bottom:50px;width:100%;margin-top:5px;">
                                 <span> <a href="{{ path('app_texte_edit', {'id': texte.id, 'id_article': article.id}) }}" data-toggle="tooltip" data-placement="left" title="Modifier ce paragraphe" style="float:left;margin-left:5px;"><i class="fa  fa-pencil fa-lg color-muted m-r-5"></i></a></span> 

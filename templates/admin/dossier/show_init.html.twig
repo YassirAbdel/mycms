@@ -99,12 +99,47 @@
                                                 <h1 class="mb-0 collapsed" data-toggle="collapse" data-target="{{ '#collapse' ~ counter }}" aria-expanded="false" aria-controls="{{ 'collapse' ~ counter }}"><i class="fa" aria-hidden="true"></i>{{ rubrique.titre }}</h1>
                                             </div>
                                             <div id="{{ 'collapse' ~ counter }}" class="collapse" data-parent="#accordion-three">
-                                            
                                                 <div class="card-body">
                                                 <span><a href="{{ path('app_rubrique_show', {'id': rubrique.id}) }}" data-toggle="tooltip" data-placement="left" title="Editer cette rubrique" style="float:left;margin-left:10px;margin-bottom:10px;margin-top: -20px;"><i class="fa fa-pencil fa-lg color-muted m-r-5"></i></a></span>
                                                 <p><strong>{{ rubrique.resume|raw }}</strong></p>
                                                 {% for texte in rubrique.textes %}
                                                         <p>{{ texte.contenu|raw }}</p>
+                                                            {% set uploads = texte.uploads %}
+                                                            {% set images = texte.images %}
+                                                            {% if images|length > 0 %}
+                                                                <div class="row">
+                                                                    {% for image in images %}
+                                                                        <div class="col-md-6 col-lg-3">
+                                                                            <div class="card">
+                                                                                {% if image.imageFile is defined %}
+                                                                                    <a href="{{ image.url }}" target="_blank"><img class="img-fluid" alt="Consulter la ressource" title="Consulter la ressource" src="{{ vich_uploader_asset(image, 'imageFile') | imagine_filter('thumbv') }}" alt=""></a>
+                                                                                {% else %}
+                                                                                    <a href="{{ image.url }}"target="_blank"><img class="card-img-top" alt="Consulter la ressource" title="Consulter la ressource" src="{{ asset('assets/images/empty.png') }}"></a>
+                                                                                {% endif %}
+                                                                                <span style="text-align:center;margin-bottom:-15px;">{{ image.type }}</span>
+                                                                                <div class="card-body">
+                                                                                    <h5 class="card-title">{{ image.titre }}</h5>
+                                                                                    <div class="card-text">
+                                                                                        <div class="space-icone">
+                                                                                            <span><a href="{{ image.url }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Consulter"><i class="fa fa-search color-danger"></i> </a></span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    {% endfor %}
+                                                                </div>
+                                                            {% endif %}
+                                                            {% if uploads|length > 0 %}
+                                                                    <h4>Les fichiers pdf associés</h4>
+                                                                    <ul> 
+                                                                        {% for file in texte.uploads %}
+                                                                            <li>
+                                                                                <a href={{path('app_upload_download',{'slug': file.slug, 'id':file.id})}}>{{file.titre}}</a>
+                                                                            </li>
+                                                                        {% endfor %}
+                                                                    </ul>
+                                                                {% endif %}
                                                             <div class="row">
                                                                 {% for ressource in texte.ressources %}
                                                                     <div class="col-md-6 col-lg-3">
@@ -147,6 +182,42 @@
                                                         {% if sousrubrique.resume is defined %}<strong>{{ sousrubrique.resume|raw }}</strong>{% endif %}
                                                         {% for texte in sousrubrique.textes %}
                                                                 <p>{{ texte.contenu|raw }}</p>
+                                                                {% set images = texte.images %}
+                                                                {% set uploads = texte.uploads %}
+                                                                {% if images|length > 0 %}
+                                                                    <div class="row">
+                                                                        {% for image in images %}
+                                                                            <div class="col-md-6 col-lg-3">
+                                                                                <div class="card">
+                                                                                    {% if image.imageFile is defined %}
+                                                                                        <a href="{{ image.url }}" target="_blank"><img class="img-fluid" alt="Consulter la ressource" title="Consulter la ressource" src="{{ vich_uploader_asset(image, 'imageFile') | imagine_filter('thumbv') }}" alt=""></a>
+                                                                                    {% else %}
+                                                                                        <a href="{{ image.url }}"target="_blank"><img class="card-img-top" alt="Consulter la ressource" title="Consulter la ressource" src="{{ asset('assets/images/empty.png') }}"></a>
+                                                                                    {% endif %}
+                                                                                    <span style="text-align:center;margin-bottom:-15px;">{{ image.type }}</span>
+                                                                                    <div class="card-body">
+                                                                                        <h5 class="card-title">{{ image.titre }}</h5>
+                                                                                        <div class="card-text">
+                                                                                            <div class="space-icone">
+                                                                                                <span><a href="{{ image.url }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Consulter"><i class="fa fa-search color-danger"></i> </a></span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        {% endfor %}
+                                                                    </div>
+                                                                {% endif %}
+                                                                {% if uploads|length > 0 %}
+                                                                    <h4>Les fichiers pdf associés</h4>
+                                                                    <ul> 
+                                                                        {% for file in texte.uploads %}
+                                                                            <li>
+                                                                                <a href={{path('app_upload_download',{'slug': file.slug, 'id':file.id})}}>{{file.titre}}</a>
+                                                                            </li>
+                                                                        {% endfor %}
+                                                                    </ul>
+                                                                {% endif %}
                                                                 <div class="row">
                                                                     {% for ressource in texte.ressources %}
                                                                         <div class="col-md-6 col-lg-3">
