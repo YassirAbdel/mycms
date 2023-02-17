@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<script src={{ asset('assets/front/js/jquery.min.js') }}></script>
 	
-	<title>{{ dossier_titre }} {{ rubrique_titre }}: </title>
+	<title>: {{ dossier.titre }}</title>
 	<style>
 		@page{
 			margin-top: 100px; /* create space for header */
@@ -58,9 +58,9 @@
 		<img style="width:150px;height:auto;" src="{{ absolute_url(asset('assets/logo_cnd.png')) }}" alt="">
 	</header>
 	<div style="margin: 0 auto;display: block;width: 100%">
-		<h1>{{ dossier_titre|raw }}</h1>
-		<h2>{{ rubrique_titre|raw }}</h2>
-		{% set textes = rubrique_textes %}
+		<h1>{{ dossier.titre|raw }}</h1>
+		<h2>{{ rubrique.titre|raw }}</h2>
+		{% set textes = rubrique.textes %}
 		{% if textes|length > 0 %}
 			{% for texte in textes %}
 				{{ texte.contenu|replace({"/uploads/images/":"http://localhost/uploads/images/","<img alt=":"</p><p><img alt="})|raw }}
@@ -82,6 +82,38 @@
 						<tr>
 					{% endfor %}
 				</table>
+			{% endfor %}
+		{% endif %}
+		{% set sousrubriques = rubrique.sousrubriques %}
+		{% if sousrubriques|length > 0 %}
+			{% set sousrubriquetextes = sousrubrique.textes %}
+			{% set numero_ss_rubrique = 0 %}
+			{% for sousrubrique in sousrubriques %}
+				<h3>{% set counter = ( counter | default(0) ) + 1 %} {{ counter }} - {{ sousrubrique.titre }} <span id="{{ counter }}"></span></h3>
+				{% if sousrubrique.resume is defined and sousrubrique.resume is not null %}
+					<strong>{{ sousrubrique.resume|raw }}</strong>
+				{% endif %}
+				{% for texte in sousrubriquetextes %}
+					{{ texte.contenu|replace({"/uploads/images/":"http://localhost/uploads/images/","<img alt=":"</p><p><img alt="})|raw }}
+					<table border="0">
+						{% for image in texte.images %}
+							<tr>
+								<td>
+									{% include 'front/commun/_ressource_externe_pdf.html.twig' %}
+								</td>
+							<tr>
+						{% endfor %}
+					</table>
+					<table border="0">
+						{% for ressource in texte.ressources %}
+							<tr>
+							<td>
+								{% include 'front/commun/_ressource_pdf.html.twig' %}
+							</td>
+							<tr>
+						{% endfor %}
+					</table>
+				{% endfor %}
 			{% endfor %}
 		{% endif %}
 	</div>

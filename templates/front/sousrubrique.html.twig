@@ -25,8 +25,8 @@
 							<h1 style="margin-bottom:0">{{ sousrubrique.rubrique.titre }} </h1>
 							<nav class="share">
 								<ul style="margin:0;">
-									<li><span><a href="#"><i class="fa fa-print"></i></a></span></li>
-									<li><span><a href="#"><i class="fa fa-file-pdf-o"></i></a></span></li>
+									<li><span><a href={{path('front_sousrubriquepdf_show',{'slug': sousrubrique.slug,'id':sousrubrique.id})}} target="_blank"><i class="fa fa-print"></i></a></span></li>
+									<li><span><a href={{path('front_sousrubriquepdf_show',{'slug': sousrubrique.slug,'id':sousrubrique.id})}} target="_blank"><i class="fa fa-file-pdf-o"></i></a></span></li>
 									<li>
 										<div class="dropdown">
 											<span class="dropbtn"><i class="fa fa-share-alt"></i><span>

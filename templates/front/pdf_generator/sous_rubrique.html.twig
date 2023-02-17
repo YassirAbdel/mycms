@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<script src={{ asset('assets/front/js/jquery.min.js') }}></script>
 	
-	<title>{{ dossier_titre }} {{ rubrique_titre }}: </title>
+	<title>{{ dossier_titre }} {{ sousrubrique_titre }}: </title>
 	<style>
 		@page{
 			margin-top: 100px; /* create space for header */
@@ -59,8 +59,8 @@
 	</header>
 	<div style="margin: 0 auto;display: block;width: 100%">
 		<h1>{{ dossier_titre|raw }}</h1>
-		<h2>{{ rubrique_titre|raw }}</h2>
-		{% set textes = rubrique_textes %}
+		<h2>{{ sousrubrique_titre|raw }}</h2>
+		{% set textes = sousrubrique_textes %}
 		{% if textes|length > 0 %}
 			{% for texte in textes %}
 				{{ texte.contenu|replace({"/uploads/images/":"http://localhost/uploads/images/","<img alt=":"</p><p><img alt="})|raw }}
