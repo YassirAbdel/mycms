@@ -60,6 +60,8 @@
 	<div style="margin: 0 auto;display: block;width: 100%">
 		<h1>{{ dossier_titre|raw }}</h1>
 		<h2>{{ sousrubrique_titre|raw }}</h2>
+		{% if sousrubrique.soustitre %}<h3>{{ sousrubrique.soustitre }}</h3>{% endif %}
+		{% if sousrubrique.resume %}<span class="intro">{{ sousrubrique.resume|raw }}</span>{% endif %}
 		{% set textes = sousrubrique_textes %}
 		{% if textes|length > 0 %}
 			{% for texte in textes %}

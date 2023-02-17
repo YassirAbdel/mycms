@@ -216,6 +216,7 @@ class FrontController extends AbstractController
         
         $data = [
             'dossier_titre' => $dossier_title,
+            'sousrubrique' => $sousrubrique,
             'sousrubrique_titre' => $sousrubrique_title,
             'sousrubrique_textes' => $sousrubrique->getTextes()
         ];
