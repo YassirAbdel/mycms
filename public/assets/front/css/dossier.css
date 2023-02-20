@@ -210,6 +210,11 @@ figure {
         max-width: 360px;
     }
 }
+@media screen and (max-width: 1280px) and (min-width: 769px) {
+    .fixe {
+        max-width: 308px;
+    }
+}
 
 
 
