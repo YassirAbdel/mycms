@@ -26,6 +26,9 @@
 	.content h1 {
 		margin-bottom: 0rem;
 	}
+	.hidden-row {
+		display: none;
+	}
 	
 </style>
 {% endblock %}
@@ -42,9 +45,9 @@
 						{{ form_row(form.email)}}
 					</div>
 					<div class="field">
-						{{ form_row(form.objet, {'value' : url }) }}
+						{{ form_row(form.objet, {'value' : url , 'label' : 'Ressource' }) }}
 					</div>
-					<div class="field">
+					<div class="field" style="display:none;">
 						{{ form_row(form.message) }}
 					</div>
 				</div>

@@ -274,7 +274,7 @@ class FrontController extends AbstractController
         $id_rubrique = $_GET['id_rubrique'];
         $rubrique = $rubriqueRepository->find($id_rubrique);
         $slug = $rubrique->getSlug();
-        $url = 'rubrique/' . $slug . '-' . $id_rubrique;
+        $url = 'http://mediatheque.cnd.interne/rubrique/' . $slug . '-' . $id_rubrique;
         
         // formulaire partage
         $contact = new Contact();
