@@ -267,4 +267,34 @@ class FrontController extends AbstractController
             'produits' => $produits
         ]);
     }
+
+    #[Route('partager', name: 'front_partager')]
+    public function send(Request $request, RubriqueRepository $rubriqueRepository)
+    {
+        $id_rubrique = $_GET['id_rubrique'];
+        $rubrique = $rubriqueRepository->find($id_rubrique);
+        $slug = $rubrique->getSlug();
+        $url = 'rubrique/' . $slug . '-' . $id_rubrique;
+        
+        // formulaire partage
+        $contact = new Contact();
+        $form = $this->createForm(ContactType::class, $contact);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->addFlash('success', 'Votre partage a bien été envoyé, merci !');
+            $this->notification->notify($contact);
+            return $this->render('front/partage.html.twig', [
+                'url' => $url,
+                'form' => $form->createView(),
+                '_fragment' => 'ancre'
+            ]);
+
+        }
+
+        return $this->render('front/partage.html.twig', [
+            'url' => $url,
+            'form' => $form->createView(),
+            '_fragment' => 'ancre'
+        ]);
+    }
 }
