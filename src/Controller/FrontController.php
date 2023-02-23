@@ -282,7 +282,7 @@ class FrontController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->addFlash('success', 'Votre partage a bien été envoyé, merci !');
-            $this->notification->notify($contact);
+            $this->notification->partage($contact);
             return $this->render('front/partage.html.twig', [
                 'url' => $url,
                 'form' => $form->createView(),
