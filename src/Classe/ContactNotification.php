@@ -41,4 +41,19 @@ class ContactNotification
             ;
         $this->mailer->send($emailFrom);
     }
+
+    public function partage(Contact $contact)
+    {
+        $emailFrom = (new TemplatedEmail())
+            ->from('abdel.montet@cnd.fr')
+            ->to($contact->getEmail())
+            ->subject('CN D - votre question du ' . date("d/m/y"))
+            ->htmlTemplate('contact/reponse.html.twig')
+            ->context([
+                'contact' => $contact
+            ])
+            ;
+        $this->mailer->send($emailFrom);
+
+    }
 }

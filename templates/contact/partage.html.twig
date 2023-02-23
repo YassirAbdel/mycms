@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <style>
+            td,
+            th {
+                border: 1px solid rgb(190, 190, 190);
+                padding: 10px;
+            }
+
+            td {
+                text-align: start;
+            }
+
+            tr:nth-child(even) {
+                background-color: #eee;
+            }
+
+            th[scope="col"] {
+                background-color: #696969;
+                color: #fff;
+            }
+
+            th[scope="row"] {
+                background-color: #d7d9f2;
+            }
+
+            caption {
+                padding: 10px;
+                caption-side: bottom;
+            }
+
+            table {
+                border-collapse: collapse;
+                border: 1px solid rgb(200, 200, 200);
+                letter-spacing: 1px;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: .9rem;
+            }
+        </style>
+    <body>
+    	<div class="container">
+          <h2>{{ contact.nom }} a partagé avec vous cette ressource</h2>
+          <p><a href="{{ contact.objet }}">{{ contact.objet }} </p>
+          <p><a href="mailto:{{ contact.email }}">Pour répondre </p>
+        </div>
+    </body>
+</html>
+	
