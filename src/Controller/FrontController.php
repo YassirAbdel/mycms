@@ -278,6 +278,7 @@ class FrontController extends AbstractController
         
         // formulaire partage
         $contact = new Contact();
+        $contact->setMessage('partage');
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
