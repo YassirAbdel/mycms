@@ -48,7 +48,7 @@ class ContactNotification
             ->from('abdel.montet@cnd.fr')
             ->to($contact->getEmail())
             ->subject('CN D - votre question du ' . date("d/m/y"))
-            ->htmlTemplate('contact/reponse.html.twig')
+            ->htmlTemplate('contact/partage.html.twig')
             ->context([
                 'contact' => $contact
             ])
