@@ -271,10 +271,12 @@ class FrontController extends AbstractController
     #[Route('partager', name: 'front_partager')]
     public function send(Request $request, RubriqueRepository $rubriqueRepository)
     {
-        $id_rubrique = $_GET['id_rubrique'];
-        $rubrique = $rubriqueRepository->find($id_rubrique);
-        $slug = $rubrique->getSlug();
-        $url = 'http://mediatheque.cnd.interne/rubrique/' . $slug . '-' . $id_rubrique;
+        if(isset($_GET['id_rubrique'])) {
+            $id_rubrique = $_GET['id_rubrique'];
+            $rubrique = $rubriqueRepository->find($id_rubrique);
+            $slug = $rubrique->getSlug();
+            $url = 'http://mediatheque.cnd.interne/rubrique/' . $slug . '-' . $id_rubrique;
+        }
         
         // formulaire partage
         $contact = new Contact();

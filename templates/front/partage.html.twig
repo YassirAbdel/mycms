@@ -35,17 +35,17 @@
 	{% block body %}
 	<section class="wrapper style1 align-center">
 		<div class="inner medium">
-			<h1 class="title title--edition" style="margin-top:2px;margin-bottom:10px;">Vous avez une question</h1>
+			<h1 class="title title--edition" style="margin-top:2px;margin-bottom:10px;">Partager cette ressource</h1>
 			{{ form_start(form) }}
 				<div class="fields">
 					<div class="field half">
-						{{ form_row(form.nom) }}
+						{{ form_row(form.nom, {'label' : 'Nom'}) }}
 					</div>
 					<div class="field half">
-						{{ form_row(form.email)}}
+						{{ form_row(form.email, {'label' : 'Email'}) }}
 					</div>
 					<div class="field">
-						{{ form_row(form.objet, {'value' : url , 'label' : 'Ressource' }) }}
+						{{ form_row(form.objet, {'value' : url , 'label' : 'Ressource à partager' }) }}
 					</div>
 					<div class="field" style="display:none;">
 						{{ form_row(form.message) }}
