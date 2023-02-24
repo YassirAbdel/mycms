@@ -29,7 +29,14 @@
 	.hidden-row {
 		display: none;
 	}
-	
+	@media screen and (max-width: 480px)
+	{
+		.wrapper.style1 > .inner {
+ 			margin-left: 0rem;
+  			margin-right: 14rem;
+  			margin-top: 4rem;
+		}
+	}
 </style>
 {% endblock %}
 	{% block body %}

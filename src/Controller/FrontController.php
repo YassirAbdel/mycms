@@ -27,7 +27,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use App\Classe\ExportPdf;
-
+use App\Repository\SousrubriqueRepository;
 
 class FrontController extends AbstractController
 {
@@ -269,13 +269,19 @@ class FrontController extends AbstractController
     }
 
     #[Route('partager', name: 'front_partager')]
-    public function send(Request $request, RubriqueRepository $rubriqueRepository)
+    public function send(Request $request, RubriqueRepository $rubriqueRepository, SousrubriqueRepository $sousrubriqueRepository)
     {
         if(isset($_GET['id_rubrique'])) {
             $id_rubrique = $_GET['id_rubrique'];
             $rubrique = $rubriqueRepository->find($id_rubrique);
             $slug = $rubrique->getSlug();
-            $url = 'http://mediatheque.cnd.interne/rubrique/' . $slug . '-' . $id_rubrique;
+            $url = 'http://mediatheque.cnd.interne/rubrique/' . $slug . '-' . $id_rubrique . '#contenu';
+        }
+        if(isset($_GET['id_sous_rubrique'])) {
+            $id_sous_rubrique = $_GET['id_sous_rubrique'];
+            $sous_rubrique = $sousrubriqueRepository->find($id_sous_rubrique);
+            $slug = $sous_rubrique->getSlug();
+            $url = 'http://mediatheque.cnd.interne/sous-rubrique/' . $slug . '-' . $id_sous_rubrique . '#contenu';
         }
         
         // formulaire partage

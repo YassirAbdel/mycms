@@ -23,32 +23,96 @@
 						<div class="content title">
 							{% set rubrique = rubriques[0] %}
 							<h1>{{ rubrique.titre }}</h1>
-							{% if rubrique.resume %}{{ rubrique.resume|raw }}{% endif %}
-							{% for texte in rubrique.textes %}
-								{{ texte.contenu|raw }}
-								{% if texte.uploads|length > 0 %}
-									<div class="upload">
-										<ul> 
-											{% for file in texte.uploads %}
-												<li>
-													<a href={{path('app_upload_download',{'slug': file.slug, 'id':file.id})}}>{{file.titre}}</a> <span id="pdf">pdf</span>
-												</li>
-											{% endfor %}
-										</ul>
-									</div>
-								{% endif %}
-								{% if texte.ressources|length > 0 %}
-									<div class="row top-card-resp" >
-										<div class="col-12 m-b-30">
-											<div class="row">
-												{% for ressource in texte.ressources %}
-													{% include 'front/commun/_ressource_product.html.twig' %}
-												{% endfor %}
+							{% if rubrique.sousrubriques|length == 0 %}
+								<nav class="share">
+								<ul style="margin:0;">
+									<li><span><a href={{path('front_rubriquepdf_show',{'slug': rubrique.slug,'id':rubrique.id})}} target="_blank"><i class="fa fa-print"></i></a></span></li>
+									<li><span><a href={{path('front_rubriquepdf_show',{'slug': rubrique.slug,'id':rubrique.id})}} target="_blank"><i class="fa fa-file-pdf-o"></i></a></span></li>
+									<li>
+										<div class="dropdown">
+											<span class="dropbtn"><i class="fa fa-share-alt"></i><span>
+											<div class="dropdown-content">
+												<span><a href={{ 'https://www.facebook.com/sharer/sharer.php?u=' ~ 'http://' ~ app.request.host ~ path('front_rubrique_show', {'slug': rubrique.slug, 'id': rubrique.id}) }} target="_blank"><i class="fa fa-facebook"></i></a></span>
+												<span><a href={{ 'https://twitter.com/intent/tweet?url=' ~ 'http://' ~ app.request.host ~ path('front_rubrique_show', {'slug': rubrique.slug, 'id': rubrique.id}) ~ '&hashtags=centrenationaldeladanse' }} target="_blank"><i class="fa fa-twitter"></i></a></span>
+												<span><a href={{path('front_partager',{'id_rubrique': rubrique.id})}} target="_blank"><i class="fa fa-envelope"></i></a></span>
 											</div>
 										</div>
-									</div>
-								{% endif %}
-							{% endfor %}
+									</li>
+								</ul>
+								</nav>
+								{% if rubrique.resume %}{{ rubrique.resume|raw }}{% endif %}
+								{% for texte in rubrique.textes %}
+									{{ texte.contenu|raw }}
+									{% if texte.uploads|length > 0 %}
+										<div class="upload">
+											<ul> 
+												{% for file in texte.uploads %}
+													<li>
+														<a href={{path('app_upload_download',{'slug': file.slug, 'id':file.id})}}>{{file.titre}}</a> <span id="pdf">pdf</span>
+													</li>
+												{% endfor %}
+											</ul>
+										</div>
+									{% endif %}
+									{% if texte.ressources|length > 0 %}
+										<div class="row top-card-resp" >
+											<div class="col-12 m-b-30">
+												<div class="row">
+													{% for ressource in texte.ressources %}
+														{% include 'front/commun/_ressource_product.html.twig' %}
+													{% endfor %}
+												</div>
+											</div>
+										</div>
+									{% endif %}
+								{% endfor %}
+							{% endif %}
+							{% if rubrique.sousrubriques|length > 0 %}
+								{% set sousrubrique = rubrique.sousrubriques[0] %}
+								<nav class="share">
+								<ul style="margin:0;">
+									<li><span><a href={{path('front_sousrubriquepdf_show',{'slug': sousrubrique.slug,'id':sousrubrique.id})}} target="_blank"><i class="fa fa-print"></i></a></span></li>
+									<li><span><a href={{path('front_sousrubriquepdf_show',{'slug': sousrubrique.slug,'id':sousrubrique.id})}} target="_blank"><i class="fa fa-file-pdf-o"></i></a></span></li>
+									<li>
+										<div class="dropdown">
+											<span class="dropbtn"><i class="fa fa-share-alt"></i><span>
+											<div class="dropdown-content">
+												<span><a href={{ 'https://www.facebook.com/sharer/sharer.php?u=' ~ 'http://' ~ app.request.host ~ path('front_sousrubrique_show', {'slug': sousrubrique.slug, 'id': sousrubrique.id}) }} target="_blank"><i class="fa fa-facebook"></i></a></span>
+												<span><a href={{ 'https://twitter.com/intent/tweet?url=' ~ 'http://' ~ app.request.host ~ path('front_sousrubrique_show', {'slug': sousrubrique.slug, 'id': sousrubrique.id}) ~ '&hashtags=centrenationaldeladanse'}} target="_blank"><i class="fa fa-twitter"></i></a></span>
+												<span><a href={{path('front_partager',{'id_sous_rubrique': sousrubrique.id})}} target="_blank"><i class="fa fa-envelope"></i></a></span>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</nav>
+								<h2>{{ sousrubrique.titre }}</h2>
+								{% if sousrubrique.resume %}{{ sousrubrique.resume|raw }}{% endif %}
+								{% for texte in sousrubrique.textes %}
+									{{ texte.contenu|raw }}
+									{% if texte.uploads|length > 0 %}
+										<div class="upload">
+											<ul> 
+												{% for file in texte.uploads %}
+													<li>
+														<a href={{path('app_upload_download',{'slug': file.slug, 'id':file.id})}}>{{file.titre}}</a> <span id="pdf">pdf</span>
+													</li>
+												{% endfor %}
+											</ul>
+										</div>
+									{% endif %}
+									{% if texte.ressources|length > 0 %}
+										<div class="row top-card-resp" >
+											<div class="col-12 m-b-30">
+												<div class="row">
+													{% for ressource in texte.ressources %}
+														{% include 'front/commun/_ressource_product.html.twig' %}
+													{% endfor %}
+												</div>
+											</div>
+										</div>
+									{% endif %}
+								{% endfor %}
+							{% endif %}
 							<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script> 
 							<script>
 							$(function() {
