@@ -139,6 +139,19 @@ class FrontController extends AbstractController
         ]);
     }
 
+    #[Route('dossier/exportpdf/{slug}-{id}', name: 'front_dossier_exportpdf', requirements: ['slug' => '^[a-z0-9]+(?:-[a-z0-9]+)*$', 'id' => '\d+'], methods: ['GET'])]
+    public function exportpdfDossier(Dossier $dossier, ExportPdf $export)
+    {
+        $data = [
+            'dossier' => $dossier,
+            
+        ];
+        
+        $html = $this->renderView('front/pdf_generator/dossier.html.twig', $data);
+        $export->export_pdf($data, $html, $dossier->getTitre(), $dossier->getTitre());
+    }
+
+
     #[Route('article/{slug}-{id}', name: 'front_article_show', requirements: ['slug' => '^[a-z0-9]+(?:-[a-z0-9]+)*$', 'id' => '\d+'], methods: ['GET'])]
     public function showArticle(Article $article)
     {
@@ -269,8 +282,14 @@ class FrontController extends AbstractController
     }
 
     #[Route('partager', name: 'front_partager')]
-    public function send(Request $request, RubriqueRepository $rubriqueRepository, SousrubriqueRepository $sousrubriqueRepository)
+    public function send(Request $request, DossierRepository $dossierRepository, RubriqueRepository $rubriqueRepository, SousrubriqueRepository $sousrubriqueRepository)
     {
+        if(isset($_GET['id_dossier'])) {
+            $id_dossier = $_GET['id_dossier'];
+            $sous_rubrique = $dossierRepository->find($id_dossier);
+            $slug = $sous_rubrique->getSlug();
+            $url = 'http://mediatheque.cnd.interne/dossier/' . $slug . '-' . $id_dossier;
+        }
         if(isset($_GET['id_rubrique'])) {
             $id_rubrique = $_GET['id_rubrique'];
             $rubrique = $rubriqueRepository->find($id_rubrique);

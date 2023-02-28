@@ -59,63 +59,67 @@
 	</header>
 	<div style="margin: 0 auto;display: block;width: 100%">
 		<h1>{{ dossier.titre|raw }}</h1>
-		<h2>{{ rubrique.titre|raw }}</h2>
-		{% set textes = rubrique.textes %}
-		{% if textes|length > 0 %}
-			{% for texte in textes %}
-				{{ texte.contenu|replace({"/uploads/images/":"http://localhost/uploads/images/","<img alt=":"</p><p><img alt="})|raw }}
-				<table border="0">
-					{% for image in texte.images %}
-						<tr>
-							<td>
-								{% include 'front/commun/_ressource_externe_pdf.html.twig' %}
-							</td>
-						<tr>
-					{% endfor %}
-				</table>
-				<table border="0">
-					{% for ressource in texte.ressources %}
-						<tr>
-						<td>
-							{% include 'front/commun/_ressource_pdf.html.twig' %}
-						</td>
-						<tr>
-					{% endfor %}
-				</table>
-			{% endfor %}
-		{% endif %}
-		{% set sousrubriques = rubrique.sousrubriques %}
-		{% if sousrubriques|length > 0 %}
-			{% set sousrubriquetextes = sousrubrique.textes %}
-			{% set numero_ss_rubrique = 0 %}
-			{% for sousrubrique in sousrubriques %}
-				<h3>{% set counter = ( counter | default(0) ) + 1 %} {{ counter }} - {{ sousrubrique.titre }} <span id="{{ counter }}"></span></h3>
-				{% if sousrubrique.resume is defined and sousrubrique.resume is not null %}
-					<strong>{{ sousrubrique.resume|raw }}</strong>
-				{% endif %}
-				{% for texte in sousrubriquetextes %}
-					{{ texte.contenu|replace({"/uploads/images/":"http://localhost/uploads/images/","<img alt=":"</p><p><img alt="})|raw }}
-					<table border="0">
-						{% for image in texte.images %}
-							<tr>
+		{% set rubriques = dossier.rubriques %}
+		{% for rubrique in rubriques %}
+			{% if rubrique.sousrubriques|length == 0 %}
+				<h2>{{ rubrique.titre|raw }}</h2>
+				{% set textes = rubrique.textes %}
+				{% if textes|length > 0 %}
+					{% for texte in textes %}
+						{{ texte.contenu|replace({"/uploads/images/":"http://localhost/uploads/images/","<img alt=":"</p><p><img alt="})|raw }}
+						<table border="0">
+							{% for image in texte.images %}
+								<tr>
+									<td>
+										{% include 'front/commun/_ressource_externe_pdf.html.twig' %}
+									</td>
+								<tr>
+							{% endfor %}
+						</table>
+						<table border="0">
+							{% for ressource in texte.ressources %}
+								<tr>
 								<td>
-									{% include 'front/commun/_ressource_externe_pdf.html.twig' %}
+									{% include 'front/commun/_ressource_pdf.html.twig' %}
 								</td>
-							<tr>
-						{% endfor %}
-					</table>
-					<table border="0">
-						{% for ressource in texte.ressources %}
-							<tr>
-							<td>
-								{% include 'front/commun/_ressource_pdf.html.twig' %}
-							</td>
-							<tr>
-						{% endfor %}
-					</table>
+								<tr>
+							{% endfor %}
+						</table>
+					{% endfor %}
+				{% endif %}
+			{% endif %}
+			{% if rubrique.sousrubriques|length > 0 %}
+				<h2>{{ rubrique.titre|raw }}</h2>
+				{% set numero_ss_rubrique = 0 %}
+				{% for sousrubrique in rubrique.sousrubriques %}
+					<h3>{% set counter = ( counter | default(0) ) + 1 %} {{ counter }} - {{ sousrubrique.titre }} <span id="{{ counter }}"></span></h3>
+					{% if sousrubrique.resume is defined and sousrubrique.resume is not null %}
+						<strong>{{ sousrubrique.resume|raw }}</strong>
+					{% endif %}
+					{% for texte in sousrubrique.textes %}
+						{{ texte.contenu|replace({"/uploads/images/":"http://localhost/uploads/images/","<img alt=":"</p><p><img alt="})|raw }}
+						<table border="0">
+							{% for image in texte.images %}
+								<tr>
+									<td>
+										{% include 'front/commun/_ressource_externe_pdf.html.twig' %}
+									</td>
+								<tr>
+							{% endfor %}
+						</table>
+						<table border="0">
+							{% for ressource in texte.ressources %}
+								<tr>
+								<td>
+									{% include 'front/commun/_ressource_pdf.html.twig' %}
+								</td>
+								<tr>
+							{% endfor %}
+						</table>
+					{% endfor %}
 				{% endfor %}
-			{% endfor %}
-		{% endif %}
+			{% endif %}
+		{% endfor %}
 	</div>
 	<footer></footer>
 </body>
