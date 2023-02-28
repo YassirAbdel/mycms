@@ -44,6 +44,17 @@
 							{% if sousrubrique.resume %}<span class="intro">{{ sousrubrique.resume|raw }}</span>{% endif %}
 							{% for texte in sousrubrique.textes %}
 								{{ texte.contenu|raw }}
+								{% if texte.images|length > 0 %}
+									<div class="row top-card-resp" >
+										<div class="col-12 m-b-30">
+											<div class="row">
+												{% for image in texte.images %}
+													{% include 'front/commun/_ressource_product_externe.html.twig' %}
+												{% endfor %}
+											</div>
+										</div>
+									</div>
+								{% endif %}
 								{% if texte.uploads|length > 0 %}
 									<div class="upload">
 										<ul> 

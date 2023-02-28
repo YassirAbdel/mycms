@@ -1,0 +1,14 @@
+<div class="col-md-6 col-lg-6">
+		<div class="card">
+			{% if image.url %}
+			  	<a href={{ image.url }} target="_blank"><img class="img-fluid" src="{{ vich_uploader_asset(image, 'imageFile') | imagine_filter('thumbv') }}" class="responsive" alt="" title="Consulter" /></a>
+			{% endif %}
+     		<div class="card-body card-body-product">
+				<span style="text-align:center;margin-bottom:-15px;">{{ image.type }}</span>
+				<h5 class="card-title"><a href="{{ image.url }}" target="_blank" title="Consulter">{{ image.titre|replace({'&#8239': ""})|raw }}</a></h5>
+			</div>
+		</div>
+</div>
+
+
+								

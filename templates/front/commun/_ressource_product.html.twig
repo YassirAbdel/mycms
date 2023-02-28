@@ -1,5 +1,8 @@
 <div class="col-md-6 col-lg-6">
 		<div class="card">
+			{% if ressource.type %}
+					<div class="type-product"><span class="type">{{ ressource.type }}</span></div>
+				{% endif %}
 			{% if ressource.urlImag %}
 			  	<a href={{'http://mediatheque.cnd.fr/spip.php?page=mediatheque-numerique-ressource&id=' ~ ressource.referenceCadic }} target="_blank"><img class="img-fluid" src="http://cadic.cnd.fr/exl-img/{{ ressource.urlImag|replace({'.jpg': '.jpg'}) }}" class="responsive" alt="" title="Consulter" /></a>
 			{% else %}
@@ -7,9 +10,7 @@
      		{% endif %}
      		<div class="card-body card-body-product">
 				<h5 class="card-title"><a href="{{'http://mediatheque.cnd.fr/spip.php?page=mediatheque-numerique-ressource&id=' ~ ressource.referenceCadic }}" target="_blank" title="Consulter">{{ ressource.titre|replace({'&#8239': ""})|raw }}</a></h5>
-				{% if ressource.personne %}
-					<!-- <div class="person-product"><span class="person">{{ ressource.personne|replace({'|': " ; "}) }}</span></div> -->
-				{% endif %}
+				
 				{% if ressource.oeuvre %}
 					<!-- <div class="person-product"><span class="person">&#171; {{ ressource.oeuvre|replace({'|': "  &#187; ; &#171; "})|raw }} &#187;</span></div> -->
 				{% endif %}
