@@ -1,29 +1,6 @@
 {% extends 'front/base.html.twig' %}
 {% block css %}
 	<link rel="stylesheet" href={{ asset('assets/front/css/dossier.css') }} />
-	<style>
-		#card-body-type {
-			color: #5d7070;
-			font-size: 0.8rem;
-			font-weight: 600;
-			margin-bottom: -39px;
-			margin-left: 10px;
-    	}
-	  @media screen and (min-width: 300px) and (max-width: 809px)
-	  {
-		#card-body-type {
-			margin-bottom: -16px;
-		}
-	  }
-	  
-	  @media screen and (min-width: 810px) and (max-width: 1080px)
-	  {
-		#card-body-type {
-			margin-bottom: -32px;
-		}
-	  }
-
-	</style>
 {% endblock %}
 {% block body %}
 	<!-- Wrapper -->
@@ -65,41 +42,41 @@
 								</nav>
 								{% if rubrique.resume %}{{ rubrique.resume|raw }}{% endif %}
 								{% for texte in rubrique.textes %}
-									{{ texte.contenu|raw }}
-									{% if texte.images|length > 0 %}
-										<div class="row top-card-resp" >
-											<div class="col-12 m-b-30">
-												<div class="row">
-													{% for image in texte.images %}
-														{% include 'front/commun/_texte_image.html.twig' %}
-													{% endfor %}
-												</div>
-											</div>
-										</div>
-									{% endif %}
-									{% if texte.uploads|length > 0 %}
-										<div class="upload">
-											<ul> 
-												{% for file in texte.uploads %}
-													<li>
-														<a href={{path('app_upload_download',{'slug': file.slug, 'id':file.id})}}>{{file.titre}}</a> <span id="pdf">pdf</span>
-													</li>
+								{{ texte.contenu|raw }}
+								{% if texte.uploads|length > 0 %}
+									<div class="upload">
+										<ul> 
+											{% for file in texte.uploads %}
+												<li>
+													<a href={{path('app_upload_download',{'slug': file.slug, 'id':file.id})}}>{{file.titre}}</a> <span id="pdf">pdf</span>
+												</li>
+											{% endfor %}
+										</ul>
+									</div>
+								{% endif %}
+								{% if texte.images|length > 0 %}
+									<div class="row top-card-resp" >
+										<div class="col-12 m-b-30">
+											<div class="row">
+												{% for image in texte.images %}
+													{% include 'front/commun/_ressource_product_externe.html.twig' %}
 												{% endfor %}
-											</ul>
-										</div>
-									{% endif %}
-									{% if texte.ressources|length > 0 %}
-										<div class="row top-card-resp" >
-											<div class="col-12 m-b-30">
-												<div class="row">
-													{% for ressource in texte.ressources %}
-														{% include 'front/commun/_ressource.html.twig' %}
-													{% endfor %}
-												</div>
 											</div>
 										</div>
-									{% endif %}
-								{% endfor %}
+									</div>
+								{% endif %}
+								{% if texte.ressources|length > 0 %}
+									<div class="row top-card-resp" >
+										<div class="col-12 m-b-30">
+											<div class="row">
+												{% for ressource in texte.ressources %}
+													{% include 'front/commun/_ressource_product.html.twig' %}
+												{% endfor %}
+											</div>
+										</div>
+									</div>
+								{% endif %}
+							{% endfor %}
 							{% endif %}
 							{% if rubrique.sousrubriques|length > 0 %}
 								{% set sousrubrique = rubrique.sousrubriques[0] %}
@@ -122,30 +99,41 @@
 								<h2>{{ sousrubrique.titre }}</h2>
 								{% if sousrubrique.resume %}{{ sousrubrique.resume|raw }}{% endif %}
 								{% for texte in sousrubrique.textes %}
-									{{ texte.contenu|raw }}
-									{% if texte.uploads|length > 0 %}
-										<div class="upload">
-											<ul> 
-												{% for file in texte.uploads %}
-													<li>
-														<a href={{path('app_upload_download',{'slug': file.slug, 'id':file.id})}}>{{file.titre}}</a> <span id="pdf">pdf</span>
-													</li>
+								{{ texte.contenu|raw }}
+								{% if texte.uploads|length > 0 %}
+									<div class="upload">
+										<ul> 
+											{% for file in texte.uploads %}
+												<li>
+													<a href={{path('app_upload_download',{'slug': file.slug, 'id':file.id})}}>{{file.titre}}</a> <span id="pdf">pdf</span>
+												</li>
+											{% endfor %}
+										</ul>
+									</div>
+								{% endif %}
+								{% if texte.images|length > 0 %}
+									<div class="row top-card-resp" >
+										<div class="col-12 m-b-30">
+											<div class="row">
+												{% for image in texte.images %}
+													{% include 'front/commun/_ressource_product_externe.html.twig' %}
 												{% endfor %}
-											</ul>
-										</div>
-									{% endif %}
-									{% if texte.ressources|length > 0 %}
-										<div class="row top-card-resp" >
-											<div class="col-12 m-b-30">
-												<div class="row">
-													{% for ressource in texte.ressources %}
-														{% include 'front/commun/_ressource_product.html.twig' %}
-													{% endfor %}
-												</div>
 											</div>
 										</div>
-									{% endif %}
-								{% endfor %}
+									</div>
+								{% endif %}
+								{% if texte.ressources|length > 0 %}
+									<div class="row top-card-resp" >
+										<div class="col-12 m-b-30">
+											<div class="row">
+												{% for ressource in texte.ressources %}
+													{% include 'front/commun/_ressource_product.html.twig' %}
+												{% endfor %}
+											</div>
+										</div>
+									</div>
+								{% endif %}
+							{% endfor %}
 							{% endif %}
 							<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script> 
 							<script>
