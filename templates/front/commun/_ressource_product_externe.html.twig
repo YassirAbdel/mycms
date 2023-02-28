@@ -4,7 +4,7 @@
 					<div class="type-product"><span class="type">{{ image.type }}</span></div>
 				{% endif %}
 			{% if image.url %}
-			  	<a href={{ image.url}} target="_blank"><img class="img-fluid" src="{{ vich_uploader_asset(image, 'imageFile') | imagine_filter('thumbv') }}" class="responsive" alt="" title="Consulter" /></a>
+			  	<a href={{ image.url}} target="_blank"><img class="img-fluid" src="{{ vich_uploader_asset(image, 'imageFile') | imagine_filter('thumb') }}" class="responsive" alt="" title="Consulter" /></a>
 			{% endif %}
      		<div class="card-body card-body-product">
 				<h5 class="card-title"><a href={{ image.url}} target="_blank">{{ image.titre|replace({'&#8239': ""})|raw }}</a></h5>
