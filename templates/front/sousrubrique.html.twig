@@ -9,6 +9,24 @@
 		<section class="wrapper style1">
 			<div class="inner top-responsive">
 				<h2>{{ dossier.titre }}</h2>
+				<nav class="share">
+					<ul style="margin:0;">
+					<!--
+						<li><span><a href={{path('front_dossier_exportpdf',{'slug': dossier.slug,'id':dossier.id})}} target="_blank"><i class="fa fa-print"></i></a></span></li>
+						<li><span><a href={{path('front_dossier_exportpdf',{'slug': dossier.slug,'id':dossier.id})}} target="_blank"><i class="fa fa-file-pdf-o"></i></a></span></li>
+					-->	
+					<li>
+							<div class="dropdown">
+								<span class="dropbtn"><i class="fa fa-share-alt"></i><span>
+								<div class="dropdown-content">
+									<span><a href={{ 'https://www.facebook.com/sharer/sharer.php?u=' ~ 'http://' ~ app.request.host ~ path('front_dossier_show', {'slug': dossier.slug, 'id': dossier.id}) }} target="_blank"><i class="fa fa-facebook"></i></a></span>
+									<span><a href={{ 'https://twitter.com/intent/tweet?url=' ~ 'http://' ~ app.request.host ~ path('front_dossier_show', {'slug': dossier.slug, 'id': dossier.id}) ~ '&hashtags=centrenationaldeladanse' }} target="_blank"><i class="fa fa-twitter"></i></a></span>
+									<span><a href={{path('front_partager',{'id_dossier': dossier.id})}} target="_blank"><i class="fa fa-envelope"></i></a></span>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</nav>
 				{% if dossier.soustitre %}<h3>{{ dossier.soustitre }}</h3>{% endif %}
 				{% if dossier.resume %}
 					<div id="intro">{{ dossier.resume|raw}}</div>
