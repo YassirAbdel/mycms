@@ -173,14 +173,14 @@
                                                 </div>
                                                 <div id="{{ 'collapse' ~ counter }}" class="collapse {% if counter == 1 %}show{% endif %}" data-parent="#accordion-three">
                                                     <div class="card-body">
-                                                    <span><a href="{{ path('app_rubrique_show', {'id': rubrique.id}) }}" data-toggle="tooltip" data-placement="left" title="Editer cette rubrique" style="float:left;margin-left:10px;margin-bottom:10px;margin-top: -20px;"><i class="fa fa-pencil fa-lg color-muted m-r-5"></i></a></span>
-                                                    {% if rubrique.resume is defined %}<p><strong>{{ rubrique.resume|raw }}</strong></p>{% endif %}
-                                                    {% set counter = 0 %}
-                                                    {% for sousrubrique in rubrique.sousrubriques %}
-                                                    {% set counter = ( counter | default(0) ) + 1 %}
-                                                        <h2 class="titressrub">{{ counter ~ '- ' }}{{ sousrubrique.titre }}</h2>
-                                                        {% if sousrubrique.resume is defined %}<strong>{{ sousrubrique.resume|raw }}</strong>{% endif %}
-                                                        {% for texte in sousrubrique.textes %}
+                                                        <span><a href="{{ path('app_rubrique_show', {'id': rubrique.id}) }}" data-toggle="tooltip" data-placement="left" title="Editer cette rubrique" style="float:left;margin-left:10px;margin-bottom:10px;margin-top: -20px;"><i class="fa fa-pencil fa-lg color-muted m-r-5"></i></a></span>
+                                                        {% if rubrique.resume is defined %}<p><strong>{{ rubrique.resume|raw }}</strong></p>{% endif %}
+                                                        {% set counter = 0 %}
+                                                        {% for sousrubrique in rubrique.sousrubriques %}
+                                                            {% set counter = ( counter | default(0) ) + 1 %}
+                                                            <h2 class="titressrub">{{ counter ~ '- ' }}{{ sousrubrique.titre }}</h2>
+                                                            {% if sousrubrique.resume is defined %}<strong>{{ sousrubrique.resume|raw }}</strong>{% endif %}
+                                                                {% for texte in sousrubrique.textes %}
                                                                 <p>{{ texte.contenu|raw }}</p>
                                                                 {% set images = texte.images %}
                                                                 {% set uploads = texte.uploads %}
