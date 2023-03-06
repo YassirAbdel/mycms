@@ -44,7 +44,6 @@
 						</header>
 						<div class="content title">
 							<h1>{{ rubrique.titre }}</h1>
-							<strong>{{ rubrique.resume }}</strong>
 							<nav class="share">
 								<ul style="margin:0;">
 									<li><span><a href={{path('front_rubriquepdf_show',{'slug': rubrique.slug,'id':rubrique.id})}} target="_blank"><i class="fa fa-print"></i></a></span></li>
@@ -61,6 +60,7 @@
 									</li>
 								</ul>
 							</nav>
+							<div class="sub-rub-abstract">{{ rubrique.resume|raw }}</div>
 							{% if rubrique.resume %}{{ rubrique.resume|raw }}{% endif %}
 							{% for texte in rubrique.textes %}
 								{{ texte.contenu|raw }}
