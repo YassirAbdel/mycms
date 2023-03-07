@@ -105,6 +105,18 @@ figure {
     font-size: 1rem;
     font-style: italic;
 }
+.img-fluid {
+    max-width: 350px;
+}
+table td {
+    vertical-align: top;
+}
+table tbody tr:nth-child(2n + 1) {
+    background-color: #fff;
+}
+table tbody tr {
+    border-color: #fff;
+}
 @media screen and (max-width: 480px) {
     .index {
         margin-left: 1rem;
@@ -147,6 +159,10 @@ figure {
     }
     .card-ttle a, a:hover, a:active{
         color: #b4b4b4;
+    }
+    table,tbody,tr,td { 
+        display: block;
+        width: auto!important;
     }
 }
 @media screen and (max-width: 834px) {
@@ -193,6 +209,10 @@ figure {
     }
     .fixe {
         display: none;
+    }
+    table,tbody,tr,td { 
+        display: block;
+        width: auto!important;
     }
 }
 @media screen and (min-width: 768px) and (max-width: 1024px) {
