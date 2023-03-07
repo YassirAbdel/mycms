@@ -117,6 +117,9 @@ table tbody tr:nth-child(2n + 1) {
 table tbody tr {
     border-color: #fff;
 }
+figcaption {
+    max-width: 350px;
+}
 @media screen and (max-width: 480px) {
     .index {
         margin-left: 1rem;
