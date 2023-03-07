@@ -191,7 +191,7 @@
 {% endblock %}
 {% block javascript %}
 	<script>
-			var images= document.querySelectorAll( ".content img" ),
+			var images= document.querySelectorAll( "img" ),
 			L = images.length, fig = document.createElement('figure'),
 			who, temp
 			while(L) {
@@ -205,7 +205,7 @@
 				temp.appendChild(content);
 			}
 			$(".content img").attr("style", "height:auto;");
-			//$(".content figcaption").attr("style", "max-width:350px;height:auto;");
+			$(".content figcaption").attr("style", "max-width:350px;height:auto;");
 			$(".content img").attr("id", "figure");
 			//$(".content img").attr("style", "figure");
 
