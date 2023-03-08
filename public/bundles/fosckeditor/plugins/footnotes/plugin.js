@@ -195,12 +195,12 @@
 
                 // Add header
                 if (!editor.config.footnotesDisableHeader) {
-                    var header_title = editor.config.footnotesTitle ? editor.config.footnotesTitle : 'Notes';
+                    //var header_title = editor.config.footnotesTitle ? editor.config.footnotesTitle : 'Notes';
                     var header_els = ['<h2>', '</h2>'];//editor.config.editor.config.footnotesHeaderEls
                     if (editor.config.footnotesHeaderEls) {
                         header_els = editor.config.footnotesHeaderEls;
                     }
-                    container += '<header>' + header_els[0] + header_title + header_els[1] + '</header>';
+                    //container += '<header>' + header_els[0] + header_title + header_els[1] + '</header>';
                 }
 
                 // Add footnote
