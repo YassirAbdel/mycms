@@ -120,6 +120,7 @@ table tbody tr {
 }
 figcaption {
     max-width: 350px;
+    color: #111;
 }
 @media screen and (max-width: 480px) {
     .index {
