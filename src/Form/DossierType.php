@@ -27,7 +27,7 @@ class DossierType extends AbstractType
             ])
             ->add('resume', CKEditorType::class, [
                 'attr' => ['class' => 'input-default', 'class' => 'form-control'],
-                'label' => 'Présentation',
+                'label' => 'Introduction',
                 'label_attr' => ['class' => 'margin-label'],
                 #'config' => ['extraPlugins' => 'footnotes'],
                 #'footnotes' => [
