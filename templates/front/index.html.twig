@@ -340,11 +340,6 @@
 				{% if produit.resume %}
 					{{ produit.resume|u.truncate(800, '...', false)|raw }}
 				{% endif %}
-				<!--
-				<ul class="actions stacked">
-					<li><a href="#" class="button" style="margin-left:0rem;margin-top:1rem;color: #111 !important;box-shadow: inset 0 0 0 2px rgb(0 0 0 / 60%);" title="Consulter ce dossier ">Consulter</a></li>
-				</ul>
-				-->
 			</div>
 			<div class="image">
 				<a href={{ path('front_dossier_show', {'slug': produit.slug,'id': produit.id}) }} title="Consulter ce dossier "><img src={{ vich_uploader_asset(produit, 'imageFile') | imagine_filter('thumbd')}} alt="" /></a>
@@ -361,11 +356,6 @@
 				{% if produit.resume %}
 					{{ produit.resume|u.truncate(600, '...')|raw }}</a>
 				{% endif %}
-				<!--
-				<ul class="actions stacked">
-					<li><a href="#" class="button" style="margin-left:0rem;margin-top:1rem;color: #111 !important;box-shadow: inset 0 0 0 2px rgb(0 0 0 / 60%);" title="Consulter">Consulter ce dossier</a></li>
-				</ul>
-				-->
 			</div>
 			<div class="image">
 				<a href={{ path('front_article_show', {'slug': produit.slug,'id': produit.id}) }} title="Consulter ce dossier"><img src={{ vich_uploader_asset(produit, 'imageFile') | imagine_filter('thumbd')}} alt="" /></a>
