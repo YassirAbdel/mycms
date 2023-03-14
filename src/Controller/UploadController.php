@@ -87,7 +87,6 @@ class UploadController extends AbstractController
             $file = $uploadRepository->find($id);
             $file_with_path = $this->getParameter ( 'filespdf_directory' ) . "/" . $file->getFilename();
             unlink($file_with_path);
-            //dd($file_with_path);
             $uploadRepository->remove($file);
             $route = $request->headers->get('referer');
             return $this->redirect($route);
