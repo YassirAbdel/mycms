@@ -357,7 +357,7 @@
 					{{ produit.resume|u.truncate(600, '...')|raw }}</a>
 				{% endif %}
 			</div>
-			<div class="image">
+			<div class="image" id="img-home">
 				<a href={{ path('front_article_show', {'slug': produit.slug,'id': produit.id}) }} title="Consulter ce dossier"><img src={{ vich_uploader_asset(produit, 'imageFile') | imagine_filter('thumbd')}} alt="" /></a>
 			</div>
 		</section>
