@@ -341,7 +341,7 @@
 					{{ produit.resume|u.truncate(800, '...', false)|raw }}
 				{% endif %}
 			</div>
-			<div class="image">
+			<div class="image" id="img-home">
 				<a href={{ path('front_dossier_show', {'slug': produit.slug,'id': produit.id}) }} title="Consulter ce dossier "><img src={{ vich_uploader_asset(produit, 'imageFile') | imagine_filter('thumbd')}} alt="" /></a>
 			</div>
 		</section>
@@ -398,5 +398,6 @@
  {% block javascript %}
 	<script>
 		$(".img-display img").attr("style", "display:none;");
+		$("#img-home img").attr("style", "display:block;");
 	</script>
 {% endblock %}
