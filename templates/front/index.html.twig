@@ -342,7 +342,7 @@
 				{% endif %}
 			</div>
 			<div class="image" id="img-home">
-				<a href={{ path('front_dossier_show', {'slug': produit.slug,'id': produit.id}) }} title="Consulter ce dossier "><img src={{ vich_uploader_asset(produit, 'imageFile') | imagine_filter('thumbd')}} alt="" /></a>
+				<a href={{ path('front_dossier_show', {'slug': produit.slug,'id': produit.id}) }} title="Consulter ce dossier "><img src={{ vich_uploader_asset(produit, 'imageFile') | imagine_filter('thumbd')}} alt="{{ produit.titre }}" /></a>
 			</div>
 		</section>
 	{% endif %}
@@ -358,7 +358,7 @@
 				{% endif %}
 			</div>
 			<div class="image" id="img-home">
-				<a href={{ path('front_article_show', {'slug': produit.slug,'id': produit.id}) }} title="Consulter ce dossier"><img src={{ vich_uploader_asset(produit, 'imageFile') | imagine_filter('thumbd')}} alt="" /></a>
+				<a href={{ path('front_article_show', {'slug': produit.slug,'id': produit.id}) }} title="Consulter ce dossier"><img src={{ vich_uploader_asset(produit, 'imageFile') | imagine_filter('thumbd')}} alt="{{ produit.titre }}" /></a>
 			</div>
 		</section>
 	{% endif %}
