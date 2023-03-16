@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Souscollectioncnd;
 use App\Form\SouscollectioncndType;
+use App\Form\SouscollectioncndUpdateType;
 use App\Repository\CollectioncndRepository;
 use App\Repository\SouscollectioncndRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -58,7 +59,7 @@ class SouscollectioncndController extends AbstractController
     #[Route('/{id}/edit', name: 'app_souscollectioncnd_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Souscollectioncnd $souscollectioncnd, SouscollectioncndRepository $souscollectioncndRepository): Response
     {
-        $form = $this->createForm(SouscollectioncndType::class, $souscollectioncnd);
+        $form = $this->createForm(SouscollectioncndUpdateType::class, $souscollectioncnd);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

@@ -9,7 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Cocur\Slugify\Slugify;
-use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: DossierRepository::class)]
 #[Vich\Uploadable]
@@ -43,7 +42,7 @@ class Dossier
     private ?int $imageSize = null;
 
     #[ORM\Column(type: 'datetime')]
-    private ?\DateTimeInterface $updatedAt = null;
+    private ?\DateTimeInterface $updatedAt;
 
     #[ORM\Column(type: 'boolean', nullable: true)]
     private $folderFront;
@@ -223,5 +222,23 @@ class Dossier
         $this->type = $type;
 
         return $this;
+    }
+
+    /**
+     * Set date.
+     * 
+     * @param \DateTime $updatedAt
+     * 
+     * @return Collectioncnd 
+     */
+    public function setupdatedAt($date)
+    {
+        $this->updatedAt = $date;
+        return $this;
+    }
+
+    public function getupdatedAt()
+    {
+        return $this->updatedAt; 
     }
 }

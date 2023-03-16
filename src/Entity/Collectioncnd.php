@@ -41,7 +41,7 @@ class Collectioncnd
     private ?int $imageSize = null;
 
     #[ORM\Column(type: 'datetime')]
-    private ?\DateTimeInterface $updatedAt = null;
+    private ?\DateTimeInterface $updatedAt;
 
     #[ORM\Column(type: 'boolean', nullable: true)]
     private $published;
@@ -215,5 +215,23 @@ class Collectioncnd
     public function getSlug(): string
     {
         return (new Slugify())->slugify($this->titre); 
+    }
+
+    /**
+     * Set date.
+     * 
+     * @param \DateTime $updatedAt
+     * 
+     * @return Collectioncnd 
+     */
+    public function setupdatedAt($date)
+    {
+        $this->updatedAt = $date;
+        return $this;
+    }
+
+    public function getupdatedAt()
+    {
+        return $this->updatedAt; 
     }
 }

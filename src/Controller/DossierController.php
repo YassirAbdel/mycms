@@ -7,6 +7,7 @@ use App\Form\DossierType;
 use App\Repository\DossierRepository;
 use App\Repository\RubriqueRepository;
 use App\Repository\SousrubriqueRepository;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -84,12 +85,13 @@ class DossierController extends AbstractController
     #[Route('/{id}/edit', name: 'app_dossier_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Dossier $dossier, DossierRepository $dossierRepository): Response
     {
-        ($dossier);
         $form = $this->createForm(DossierType::class, $dossier);
         $form->handleRequest($request);
+        $date = new DateTime('now');
 
         if ($form->isSubmitted() && $form->isValid()) {
             $dossier->setType(1);
+            $dossier->setupdatedAt($date);
             $rubriques = $dossier->getRubriques();
             $dossierRepository->add($dossier);
           

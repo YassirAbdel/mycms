@@ -36,7 +36,7 @@
                                                 <tr>
                                                     <td>{{ dossier.id }}</td>
                                                     <td>{{ dossier.titre }}</td>
-                                                    <td>Apr 20,2018</td>
+                                                    <td>{{ dossier.updatedAt|date("d-m-Y \à G:i:s") }}</td>
                                                     <td>
                                                         <div class="action">
                                                             <span style="font-weight:1000">Publié <i class="fa fa-check" style="color:#{% if dossier.published==true %}008000{%else%}FF0000{% endif %}"></i></span>

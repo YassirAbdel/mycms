@@ -19,6 +19,9 @@
     </div>
     {% if collectioncnd.imageFile is defined %}
         <div class="mb-6">
+               {{ form_errors(form) }}
+        </div>
+        <div class="mb-6">
             <img src="{{ vich_uploader_asset(collectioncnd, 'imageFile') }}" class="card-img-top" style="height:auto;width:50%;text-align:center;margin:auto;display:flex;">
         <div>
     {% endif %}

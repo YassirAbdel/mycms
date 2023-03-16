@@ -41,7 +41,7 @@
                                                             <span style="font-weight:1000">A la une <i class="fa fa-check" style="color:#{% if collectioncnd.folderFront==true %}008000{% else %}FF0000{% endif %}"></i></a></span>
                                                         </div>
                                                     </td>
-                                                    <td>Apr 20,2018</td>
+                                                    <td>{{ collectioncnd.updatedAt|date("d-m-Y \à G:i:s") }}</td>
                                                     <td>
                                                         <div class="action">
                                                             <span><a href="{{ path('app_collectioncnd_edit', {'id': collectioncnd.id}) }}" data-toggle="tooltip" data-placement="top" title="Editer"><i class="fa fa-pencil color-muted m-r-5"></i></a></span>

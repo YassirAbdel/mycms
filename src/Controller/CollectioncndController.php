@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Collectioncnd;
 use App\Form\CollectioncndType;
+use App\Form\CollectioncndUpdateType;
 use App\Repository\CollectioncndRepository;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -51,11 +53,11 @@ class CollectioncndController extends AbstractController
     #[Route('/{id}/edit', name: 'app_collectioncnd_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Collectioncnd $collectioncnd, CollectioncndRepository $collectioncndRepository): Response
     {
-        $form = $this->createForm(CollectioncndType::class, $collectioncnd);
+        $form = $this->createForm(CollectioncndUpdateType::class, $collectioncnd);
         $form->handleRequest($request);
-
+        $date = new DateTime('now');
         if ($form->isSubmitted() && $form->isValid()) {
-            ///dd($collectioncnd);
+            $collectioncnd->setupdatedAt($date);
             $collectioncndRepository->add($collectioncnd);
             return $this->redirectToRoute('app_collectioncnd_show', ['id' => $collectioncnd->getId()], Response::HTTP_SEE_OTHER);
         }

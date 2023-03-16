@@ -36,7 +36,7 @@
                                         <tr>
                                             <td>{{ article.id }}</td>
                                             <td>{{ article.titre }}</td>
-                                            <td>Apr 20,2018</td>
+                                            <td>{{ article.updatedAt|date("d-m-Y \à G:i:s") }}</td>
                                             <td>
                                                 <div class="action">
                                                     <span style="font-weight:1000">Publié <i class="fa fa-check" style="color:#{% if article.published==true %}008000{%else%}FF0000{% endif %}"></i></span>

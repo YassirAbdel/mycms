@@ -12,7 +12,7 @@ use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\UX\Dropzone\Form\DropzoneType;
 
-class ArticleType extends AbstractType
+class ArticleUpdateType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -52,7 +52,7 @@ class ArticleType extends AbstractType
                 ]
             ])
             ->add('imageFile', DropzoneType::class, [
-                'required' => true,
+                'required' => false,
                 'label' => 'Illustration'
             ])
            

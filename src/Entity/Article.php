@@ -44,7 +44,7 @@ class Article
     private ?int $imageSize = null;
 
     #[ORM\Column(type: 'datetime')]
-    private ?\DateTimeInterface $updatedAt = null;
+    private ?\DateTimeInterface $updatedAt;
 
     #[ORM\Column(type: 'boolean', nullable: true)]
     private $folderFront;
@@ -215,5 +215,23 @@ class Article
         $this->type = $type;
 
         return $this;
+    }
+
+    /**
+     * Set date.
+     * 
+     * @param \DateTime $updatedAt
+     * 
+     * @return Collectioncnd 
+     */
+    public function setupdatedAt($date)
+    {
+        $this->updatedAt = $date;
+        return $this;
+    }
+
+    public function getupdatedAt()
+    {
+        return $this->updatedAt; 
     }
 }

@@ -2,39 +2,32 @@
 
 namespace App\Form;
 
-use App\Entity\Article;
-
+use App\Entity\Collectioncnd;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\UX\Dropzone\Form\DropzoneType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
-class ArticleType extends AbstractType
+class CollectioncndUpdateType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('titre', TextType::class, [
-                'attr' => [
-                    'class' => 'form-control'
-                ],
-                'label' => 'Titre'
+                'attr' => ['class' => 'input-default', 'class' => 'form-control'],
+                'label' => 'Titre',
             ])
             ->add('soustitre', TextType::class, [
-                'attr' => [
-                    'class' => 'form-control'
-                ],
+                'attr' => ['class' => 'input-default', 'class' => 'form-control'],
                 'label' => 'Sous-titre',
                 'required'   => false
             ])
-            ->add('resume', CKEditorType::class, [
-                'attr' => [
-                    'class' => 'form-control'
-                ],
-                'label' => 'Introduction',
+            ->add('presentation', CKEditorType::class, [
+                'attr' => ['class' => 'input-default', 'class' => 'form-control'],
+                'label' => 'Présentation',
                 'label_attr' => ['class' => 'margin-label']
             ])
             ->add('folderFront', CheckboxType::class, [
@@ -52,17 +45,16 @@ class ArticleType extends AbstractType
                 ]
             ])
             ->add('imageFile', DropzoneType::class, [
-                'required' => true,
+                'required' => false,
                 'label' => 'Illustration'
             ])
-           
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Article::class,
+            'data_class' => Collectioncnd::class,
         ]);
     }
 }
