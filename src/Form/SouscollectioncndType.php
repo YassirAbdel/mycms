@@ -21,6 +21,7 @@ class SouscollectioncndType extends AbstractType
             ])
             ->add('soustitre', TextType::class, [
                 'attr' => ['class' => 'input-default', 'class' => 'form-control'],
+                'required' => false,
                 'label' => 'Sous-titre'
             ])
             ->add('presentation', CKEditorType::class, [
@@ -29,7 +30,7 @@ class SouscollectioncndType extends AbstractType
                 'label_attr' => ['class' => 'margin-label']
             ])
             ->add('imageFile', DropzoneType::class, [
-                'required' => false,
+                'required' => true,
                 'label' => 'Illustration'
             ])
         ;
