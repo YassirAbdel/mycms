@@ -398,6 +398,6 @@
  {% block javascript %}
 	<script>
 		$(".img-display img").attr("style", "display:none;");
-		$("#img-home img").attr("style", "display:block;");
+		$("#img-home").removeAttr("style", "display");
 	</script>
 {% endblock %}
