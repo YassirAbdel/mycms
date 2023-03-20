@@ -55,7 +55,7 @@
 					<h3>{{ collection.soustitre }}</h3>
 				{% endif %}
 				{% if collection.presentation %}
-						{{ collection.presentation|striptags|raw }}
+						{{ collection.presentation|raw }}
 				{% endif %}
 				<div class="index">
 					{% set souscollections = collection.souscollectioncnds %}
