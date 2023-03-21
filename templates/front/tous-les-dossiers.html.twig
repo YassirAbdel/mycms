@@ -73,7 +73,7 @@
 										<h2><a href={{ path('front_article_show', {'slug': produit.slug,'id': produit.id}) }} title="Consulter ce dossier">{{ produit.soustitre }}</a></h2>
 								{% endif %}
 								{% if produit.resume %}
-									{{ produit.resume|u.truncate(800, '...')|raw }}</a>
+									{{ produit.resume|u.truncate(800, '...', false)|raw }}</a>
 								{% endif %}
 							</div>
 							<div class="image">
