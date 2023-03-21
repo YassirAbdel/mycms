@@ -81,7 +81,9 @@ class DossierRepository extends ServiceEntityRepository
     
     public function findDossiersPublished(): array
     {
+        $limit = 4;
         return $this->createQueryBuilder('d')
+            ->setMaxResults($limit)
             ->andWhere('d.published = true')
             ->getQuery()
             ->getResult()
