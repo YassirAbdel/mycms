@@ -64,7 +64,7 @@ class ArticleRepository extends ServiceEntityRepository
     
     public function findArticlesPublished(): array
     {
-        $limit = 2;
+        $limit = 4;
         return $this->createQueryBuilder('a')
             ->setMaxResults($limit)
             ->andWhere('a.published = true')
@@ -85,7 +85,7 @@ class ArticleRepository extends ServiceEntityRepository
              ->getResult()
          ;
      }
-     
+
     // /**
     //  * @return Article[] Returns an array of Article objects
     //  */
