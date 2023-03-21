@@ -272,8 +272,8 @@ class FrontController extends AbstractController
     #[Route('tous-les-dossiers', name: 'front_dossiers_show')]
     public function showDossiers(Request $request): Response
     {   
-        $dossiers = $this->dossierRepository->findDossiersPublished();
-        $articles = $this->articleRepository->findArticlesPublished();
+        $dossiers = $this->dossierRepository->findAllDossiersPublished();
+        $articles = $this->articleRepository->findAllArticlesPublished();
         $produits = array_merge($dossiers, $articles);
         
         return $this->render('front/tous-les-dossiers.html.twig', [

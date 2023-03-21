@@ -90,6 +90,19 @@ class DossierRepository extends ServiceEntityRepository
         ;
     }
 
+    /**
+     * @return Dossier[] Returns an array of Resource objects
+     */
+    
+     public function findAllDossiersPublished(): array
+     {
+        return $this->createQueryBuilder('d')
+             ->andWhere('d.published = true')
+             ->getQuery()
+             ->getResult()
+         ;
+     }
+
     // /**
     //  * @return Dossier[] Returns an array of Dossier objects
     //  */

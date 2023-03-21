@@ -72,6 +72,20 @@ class ArticleRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    /**
+     * @return Article[] Returns an array of Resource objects
+     */
+    
+     public function findAllArticlesPublished(): array
+     {
+         return $this->createQueryBuilder('a')
+             ->andWhere('a.published = true')
+             ->getQuery()
+             ->getResult()
+         ;
+     }
+     
     // /**
     //  * @return Article[] Returns an array of Article objects
     //  */
