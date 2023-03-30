@@ -57,6 +57,8 @@ class FrontController extends AbstractController
         // filtrage IP 
         $ipDebut = ip2long('192.168.0.0'); 
         $ipFin = ip2long('192.168.29.112');
+        $myIp = $_SERVER['REMOTE_ADDR'];
+        dd($myIp);  
         $ipAbloquer = ip2long($_SERVER['REMOTE_ADDR']); 
         if (($ipAbloquer >= $ipDebut) && ($ipAbloquer <= $ipFin)) {
             $allow = 1;
