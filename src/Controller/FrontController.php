@@ -54,6 +54,16 @@ class FrontController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(Request $request): Response
     {
+        // filtrage IP 
+        $ipDebut = ip2long('192.168.0.0'); 
+        $ipFin = ip2long('192.168.29.112');
+        $ipAbloquer = ip2long($_SERVER['REMOTE_ADDR']); 
+        if (($ipAbloquer >= $ipDebut) && ($ipAbloquer <= $ipFin)) {
+            $allow = 1;
+        }else{
+            $allow = 0;
+        }
+        
         $dossiersFront = $this->dossierRepository->findFolderFront();
         $dossiers = $this->dossierRepository->findDossiersPublished();
         $collectionsFront = $this->collectionRepository->findFolderFront();
@@ -104,7 +114,8 @@ class FrontController extends AbstractController
                 'total' => $total,
                 'archive' => $archive,
                 'form' => $form->createView(),
-                '_fragment' => 'ancre'
+                '_fragment' => 'ancre',
+                'allow' => $allow
             ]);
         
         }
@@ -116,6 +127,7 @@ class FrontController extends AbstractController
             'produits' => $edito_all,
             'total' => $total,
             'archive' => $archive,
+            'allow' => $allow,
             'form' => $form->createView()
         ]);
     }
