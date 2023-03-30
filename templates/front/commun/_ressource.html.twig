@@ -6,14 +6,14 @@
 				<a href={{'http://mediatheque.cnd.fr/spip.php?page=mediatheque-numerique-ressource&id=' ~ ressource.referenceCadic }} target="_blank"><img class="img-fluid" src="http://cadic.cnd.fr/exl-img/{{ ressource.urlImag|replace({'.jpg': '.jpg'}) }}" class="responsive" id="feuilleter" alt="Consulter" title="Consulter" /></a>
 			{% endif %}
 			{% if allow == 0 %}
-				<a href="http://www.cnd.fr" target="_blank"><img class="img-fluid" src="http://cadic.cnd.fr/exl-img/{{ ressource.urlImag|replace({'.jpg': '.jpg'}) }}" class="responsive" id="feuilleter" alt="Consulter" title="Consulter" /></a>
+				<a href="http://www.enssib.fr" target="_blank"><img class="img-fluid" src="http://cadic.cnd.fr/exl-img/{{ ressource.urlImag|replace({'.jpg': '.jpg'}) }}" class="responsive" id="feuilleter" alt="Consulter" title="Consulter" /></a>
 			{% endif %}
 		{% else %}
 			{% if allow == 1 %}
 				<a href="{{'http://mediatheque.cnd.fr/spip.php?page=mediatheque-numerique-ressource&id=' ~ ressource.referenceCadic }}" target="_blank"><img class="img-fluid" src="{{ '/images/resources/empty.jpg' | imagine_filter('thumb') }}" class="responsive" id="feuilleter" alt="Consulter" title="Consulter" />
 			{% endif %}
 			{% if allow == 0 %}
-				<a href="http://www.cnd.fr" target="_blank"><img class="img-fluid" src="http://cadic.cnd.fr/exl-img/{{ ressource.urlImag|replace({'.jpg': '.jpg'}) }}" class="responsive" id="feuilleter" alt="Consulter" title="Consulter" /></a>
+				<a href="http://www.enssib.fr" target="_blank"><img class="img-fluid" src="http://cadic.cnd.fr/exl-img/{{ ressource.urlImag|replace({'.jpg': '.jpg'}) }}" class="responsive" id="feuilleter" alt="Consulter" title="Consulter" /></a>
 			{% endif %}
 		{% endif %}
 		<div class="card-body">
