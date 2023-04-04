@@ -28,6 +28,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use App\Classe\ExportPdf;
 use App\Repository\SousrubriqueRepository;
+use App\Classe\FiltrageIp;
 
 class FrontController extends AbstractController
 {
@@ -38,8 +39,9 @@ class FrontController extends AbstractController
     private $paginator;
     private $souscollectionRepository;
     private $notification;
+    private $filtrageIp;
     
-    public function __construct(DossierRepository $dossierRepository, CollectioncndRepository $collectionRepository, ArticleRepository $articleRepository, PaginatorInterface $paginatorInterface, RessourceRepository $ressourceRepository, SouscollectioncndRepository $souscollectioncndRepository, ContactNotification $contactNotification)
+    public function __construct(FiltrageIp $filtrageIp, DossierRepository $dossierRepository, CollectioncndRepository $collectionRepository, ArticleRepository $articleRepository, PaginatorInterface $paginatorInterface, RessourceRepository $ressourceRepository, SouscollectioncndRepository $souscollectioncndRepository, ContactNotification $contactNotification)
     {
         $this->dossierRepository = $dossierRepository;
         $this->collectionRepository = $collectionRepository;
@@ -49,22 +51,15 @@ class FrontController extends AbstractController
         $this->paginator = $paginatorInterface;
         $this->souscollectionRepository = $souscollectioncndRepository;
         $this->notification = $contactNotification;
+        $this->filtrageIp = $filtrageIp;
+        
     }
     
     #[Route('/', name: 'home')]
     public function index(Request $request): Response
     {
         // filtrage IP 
-        $ipDebut = ip2long('192.168.0.0'); 
-        $ipFin = ip2long('192.168.255.255');
-        $myIp = $_SERVER['REMOTE_ADDR'];
-        //dd($myIp);
-        $ipAbloquer = ip2long($myIp);
-        if (($ipAbloquer >= $ipDebut) && ($ipAbloquer <= $ipFin)) {
-            $allow = 1;
-        }else{
-            $allow = 0;
-        }
+        $allow = $this->filtrageIp->ipVerif($_SERVER['REMOTE_ADDR']);
         
         $dossiersFront = $this->dossierRepository->findFolderFront();
         $dossiers = $this->dossierRepository->findDossiersPublished();
@@ -263,8 +258,13 @@ class FrontController extends AbstractController
     #[Route('sous-collection/{slug}-{id}', name: 'front_souscollection_show', requirements: ['slug' => '^[a-z0-9]+(?:-[a-z0-9]+)*$', 'id' => '\d+'], methods: ['GET'])]
     public function showsouscollection(Souscollectioncnd $souscollection): Response
     {
+        // filtrage IP 
+        $allow = $this->filtrageIp->ipVerif($_SERVER['REMOTE_ADDR']);
+        dd($souscollection);
+
         return $this->render('front/souscollection.html.twig', [
-            'souscollection' => $souscollection
+            'souscollection' => $souscollection,
+            'allow' => $allow
         ]);
     }
 

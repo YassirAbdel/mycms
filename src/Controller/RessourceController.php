@@ -80,7 +80,7 @@ class RessourceController extends AbstractController
             $ressources = $paginator->paginate(
                 $query,
                 $request->query->getInt('page', 1),
-                12
+                10
             );
             return $this->render('admin/ressource/index.html.twig', [
                 'current_page' => 'resources',
@@ -98,7 +98,7 @@ class RessourceController extends AbstractController
             $ressources = $paginator->paginate(
                 $query,
                 $request->query->getInt('page', 1),
-                12
+                10
             );
             
             return $this->render('admin/ressource/index.html.twig', [
@@ -116,7 +116,7 @@ class RessourceController extends AbstractController
             $ressources = $paginator->paginate(
                 $query,
                 $request->query->getInt('page', 1),
-                12
+                10
             );
             
             return $this->render('admin/ressource/index.html.twig', [
@@ -137,7 +137,7 @@ class RessourceController extends AbstractController
             $ressources = $paginator->paginate(
                 $query,
                 $request->query->getInt('page', 1),
-                12
+                10
             );
             
             return $this->render('admin/ressource/index.html.twig', [
@@ -155,7 +155,7 @@ class RessourceController extends AbstractController
             $ressources = $paginator->paginate(
                 $query,
                 $request->query->getInt('page', 1),
-                12
+                10
             );
 
             return $this->render('admin/ressource/index.html.twig', [
@@ -172,7 +172,7 @@ class RessourceController extends AbstractController
             $ressources = $paginator->paginate(
                 $query,
                 $request->query->getInt('page', 1),
-                12
+                10
             );
 
             return $this->render('admin/ressource/index.html.twig', [
