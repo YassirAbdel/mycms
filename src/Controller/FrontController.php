@@ -260,8 +260,7 @@ class FrontController extends AbstractController
     {
         // filtrage IP 
         $allow = $this->filtrageIp->ipVerif($_SERVER['REMOTE_ADDR']);
-        dd($souscollection);
-
+       
         return $this->render('front/souscollection.html.twig', [
             'souscollection' => $souscollection,
             'allow' => $allow
