@@ -1,6 +1,6 @@
                     <article>
 						{% if souscollection.titre %}
-                    		<a href="#" class="image" target="_blank" title="Consulter">
+                    		<a href={{ path('front_souscollection_show', {'slug': souscollection.slug,'id': souscollection.id}) }} class="image" target="_blank" title="Consulter">
 								<img src={{ vich_uploader_asset(souscollection, 'imageFile') | imagine_filter('thumbv')}} alt="" />
 							</a>
 						{% endif %}
