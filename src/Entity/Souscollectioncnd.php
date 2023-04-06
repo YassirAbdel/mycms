@@ -30,6 +30,7 @@ class Souscollectioncnd
     private $collectioncnd;
 
     #[ORM\ManyToMany(targetEntity: Ressource::class, inversedBy: 'souscollectioncnds')]
+    #[ORM\OrderBy(["id" => "ASC"])]
     private $ressources;
 
     /**
