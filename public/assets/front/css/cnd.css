@@ -4950,9 +4950,13 @@ label {
 .navigation {
 	margin-bottom: 1rem;
 }
+
+/***
 .page-item.active .page-link {
 	display: none;
 }
+***/
+
 .spotlight.style1 .image {
 	margin-bottom: 20px;
 }
