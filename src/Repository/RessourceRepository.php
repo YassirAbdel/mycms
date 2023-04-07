@@ -106,6 +106,7 @@ class RessourceRepository extends ServiceEntityRepository
                 ->orWhere('r.organisme LIKE :string')
                 ->orWhere('r.referenceCadic LIKE :string')
                 ->orWhere('r.type LIKE :string')
+                ->orWhere('r.auteur LIKE :string')
                 ->setParameter('string', $string)
         ;
         return $query->getQuery()->getResult();
@@ -132,6 +133,7 @@ class RessourceRepository extends ServiceEntityRepository
                 ->orWhere('r.organisme LIKE :string')
                 ->orWhere('r.referenceCadic LIKE :string')
                 ->orWhere('r.type LIKE :string')
+                ->orWhere('r.auteur LIKE :string')
                 ->setParameter('string', $string)
         ;
         return $query->getQuery()->getResult();
