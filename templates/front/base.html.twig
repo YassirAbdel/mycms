@@ -9,6 +9,7 @@
 		<link  rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css"/>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css">
+		<link rel="stylesheet" href={{ asset('assets/front/css/amplify.css') }} />
 		<link rel="stylesheet" href={{ asset('assets/front/css/cnd.css') }} />
 		<noscript><link rel="stylesheet" href={{ asset('assets/front/css/noscript.css') }}/></noscript>
 		{% block css %}{% endblock %}
@@ -89,6 +90,7 @@
 			<script src={{ asset('assets/front/js/top.js') }}></script>
 			<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
   			<script src={{ asset('assets/front/js/cookieconsent.js') }}></script>
+			<script src={{ asset('assets/front/js/amplify.js') }}></script>
 			<!-- <script src="assets/js/down.js"></script> -->
 			<script>
             	$('select').select2();

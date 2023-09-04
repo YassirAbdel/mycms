@@ -5418,7 +5418,12 @@ h4, h5, h6 {
 .share .dropdown:hover .dropbtn {
   background-color: #fff;
 }
-	
+.amplify-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
 /*** Responsive mode ***/
 @media screen and (max-width: 380px) {
 

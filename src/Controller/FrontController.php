@@ -137,6 +137,8 @@ class FrontController extends AbstractController
         $rubriques = $rubriqueRepository->findByidDossier($id);
         $menu = 1;
         $sousmenu = 1;
+         // filtrage IP 
+         $allow = $this->filtrageIp->ipVerif($_SERVER['REMOTE_ADDR']);
         
         return $this->render('front/dossier.html.twig', [
             'dossier' => $dossier,
@@ -144,7 +146,8 @@ class FrontController extends AbstractController
             'id' => $id,
             'rubriques' => $rubriques,
             'menu' => $menu,
-            'sousmenu' => $sousmenu
+            'sousmenu' => $sousmenu,
+            'allow' => $allow
         ]);
     }
 
@@ -166,10 +169,13 @@ class FrontController extends AbstractController
     {
         $slug = $article->getSlug();
         $id = $article->getId();
+        // filtrage IP 
+        $allow = $this->filtrageIp->ipVerif($_SERVER['REMOTE_ADDR']);
         return $this->render('front/article.html.twig', [
             'article' => $article,
             'slug' => $slug,
-            'id' => $id
+            'id' => $id,
+            'allow' => $allow
         ]);
     }
 
@@ -181,6 +187,8 @@ class FrontController extends AbstractController
         $id = $dossier->getId();
         $menu = $rubrique->getId();
         $sousmenu = 1;
+        // filtrage IP 
+        $allow = $this->filtrageIp->ipVerif($_SERVER['REMOTE_ADDR']);
         
         return $this->render('front/rubrique.html.twig', [
             'dossier' => $dossier,
@@ -188,7 +196,8 @@ class FrontController extends AbstractController
             'rubriques' => $rubriques,
             'rubrique' => $rubrique,
             'menu' => $menu,
-            'sousmenu' => $sousmenu
+            'sousmenu' => $sousmenu,
+            'allow' => $allow
         ]);
     }
 
@@ -218,6 +227,8 @@ class FrontController extends AbstractController
         $id = $dossier->getId();
         $menu = $rubrique->getId();
         $sousmenu = $sousrubrique->getId();
+        // filtrage IP 
+        $allow = $this->filtrageIp->ipVerif($_SERVER['REMOTE_ADDR']);
         
         return $this->render('front/sousrubrique.html.twig', [
             'dossier' => $dossier,
@@ -225,7 +236,8 @@ class FrontController extends AbstractController
             'rubriques' => $rubriques,
             'sousrubrique' => $sousrubrique,
             'menu' => $menu,
-            'sousmenu' => $sousmenu
+            'sousmenu' => $sousmenu,
+            'allow' => $allow
         ]);
     }
 
@@ -250,8 +262,11 @@ class FrontController extends AbstractController
     #[Route('collection/{slug}-{id}', name: 'front_collection_show', requirements: ['slug' => '^[a-z0-9]+(?:-[a-z0-9]+)*$', 'id' => '\d+'], methods: ['GET'])]
     public function showcollection(Collectioncnd $collection): Response
     {
+        // filtrage IP 
+        $allow = $this->filtrageIp->ipVerif($_SERVER['REMOTE_ADDR']);
         return $this->render('front/collection.html.twig', [
-            'collection' => $collection
+            'collection' => $collection,
+            'allow' => $allow
         ]);
     }
 
@@ -271,6 +286,8 @@ class FrontController extends AbstractController
     public function showCollections(Request $request): Response
     {
         $query = $this->collectionRepository->findAllCollections();
+        // filtrage IP 
+        $allow = $this->filtrageIp->ipVerif($_SERVER['REMOTE_ADDR']);
         $collections = $this->paginator->paginate(
             $query,
             $request->query->getInt('page', 1),/* page number */
@@ -278,7 +295,8 @@ class FrontController extends AbstractController
         );
 
         return $this->render('front/toutes-les-collections.twig.html', [
-            'collections' => $collections
+            'collections' => $collections,
+            'allow' => $allow
         ]);
     }
 
@@ -288,9 +306,12 @@ class FrontController extends AbstractController
         $dossiers = $this->dossierRepository->findAllDossiersPublished();
         $articles = $this->articleRepository->findAllArticlesPublished();
         $produits = array_merge($dossiers, $articles);
+        // filtrage IP 
+        $allow = $this->filtrageIp->ipVerif($_SERVER['REMOTE_ADDR']);
         
         return $this->render('front/tous-les-dossiers.html.twig', [
-            'produits' => $produits
+            'produits' => $produits,
+            'allow' => $allow
         ]);
     }
 
@@ -315,7 +336,8 @@ class FrontController extends AbstractController
             $slug = $sous_rubrique->getSlug();
             $url = 'http://mediatheque.cnd.interne/sous-rubrique/' . $slug . '-' . $id_sous_rubrique . '#contenu';
         }
-        
+        // filtrage IP 
+        $allow = $this->filtrageIp->ipVerif($_SERVER['REMOTE_ADDR']);
         // formulaire partage
         $contact = new Contact();
         $contact->setMessage('partage');
@@ -327,7 +349,8 @@ class FrontController extends AbstractController
             return $this->render('front/partage.html.twig', [
                 'url' => $url,
                 'form' => $form->createView(),
-                '_fragment' => 'ancre'
+                '_fragment' => 'ancre',
+                'allow' => $allow
             ]);
 
         }
@@ -335,7 +358,8 @@ class FrontController extends AbstractController
         return $this->render('front/partage.html.twig', [
             'url' => $url,
             'form' => $form->createView(),
-            '_fragment' => 'ancre'
+            '_fragment' => 'ancre',
+            'allow' => $allow
         ]);
     }
 }
